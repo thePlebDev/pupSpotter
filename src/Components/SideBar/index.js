@@ -4,11 +4,11 @@ import styled from 'styled-components';
 const Container =styled.div`
 
   position:absolute;
+  display: flex;
   right:-1px;
   height:500px;
   top:70px;
   width:150px;
-  display:flex;
   flex-direction:column;
   justify-content:space-around;
   background-color:#05386B;

@@ -12,6 +12,7 @@ const Container = styled.nav`
   padding:10px;
   background-color:#05386B;
   position:relative;
+  z-index:1000;
 
 `
 

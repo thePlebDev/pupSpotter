@@ -1,12 +1,13 @@
 import React from 'react';
 
 import NavBar from '../NavBar';
+import Map from '../Leaflet';
 
 const App =()=>{
   return(
     <div>
       <NavBar />
-      <h1>This is the home App</h1>
+      <Map />
     </div>
   )
 }

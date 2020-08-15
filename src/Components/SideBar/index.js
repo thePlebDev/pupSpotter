@@ -13,6 +13,7 @@ const Container =styled.div`
   justify-content:space-around;
   background-color:#05386B;
   transition: transform 0.25s;
+  opacity:0.9;
   transform: ${props => props.state ?"translateX(200px)":"translateX(0px)"}
 `
 const Text = styled.div`

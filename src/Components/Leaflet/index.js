@@ -3,7 +3,7 @@ import {Map,TileLayer,Marker,Popup} from 'react-leaflet';
 
 
 const MapContainer= ()=>{
-const [state,setState] = useState({lat:37.7749,lng:-122.4194,zoom:13})
+const [state,setState] = useState({lat:45.897820,lng:-64.368279,zoom:13})
 
   useEffect(()=>{
 
@@ -18,6 +18,11 @@ const [state,setState] = useState({lat:37.7749,lng:-122.4194,zoom:13})
       attribution='&copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
       url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
+      <Marker position={[state.lat,state.lng]} >
+        <Popup>
+          <div>Dog Here</div>
+        </Popup>
+      </Marker>
 
     </Map>
   )

@@ -1,4 +1,4 @@
-import React,{useState,useRef,useEffect} from 'react';
+import React,{useState,useRef} from 'react';
 import styled from 'styled-components';
 
 import Sidebar from '../SideBar';
@@ -29,9 +29,9 @@ const Text = styled.div`
   color:#5CDB95;
   font-weight:600;
 `
-const Paw = styled.i`
- font-size:20px
-`
+// const Paw = styled.i`
+//  font-size:20px
+// `
 const paw = {
   fontSize:'30px',
   margin:'1px 5px',

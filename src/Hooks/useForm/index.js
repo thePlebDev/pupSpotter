@@ -1,6 +1,6 @@
 import {useState,useEffect} from 'react';
 
-import validation from '../../utils/Validation';
+import {signupValidation} from '../../utils/Validation';
 
 const useForm = ()=>{
   const [state,setState] =useState({name:'',loc:'',date:'',image:''})
@@ -9,7 +9,8 @@ const useForm = ()=>{
   const handleSubmit =(e)=>{
     e.preventDefault()
     console.log('submitted')
-    setErrors(validation(state))
+    setErrors(signupValidation(state))
+    setState({...state,loc:''})
   }
 
   useEffect(()=>{

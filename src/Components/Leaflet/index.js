@@ -3,7 +3,7 @@ import {Map,TileLayer,Marker,Popup} from 'react-leaflet';
 
 
 const MapContainer= ()=>{
-const [state,setState] = useState({lat:45.897820,lng:-64.368279,zoom:13})
+const [state] = useState({lat:45.897820,lng:-64.368279,zoom:13})
 
   useEffect(()=>{
 

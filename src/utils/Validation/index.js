@@ -1,5 +1,5 @@
 
-const validation =(state)=>{
+const signupValidation =(state)=>{
   const errors={}
   const allowedExtensions =/(\.jpg|\.jpeg|\/png|\.gif)$/i;
 
@@ -16,5 +16,28 @@ const validation =(state)=>{
     errors
   )
 }
+const registerValidation=(state)=>{
+  const errors ={}
+  const regex ='/\S+@\S+\.\S+/'
 
-export default validation
+  if(!state.name ){
+    errors.name='Please enter a name'
+  }
+
+  if(!state.email){
+
+    errors.email ='Please enter a email address';
+  }
+
+  if(!state.password){
+    errors.password = 'Please enter a password';
+  }
+  if (state.password && state.password.length < 10) {
+    errors.passowrd = 'Password is too short'
+
+  }
+  console.log(errors)
+  return errors
+}
+
+export {signupValidation,registerValidation}

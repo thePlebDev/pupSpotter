@@ -1,8 +1,12 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const cookieParser = require("cookie-parser");
+const session = require("express-session");
+const passport = require('passport');
 
 const User = require('./Models/User')
+const Spotting = require('./Models/Spotting')
 
 const app = express()
 const port = 3001
@@ -17,7 +21,16 @@ db.once('open',()=>{
 db.once('error',err=>{
   console.error('connection error',err)
 })
+
 app.use(bodyParser.json())
+app.use(cookieParser());
+app.use(session({
+ secret: "TKRv0IJs=HYqrvagQ#&!F!%V]Ww/4KiVs$s,<<MX",
+ resave: true,
+ saveUninitialized: true
+}));
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.get('/',(req,res)=>{
   res.send('THis should be all the pups spotted')
@@ -41,6 +54,19 @@ app.post('/register',(req,res,next)=>{
     res.send('created new user')
 
   })
+
+})
+
+app.post('/spot',(req,res,next)=>{
+  const {name,image,location} = req.body
+  const newSpotting = new Spotting({
+    name,
+    image,
+    location
+  })
+  newSpotting.save()
+  .then(data=>res.send(data))
+  .catch(error=>res.send(error))
 
 })
 

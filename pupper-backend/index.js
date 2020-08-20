@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const cookieParser = require("cookie-parser");
 const session = require("express-session");
 const passport = require('passport');
+const passportConfig = require('./passportConfig')
 
 const User = require('./Models/User')
 const Spotting = require('./Models/Spotting')
@@ -31,6 +32,8 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
+passportConfig()
+
 
 app.get('/',(req,res)=>{
   res.send('THis should be all the pups spotted')
@@ -69,6 +72,14 @@ app.post('/spot',(req,res,next)=>{
   .catch(error=>res.send(error))
 
 })
+app.post("/login",passport.authenticate("login",{
+  successRedirect:"/",
+  failureRedirect:"/login"
+}))
+app.get("/logout",function(req,res){
+  req.logout();
+  res.redirect("/")
+});
 
 app.listen(port,()=>{
   console.log('listening on port 3000')

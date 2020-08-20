@@ -14,10 +14,9 @@ passport.deserializeUser(function(id, done) {
   });
 });
 
-}
-
 passport.use('login', new LocalStrategy(
-  function(username, password, done) {
+  function(username, password, done) { // username and password will get extracted from req by Passport,
+    console.log(username)
     User.findOne({ username: username }, function (err, user) {
       if (err) { return done(err); }
       if (!user) {
@@ -28,8 +27,11 @@ passport.use('login', new LocalStrategy(
          if(isMatch){
            return done(null,user);
          }else{
+           console.log('its bad mate')
            return done(null,false,{message:"Invalid password"})
          }
        });
     });
   }));
+
+}

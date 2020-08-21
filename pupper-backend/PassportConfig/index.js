@@ -27,7 +27,6 @@ passport.use('login', new LocalStrategy(
          if(isMatch){
            return done(null,user);
          }else{
-           console.log('its bad mate')
            return done(null,false,{message:"Invalid password"})
          }
        });

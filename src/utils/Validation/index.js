@@ -1,4 +1,5 @@
 
+
 const signupValidation =(state)=>{
   const errors={}
   const allowedExtensions =/(\.jpg|\.jpeg|\/png|\.gif)$/i;
@@ -39,5 +40,18 @@ const registerValidation=(state)=>{
   console.log(errors)
   return errors
 }
+const loginValidation=(state)=>{
+  const errors ={}
 
-export {signupValidation,registerValidation}
+  if(!state.username){
+    errors.username= "Please enter a username "
+  }
+  if(!state.username){
+    errors.username = "Plase enter a password"
+  }
+
+
+  return errors
+}
+
+export {signupValidation,registerValidation,loginValidation}

@@ -3,8 +3,10 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cookieParser = require("cookie-parser");
 const session = require("express-session");
+const MongoStore = require('connect-mongo')(session)
 const passport = require('passport');
 const passportConfig = require('./passportConfig')
+const cors = require("cors");
 
 const User = require('./Models/User')
 const Spotting = require('./Models/Spotting')
@@ -22,21 +24,34 @@ db.once('open',()=>{
 db.once('error',err=>{
   console.error('connection error',err)
 })
+passportConfig()
+const twoHours = 1000 * 60 * 60
 
 app.use(bodyParser.json())
-app.use(cookieParser());
+app.use(cookieParser())
 app.use(session({
  secret: "TKRv0IJs=HYqrvagQ#&!F!%V]Ww/4KiVs$s,<<MX",
- resave: true,
- saveUninitialized: true
+ resave: false,
+ saveUninitialized: false,
+ cookie:{
+   maxAge: twoHours,
+   sameSite:true,
+   secure:false
+ }
+
 }));
 app.use(passport.initialize());
 app.use(passport.session());
-passportConfig()
+
+app.use(cors());
 
 
 app.get('/',(req,res)=>{
   res.send('THis should be all the pups spotted')
+  console.log(req.user)
+})
+app.get('/thing',(req,res)=>{
+  console.log(req)
 })
 
 app.post('/register',(req,res,next)=>{
@@ -77,6 +92,7 @@ app.post("/login",passport.authenticate("login",{
   failureRedirect:"/login"
 }))
 app.get("/logout",function(req,res){
+  console.log(req.user)
   req.logout();
   res.redirect("/")
 });

@@ -7,9 +7,11 @@ const passport = require('passport');
 const passportConfig = require('./passportConfig')
 const cors = require("cors");
 
+const User = require('./Models/User')
+
 //Routers
 const loginRouter = require('./Routes/Login');
-const registerRouter = require('./Routes/Login');
+const registerRouter = require('./Routes/Register');
 const spottingRouter = require('./Routes/Spots')
 const profileRouter = require('./Routes/Register')
 
@@ -17,7 +19,7 @@ const profileRouter = require('./Routes/Register')
 const app = express()
 passportConfig()
 const port = 3001
-const url ='';
+const url ='mongodb+srv://camoSheets:vQFvBxS67LILByJX@cluster0.xgzqn.mongodb.net/new-db?retryWrites=true&w=majority';
 const db = mongoose.connection
 const connection = mongoose.createConnection(url)
 const sessionStore = new MongoStore({ mongooseConnection: connection, collection: 'sessions' })
@@ -61,11 +63,11 @@ app.get('/thing',(req,res)=>{
   console.log(req.user)
 })
 
-
 app.use('/user',loginRouter)
-app.use('/register',registerRouter)
 app.use('/spot',spottingRouter)
 app.use('/profile',profileRouter)
+app.use('/register',registerRouter)
+
 
 
 

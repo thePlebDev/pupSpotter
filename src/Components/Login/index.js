@@ -1,9 +1,44 @@
 import React,{useState} from 'react';
+import styled from 'styled-components'
 
 import useLogin from '../../Hooks/useLogin';
 import {loginValidation} from '../../utils/Validation';
 import axios from 'axios'
 import {backendUrl} from '../../utils/Constants'
+
+const Form = styled.form`
+width:80%;
+margin:10px auto;
+
+`
+const Input = styled.input`
+width:100%;
+padding:10px;
+border-radius:4px;
+`
+
+const Text = styled.div`
+ font-size:1.3em;
+ margin-top:10px;
+`
+const Button = styled.button`
+background-color:#05386B;
+padding:10px 36px;
+color:#5CDB95;
+border-radius:4px;
+
+width:105%;
+font-size:1.2em;
+letter-spacing:1px;
+outline:none;
+display:block;
+margin-top:30px;
+
+`
+
+
+
+
 
 const Login =()=>{
   const handleClick=()=>{
@@ -16,20 +51,19 @@ const Login =()=>{
 
   return(
     <div>
-      <form onSubmit={(e)=>handleSubmit(e)}>
+      <Form onSubmit={(e)=>handleSubmit(e)}>
         <label>
-          Username
-          <input type="text" name="username" value={state.username} onChange={(e)=>handleChange(e)}/>
+          <Text>Username</Text>
+          <Input type="text" name="username" value={state.username} onChange={(e)=>handleChange(e)}/>
         </label>
 
         <label>
-          Password
-          <input type='password' name="password" value={state.password}  onChange={(e)=>handleChange(e)}/>
+          <Text>Password</Text>
+          <Input type='password' name="password" value={state.password}  onChange={(e)=>handleChange(e)}/>
         </label>
 
-        <button type="submit">Submit</button>
-      </form>
-      <button onClick={(e)=>handleClick()} type='button'>Logged IN ?</button>
+        <Button type="submit">Login</Button>
+      </Form>
     </div>
   )
 }

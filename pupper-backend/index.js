@@ -19,7 +19,7 @@ const profileRouter = require('./Routes/Register')
 const app = express()
 passportConfig()
 const port = 3001
-const url ='mongodb+srv://camoSheets:vQFvBxS67LILByJX@cluster0.xgzqn.mongodb.net/new-db?retryWrites=true&w=majority';
+const url ='';
 const db = mongoose.connection
 const connection = mongoose.createConnection(url)
 const sessionStore = new MongoStore({ mongooseConnection: connection, collection: 'sessions' })

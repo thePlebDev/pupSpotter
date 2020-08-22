@@ -4,7 +4,9 @@ const User = require("../Models/User")
 const LocalStrategy = require('passport-local').Strategy;
 
 module.exports = function(){
+  console.log('serialzed')
   passport.serializeUser(function(user, done) {
+    console.log(user._id)
   done(null, user.id);
 });
 
@@ -25,6 +27,7 @@ passport.use('login', new LocalStrategy(
        user.checkPassword(password,function(err,isMatch){
          if(err){return done(err)}
          if(isMatch){
+           //console.log(user) it is definetly the user object that we want
            return done(null,user);
          }else{
            return done(null,false,{message:"Invalid password"})

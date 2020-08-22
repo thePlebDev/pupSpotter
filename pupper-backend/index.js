@@ -6,15 +6,26 @@ const session = require("express-session");
 const MongoStore = require('connect-mongo')(session)
 const passport = require('passport');
 const passportConfig = require('./passportConfig')
+
 const cors = require("cors");
 
 const User = require('./Models/User')
 const Spotting = require('./Models/Spotting')
 
+function ensureAuthenticated(req,res,next){
+  if(req.isAuthenticated()){
+    console.log('AUTHENTICATED')
+    next();
+  }else {
+    res.send('not authenticated')
+  }
+}
+
 const app = express()
 const port = 3001
 const url ='';
 const db = mongoose.connection
+const connection = mongoose.createConnection(url)
 
 mongoose.connect(url,{useUnifiedTopology: true,
 useNewUrlParser: true,});
@@ -28,30 +39,34 @@ passportConfig()
 const twoHours = 1000 * 60 * 60
 
 app.use(bodyParser.json())
-app.use(cookieParser())
+const sessionStore = new MongoStore({ mongooseConnection: connection, collection: 'sessions' })
 app.use(session({
  secret: "TKRv0IJs=HYqrvagQ#&!F!%V]Ww/4KiVs$s,<<MX",
  resave: false,
- saveUninitialized: false,
+ saveUninitialized: true,
+ store:sessionStore,
  cookie:{
-   maxAge: twoHours,
-   sameSite:true,
-   secure:false
+   maxAge: 1000 *60*60*24
  }
 
 }));
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use(cors());
+app.use(cors({
+  origin:'http://localhost:3000',
+  credentials:true
+}));
 
 
 app.get('/',(req,res)=>{
   res.send('THis should be all the pups spotted')
-  console.log(req.user)
 })
 app.get('/thing',(req,res)=>{
-  console.log(req)
+  console.log(req.user)
+})
+app.get('/profile',ensureAuthenticated,function(req,res){
+  res.send(`${req.user} profile`)
 })
 
 app.post('/register',(req,res,next)=>{
@@ -85,14 +100,16 @@ app.post('/spot',(req,res,next)=>{
   newSpotting.save()
   .then(data=>res.send(data))
   .catch(error=>res.send(error))
-
+//login
 })
-app.post("/login",passport.authenticate("login",{
-  successRedirect:"/",
-  failureRedirect:"/login"
-}))
+
+app.post("/login",passport.authenticate('login'),
+  function(req,res){
+    res.send("authentication sucessful")
+  }
+)
+
 app.get("/logout",function(req,res){
-  console.log(req.user)
   req.logout();
   res.redirect("/")
 });

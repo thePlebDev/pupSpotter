@@ -22,12 +22,12 @@ const useLogin =(validation)=>{
   }
   useEffect(()=>{
     if(isSubmitting && Object.keys(errors).length === 0){
-      console.log('good to go')
+      console.log(backendUrl)
       axios.post(`${backendUrl}login`,{
         username:state.username,
         password:state.password
       })
-      .then(data=>console.log(data))
+      .then(data=>console.log('data here ----->' + data.data))
       .catch(error=>console.error(error))
     }
   })

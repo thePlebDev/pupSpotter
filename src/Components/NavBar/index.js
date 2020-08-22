@@ -1,5 +1,6 @@
 import React,{useState,useRef} from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 import Sidebar from '../SideBar';
 
@@ -54,7 +55,7 @@ const NavBar = ()=>{
     <Container>
     <div style={{display:'flex'}}>
         <i style={paw} className="fa fa-paw"></i>
-        <Text>Goodboy Tracker</Text>
+        <Text><Link to="/"> Goodboy Tracker </Link></Text>
         <i style={paw} className="fa fa-paw"></i>
       </div>
       <div onClick={()=>{handleClick()}} ref={node}>

@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom'
 
 const Container =styled.div`
 
@@ -27,6 +28,7 @@ const Text = styled.div`
   width:80%;
   margin:0 auto;
 
+
 `;
 
 
@@ -34,10 +36,11 @@ const Sidebar =({state})=>{
 
   return(
     <Container state={state}>
-      <Text>Spot A Pup!!</Text>
-      <Text> Register</Text>
-      <Text>Login</Text>
-      <Text>Profile</Text>
+    <Text><Link to='/'>Home</Link></Text>
+      <Text><Link to='/pupSpotting'>Spot A Pup!! </Link></Text>
+      <Text><Link to='/register'> Register</Link></Text>
+      <Text><Link to='/login'>Login</Link></Text>
+      <Text><Link to ="/profile">Profile</Link></Text>
     </Container>
   )
 }

@@ -34,10 +34,10 @@ const registerValidation=(state)=>{
     errors.password = 'Please enter a password';
   }
   if (state.password && state.password.length < 10) {
-    errors.passowrd = 'Password is too short'
+    errors.password = 'Password is too short'
 
   }
-  console.log(errors)
+
   return errors
 }
 const loginValidation=(state)=>{

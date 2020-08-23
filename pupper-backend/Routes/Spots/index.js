@@ -11,7 +11,15 @@ function ensureAuthenticated(req,res,next){
     res.send('not authenticated')
   }
 }
+//A GET REQUEST TO RECIEVE ALL OF THE SPOTS FROM THE DATA BASE
+spottingRouter.get('/all',(req,res)=>{
+  Spotting.find()
+  .then(data=>res.send(data))
+  .catch(err=>res.send(err))
+})
 
+
+// A POST REQUEST TO RECIEVE ALL OF THE SPOTS FROM THE DATA BASE
 spottingRouter.post('/',ensureAuthenticated,(req,res,next)=>{
   const {name,image,location} = req.body
   const newSpotting = new Spotting({

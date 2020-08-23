@@ -3,19 +3,26 @@ const Spotting = require('../../Models/Spotting');
 
 const spottingRouter = express.Router();
 
+function ensureAuthenticated(req,res,next){
+  if(req.isAuthenticated()){
+    console.log('AUTHENTICATED')
+    next();
+  }else {
+    res.send('not authenticated')
+  }
+}
 
-
-spottingRouter.post('/',(req,res,next)=>{
+spottingRouter.post('/',ensureAuthenticated,(req,res,next)=>{
   const {name,image,location} = req.body
   const newSpotting = new Spotting({
     name,
     image,
-    location
+    location,
+    user:req.user.id
   })
   newSpotting.save()
   .then(data=>res.send(data))
   .catch(error=>res.send(error))
-//login
 })
 
 module.exports = spottingRouter

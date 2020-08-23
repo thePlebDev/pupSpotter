@@ -6,6 +6,15 @@ import {loginValidation} from '../../utils/Validation';
 import axios from 'axios'
 import {backendUrl} from '../../utils/Constants'
 
+const Container = styled.div`
+    position:relative;
+    width:80%;
+    margin: 5% auto;
+    border: 1px solid #05386B;
+    padding:30px;
+    border-radius:4px;
+`
+
 const Form = styled.form`
 width:80%;
 margin:10px auto;
@@ -50,7 +59,7 @@ const Login =()=>{
   const {state,handleChange,handleSubmit} = useLogin(loginValidation)
 
   return(
-    <div>
+    <Container>
       <Form onSubmit={(e)=>handleSubmit(e)}>
         <label>
           <Text>Username</Text>
@@ -64,7 +73,7 @@ const Login =()=>{
 
         <Button type="submit">Login</Button>
       </Form>
-    </div>
+    </Container>
   )
 }
 

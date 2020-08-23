@@ -3,9 +3,19 @@ import styled from 'styled-components'
 
 import useForm from '../../Hooks/useForm'
 
+
+const Container = styled.div`
+    position:relative;
+    width:80%;
+    margin: 5% auto;
+    border: 1px solid #05386B;
+    padding:30px;
+    border-radius:4px;
+`
+
 const Form = styled.form`
   width:80%;
-  margin:10% auto;
+  margin:0 auto;
   color:#05386B;
   transition: opacity 2s ease;
   opacity:${props=>props.state ? '1':'0'};
@@ -21,6 +31,9 @@ outline:none;
 margin-top:5px;
 border:1 px solid #05386B;
 margin-bottom:10px;
+@media only screen and (max-width:768px){
+
+}
 
 
 `
@@ -46,11 +59,11 @@ const FileLabel = styled.label`
   color:#5CDB95;
   border-radius:4px;
   margin:10px auto;
-  margin-left:30%;
+
 
 
 `
-const Button = styled.button`
+const Button = styled.button` //change this
 background-color:#05386B;
 padding:10px 36px;
 color:#5CDB95;
@@ -59,9 +72,9 @@ margin:10px auto;
 font-size:1.2em;
 letter-spacing:1px;
 outline:none;
-margin-left:30%;
+
 `
-const SubmitButton =styled.button`
+const SubmitButton =styled.button` //change this
   width: 100%;
   margin-top:10px;
   padding:10px;
@@ -71,6 +84,9 @@ const SubmitButton =styled.button`
   color:#05386B;
   border-color:#05386B;
   letter-spacing:1px;
+  @media only screen and (min-width: 992px) {
+    width:99%;
+  }
 `
 const Added = styled.div`
   width: 90%;
@@ -95,7 +111,7 @@ useEffect(()=>{
 },[])
 
   return(
-    <div style={{position:'relative'}}>
+    <Container >
 
       <Added state={state.loc}>Location Added</Added>
 
@@ -128,7 +144,7 @@ useEffect(()=>{
         </div>
       </Form>
 
-    </div>
+    </Container>
   )
 }
 

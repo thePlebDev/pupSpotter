@@ -5,6 +5,15 @@ import styled from 'styled-components';
 import useRegister from '../../Hooks/UseRegister'
 import {registerValidation} from '../../utils/Validation';
 
+const Container = styled.div`
+position:relative;
+width:80%;
+margin: 5% auto;
+border: 1px solid #05386B;
+padding:30px;
+border-radius:4px;
+`
+
 
 const Form = styled.form`
   width:80%;
@@ -39,6 +48,9 @@ letter-spacing:1px;
 outline:none;
 text-align:center;
 margin:10px auto;
+@media only screen and (min-width: 1200px) {
+  width:103%;
+}
 
 `
 
@@ -58,7 +70,7 @@ const Register = () =>{
 
 console.log(errors)
   return(
-    <div>
+    <Container>
       <Form onSubmit={(e)=>handleSubmit(e)}>
         <div style={{position:'relative'}}>
           <label>
@@ -98,7 +110,7 @@ console.log(errors)
 
 
       </Form>
-    </div>
+    </Container>
   )
 }
 

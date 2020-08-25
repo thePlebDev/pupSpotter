@@ -20,16 +20,17 @@ spottingRouter.get('/all',(req,res)=>{
 
 
 // A POST REQUEST TO RECIEVE ALL OF THE SPOTS FROM THE DATA BASE
-spottingRouter.post('/',ensureAuthenticated,(req,res,next)=>{
-  const {name,image,location} = req.body
+spottingRouter.post('/',(req,res,next)=>{
+  //what will it send when it is not authenticated? maybe the error
+  const {name,image,location,date} = req.body;
   const newSpotting = new Spotting({
     name,
     image,
-    location,
-    user:req.user.id
+    location:{lat:location.lat,lon:location.long},
+    date
   })
   newSpotting.save()
-  .then(data=>res.send(data))
+  .then(data=>res.json({message:'new Spotting created',status:200}))
   .catch(error=>res.send(error))
 })
 

@@ -7,11 +7,8 @@ const signupValidation =(state)=>{
   if(!state.name){
     errors.name='Please enter a name for the pup'
   }
-  if (!state.loc) {
+  if (!state.location) {
     errors.loc ='Please click add location'
-  }
-  if(!allowedExtensions.exec(state.image)){
-    errors.image='Please enter a proper image file'
   }
   return(
     errors

@@ -100,26 +100,29 @@ const Added = styled.div`
   position:absolute;
   transition: opacity .2s;
   opacity:${props=>props.state ? '1':'0'};
-  top:-14%;
+  top:-5%;
   left:4%;
 `
-const PupForm =()=>{
-const {handleClick,handleChange,handleSubmit,state,errors} = useForm()
+const PupForm =(props)=>{
+const {handleClick,handleChange,handleSubmit,state,errors,createdSpotting} = useForm()
 const [loadingState,setLoadState] = useState(false)
-useEffect(()=>{
-  setLoadState(true)
-},[])
+  useEffect(()=>{
+    setLoadState(true)
+    if(createdSpotting){
+      props.history.push('/')
+    }
+  },[createdSpotting])
 
   return(
     <Container >
 
-      <Added state={state.loc}>Location Added</Added>
+      <Added state={state.location}>Location Added</Added>
 
       <Form onSubmit={(e)=>{handleSubmit(e)}} state={loadingState}>
         <label>
           <Text>The Pup's Name</Text>
 
-          {errors.name ? <div>{errors.name}</div>:''}
+          {errors.name ? <div style={{color:'red'}}>{errors.name}</div>:''}
 
           <Input state={loadingState} type="text" name='name' value={state.name} onChange={(e)=>{handleChange(e)}}/>
         </label>
@@ -128,15 +131,19 @@ useEffect(()=>{
           <Text>Date Pup Spotted</Text>
           <Input state={loadingState} type="date" name='date' value={state.date} onChange={(e)=>{handleChange(e)}} />
         </label>
-
-        <FileLabel>
-          <Text>Upload Image</Text>
-          {errors.image ? <div>{errors.image}</div>:''}
-          <FileInput type="file" name='image' value={state.image} onChange={(e)=>{handleChange(e)}} />
-        </FileLabel>
         <div>
-          {errors.loc ? <div>{errors.loc}</div>:''}
-          <Button type="button" value={state.loc} onClick={(e)=>{handleClick(e)}}>Add Location</Button>
+          <FileLabel>
+            <Text>Upload Image</Text>
+
+            <FileInput type="file" name='image' value={state.image} onChange={(e)=>{handleChange(e)}} />
+          </FileLabel>
+          {errors.image ? <div style={{color:'red'}}>{errors.image}</div>:''}
+        </div>
+
+        <div>
+
+          <Button type="button" value={state.location} onClick={(e)=>{handleClick(e)}}>Add Location</Button>
+          {errors.loc ? <div style={{color:'red'}}>{errors.loc}</div>:''}
         </div>
 
         <div>

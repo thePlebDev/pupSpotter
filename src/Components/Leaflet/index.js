@@ -12,7 +12,9 @@ console.log(mapData)
   useEffect(()=>{
     // make a get request to get all of the spotting
     axios.get('http://localhost:3001/spot/all')
-    .then(data=>setMapData(data.data))
+    .then(data=>{
+      console.log(data.data)
+      setMapData(data.data)})
     .catch(err=>console.log(err))
 
   },[])

@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 import useRegister from '../../Hooks/UseRegister'
 import {registerValidation} from '../../utils/Validation';
+import {Success,Fail} from '../../utils/ResponseMessage'
 
 const Container = styled.div`
 position:relative;
@@ -66,19 +67,31 @@ const Errors = styled.div`
 
 
 const Register = () =>{
-  const {name,bio,email,password,handleChange,handleSubmit,errors} = useRegister(registerValidation)
+  const {name,bio,email,password,handleChange,handleSubmit,errors,status} = useRegister(registerValidation)
 
-console.log(errors)
+  let message;
+  if(status ===200){
+    message = <Success/>
+  }
+  if(status === 204){
+    message = <Fail/>
+  }
+
   return(
     <Container>
+      <div style={{position:'relative'}}>
+        {
+          message
+        }
+      </div>
       <Form onSubmit={(e)=>handleSubmit(e)}>
         <div style={{position:'relative'}}>
           <label>
             <Text>Name</Text>
-            <Input type='text'value={name} onChange={(e)=>handleChange(e)} name='name' />
+            <Input type='text'value={name} onChange={(e)=>handleChange(e)} name='username' />
           </label>
           {
-            errors.name? <Errors>{errors.name}</Errors>:''
+            errors.username? <Errors>{errors.username}</Errors>:''
           }
         </div>
         <div style={{position:'relative'}}>

@@ -5,7 +5,8 @@ const registerRouter = express.Router()
 
 registerRouter.post('/',(req,res,next)=>{
   const {username,password,bio,email} = req.body
-
+  console.log('username---->'+ req.body.username)
+  console.log('email---->'+ email)
 
   User.findOne({ username:username},function(err,user){
     if(err){ return next(err)}

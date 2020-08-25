@@ -2,10 +2,19 @@ const express = require('express')
 const passport = require('passport')
 
 const loginRouter = express.Router()
-  
+
 loginRouter.post("/login",passport.authenticate('login'),
   function(req,res){
-    res.send("authentication sucessful")
+    res.json({
+      status:200,
+      message:'Login successful'
+    })
+  },
+  function(req,res){
+    res.json({
+      status:204,
+      message:"Password or Username was incorrect"
+    })
   }
 )
 

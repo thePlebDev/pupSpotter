@@ -1,10 +1,14 @@
 import {useState,useEffect} from 'react';
+import axios from 'axios'
+
+import {backendUrl} from '../../utils/Constants'
 
 const useRegister =(validator)=>{
 
-  const [state,setState] = useState({name:'',email:'',bio:'',password:''})
+  const [state,setState] = useState({username:'',email:'',bio:'',password:''})
   const [errors,setErrors] = useState({})
   const [isSubmiting,setIsSubmitting] = useState(false)
+  const [status,setStatus] = useState('')
 
   const handleSubmit =(e)=>{
 
@@ -21,19 +25,31 @@ const useRegister =(validator)=>{
 
   useEffect(()=>{
     if(isSubmiting && Object.keys(errors).length === 0){
-      console.log('send the api request')
-      setIsSubmitting(false)
+      axios.post(`${backendUrl}register`,{
+        username:state.username,
+        email:state.username,
+        bio:state.bio,
+        password:state.password
+      })
+      .then(data=>{
+        setStatus(data.data.status)
+        return data.data.status
+      })
+      .then(data=>console.log(data))
+      .catch(error=>console.error(error))
     }
-  },[isSubmiting,errors])
+    setIsSubmitting(false)
+  },[isSubmiting,errors,state])
 
   return{
-    state:state.name,
+    state:state.username,
     bio:state.bio,
     email:state.email,
     password:state.password,
     errors,
     handleChange,
-    handleSubmit
+    handleSubmit,
+    status
   }
 }
 

@@ -21,8 +21,8 @@ const registerValidation=(state)=>{
   const errors ={}
   const regex ='/\S+@\S+\.\S+/'
 
-  if(!state.name ){
-    errors.name='Please enter a name'
+  if(!state.username ){
+    errors.username='Please enter a name'
   }
 
   if(!state.email){
@@ -46,8 +46,8 @@ const loginValidation=(state)=>{
   if(!state.username){
     errors.username= "Please enter a username "
   }
-  if(!state.username){
-    errors.username = "Plase enter a password"
+  if(!state.password){
+    errors.password = "Plase enter a password"
   }
 
 

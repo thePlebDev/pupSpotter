@@ -2,10 +2,12 @@ import React,{useEffect,useState} from 'react';
 import {Map,TileLayer,Marker,Popup} from 'react-leaflet';
 import axios from 'axios'
 
+import Loader from '../Loader';
 
 const MapContainer= ()=>{
 const [state] = useState({lat:45.897820,lng:-64.368279,zoom:13})
-const [mapData,setMapData] = useState('')
+const [loading, setLoading] = useState(true);
+const [mapData,setMapData] = useState('');
 console.log(mapData)
 
 
@@ -16,40 +18,53 @@ console.log(mapData)
       console.log(data.data)
       setMapData(data.data)})
     .catch(err=>console.log(err))
+    function changing(){
+      setLoading(false)
+    }
+
+    setTimeout(changing,3000)
 
   },[])
   return(
-    <Map
-      center={[state.lat,state.lng]}
-      zoom={state.zoom}
-      style={{width:'100%',height:'500px',marginTop:'100px'}}
-    >
-    <TileLayer
-      attribution='&copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-      url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-      />
-      {
-        mapData
-          ?
-        mapData.map((item,index)=>{
-        return(
-          <Marker position={[item.location.lat,item.location.lon]} >
+    <div>
+    {
+      loading
+        ?
+      <Loader />
+        :
+        <Map
+          center={[state.lat,state.lng]}
+          zoom={state.zoom}
+          style={{width:'100%',height:'500px',marginTop:'100px'}}
+        >
+        <TileLayer
+          attribution='&copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          />
+          {
+            mapData
+              ?
+            mapData.map((item,index)=>{
+            return(
+              <Marker position={[item.location.lat,item.location.lon]} >
+                <Popup>
+                  <div>{item.name}</div>
+                </Popup>
+              </Marker>
+            )
+          })
+          :
+          ''
+        }
+          <Marker position={[state.lat,state.lng]} >
             <Popup>
-              <div>{item.name}</div>
+              <div>Dog Here</div>
             </Popup>
           </Marker>
-        )
-      })
-      :
-      ''
-    }
-      <Marker position={[state.lat,state.lng]} >
-        <Popup>
-          <div>Dog Here</div>
-        </Popup>
-      </Marker>
 
-    </Map>
+        </Map>
+      }
+    </div>
   )
 }
 

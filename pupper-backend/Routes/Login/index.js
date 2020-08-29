@@ -3,7 +3,7 @@ const passport = require('passport')
 
 const loginRouter = express.Router()
 
-loginRouter.post("/login",passport.authenticate('login'),
+loginRouter.post("/login",passport.authenticate('login'), //authenticate pulls out username and password automatically.
   function(req,res){
     res.json({
       status:200,
@@ -22,5 +22,6 @@ loginRouter.get("/logout",function(req,res){
   req.logout();
   res.redirect("/")
 });
+
 
 module.exports = loginRouter

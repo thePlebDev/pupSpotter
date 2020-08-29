@@ -62,6 +62,9 @@ app.get('/',(req,res)=>{
 app.get('/thing',(req,res)=>{
   console.log(req.user)
 })
+app.get('/testing', (req,res)=>{
+ res.json({name:'frodo'})
+})
 
 app.use('/user',loginRouter)
 app.use('/spot',spottingRouter)
@@ -71,6 +74,10 @@ app.use('/register',registerRouter)
 
 
 
+
+
 app.listen(port,()=>{
   console.log('listening on port 3000')
 })
+
+module.exports = app

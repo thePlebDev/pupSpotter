@@ -1,10 +1,20 @@
-const chai = require('chai')
-const expect = require('chai').expect;
+const express = require('express');
+const request = require('supertest');
+const mongoose = require('mongoose');
+const User = require('../Models/User');
+const chai = require('chai');
+const chaiHttp = require('chai-http');
+const expect = chai.expect;
+const app = require('../index.js')
 
-const numbers = [1,2,3,4,5];
+//const app = express()
 
-describe('sum',()=>{
-  it('shoule add all the numbers',()=>{
-    expect(15).to.equal(15)
+
+describe("testing",function(){
+  it('this should not be passing ',(done)=>{
+    request(app)
+    .get('/testing')
+      .expect({body:"There is nothing about this "},done())
   })
+
 })

@@ -49,7 +49,7 @@ const Errors = styled.div`
 const Container = styled.div`
 position:relative;
 width:80%;
-margin: 5% auto;
+margin: 0 auto;
 border: 1px solid #05386B;
 padding:30px;
 border-radius:4px;

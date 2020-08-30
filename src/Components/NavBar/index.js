@@ -5,104 +5,117 @@ import { Link } from 'react-router-dom';
 import Sidebar from '../SideBar';
 
 const Container = styled.nav`
-
-  display:flex;
-  height:50px;
-  align-items:center;
-  justify-content:space-between;
-  padding:10px;
+  width:150px;
+  height:100vh;
+  padding:0;
+  margin:0;
+  position:fixed;
   background-color:#05386B;
-  position:relative;
-  z-index:1000;
-
-`
-// the min-width means for that width and higher
-const Hamburger = styled.div`
-  background-color:#5CDB95;
-  height:5px;
-  width:30px;
-  margin:5px;
-  @media only screen and (min-width:768px){
-    display:none;
-  }
-`
-
-const Text = styled.div`
-  font-size:30px;
-  letter-spacing:2px;
-  color:#5CDB95;
-  font-weight:600;
-`
-
-const paw = {
-  fontSize:'30px',
-  margin:'1px 5px',
-  color:'#5CDB95'
-}
-//dthe max-width means for that width and above.
-const LinkContainer = styled.div`
+  z-index:100000;
   display:flex;
-  justify-content:space-evenly;
-  width:50%;
-  height:60%;
+  flex-direction:column;
+  transition:100ms ease;
+
+
+  :hover{
+    width:300px;
+  }
+
+  :hover div div{
+    display:block;
+    margin-left:2em;
+  }
+  :hover .arrow{
+    opacity:1;
+    transform:rotate(180deg);
+  }
+  @media only screen and (max-width:600px){
+    bottom:0;
+    width:100vh;
+    height:100px;
+    flex-direction:row;
+    justify-content:space-center;
+    :hover{
+      width:100vh;
+    }
+    :hover div div{
+      display:none;
+      margin-left:2em;
+    }
+
+  }
+
+`
+
+const TextContainer = styled.div`
+  display:flex;
+  align-items:center;
+  height:100px;
+  margin:2em 1em;
+  background-color:#05386B;
+  border-radius:4px;
+  transition:100ms ease;
+  padding:5px;
+  opacity:0.3;
+  :hover{
+    opacity:1;
+  }
+  padding:5px;
+  @media only screen and (max-width:600px){
+  margin: 0 2.2em;
+  }
+
+
+
+`
+const Text= styled.div`
+
+display:none;
+font-size:1.8em;
+color:#5CDB95;
+
+
+`
+const Arrow = styled.div`
   color:#5CDB95;
-  @media only screen and (max-width:768px){
-    display:none;
-  }
-`
-const Links = styled.div`
-  align-self:flex-end;
-  font-size:20px;
-  cursor:pointer;
-  padding:2px;
-  cursor:pointer;
-  @media (max-width:768px){
-    display:none;
-  }
-
+  display:flex;
+  justify-content:center;
+  opacity:0.3;
+  padding:5px;
+  transition:300ms ease;
+  transform:rotate(0deg);
+  @media only screen and (max-width:600px){
+    display:none; }
 
 `
-
-
 
 const NavBar = ()=>{
   const [state,setState] = useState(true)
-  const node = useRef();
 
-  const handleClick = e =>{
-
-      setState(!state)
-}
 
 
   return(
     <Container>
-    <div style={{display:'flex'}}>
-        <i style={paw} className="fa fa-paw"></i>
-        <Text><Link to="/"> Goodboy Tracker </Link></Text>
-        <i style={paw} className="fa fa-paw"></i>
-    </div>
-      <LinkContainer>
-        <Links>
-          <Link to='/'>Home</Link>
-        </Links>
-        <Links>
-          <Link to='/pupSpotting'>Spot a Pup</Link>
-        </Links>
-        <Links>
-          <Link to='/register'>Register</Link>
-        </Links>
-        <Links>
-          <Link to='/login'>Login</Link>
-        </Links>
-        <Links><Link to='/profile'>Profile</Link></Links>
-      </LinkContainer>
-      <div onClick={()=>{handleClick()}} ref={node}>
-        <Hamburger ></Hamburger>
-        <Hamburger></Hamburger>
-        <Hamburger></Hamburger>
-      </div>
-      <Sidebar state={state} />
+    <Arrow className="arrow">
+      <i className="fa fa-arrow-right" style={{fontSize:'50px'}}></i>
+    </Arrow>
+      <Link to='/'>
+        <TextContainer>
+          <i className="fa fa-home" style={{fontSize:'100px',color:'#5CDB95'}}></i> <Text >Home</Text>
+        </TextContainer>
+      </Link>
+      <Link to='/pupSpotting'>
+        <TextContainer>
+          <i className="fa fa-paw" style={{fontSize:'100px',color:'#5CDB95'}}></i><Text>Doggos</Text>
+        </TextContainer>
+      </Link>
+      <Link to='/login'>
+        <TextContainer>
+          <i className="fa fa-registered" style={{fontSize:'100px',color:'#5CDB95'}}></i>
+          <Text>Login</Text>
+          </TextContainer>
+          </Link>
+
     </Container>
   )
 }

@@ -13,7 +13,7 @@ const App =()=>{
     <div>
       <NavBar />
       <Switch>
-        <Route exact path ='/' component={Map} />
+        <Route exact path ='/' component={Map}/>
         <Route exact path ='/pupSpotting' component={PupForm} />
         <Route exact path ='/register' component={Register} />
         <Route exact path ='/login' component={Login} />

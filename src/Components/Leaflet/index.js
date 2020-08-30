@@ -4,9 +4,12 @@ import axios from 'axios'
 
 import Loader from '../Loader';
 
+
+
+
 const MapContainer= ()=>{
 const [state] = useState({lat:45.897820,lng:-64.368279,zoom:13})
-const [loading, setLoading] = useState(true);
+const [loading, setLoading] = useState(false);
 const [mapData,setMapData] = useState('');
 console.log(mapData)
 
@@ -35,7 +38,7 @@ console.log(mapData)
         <Map
           center={[state.lat,state.lng]}
           zoom={state.zoom}
-          style={{width:'100%',height:'500px',marginTop:'100px'}}
+          style={{width:'70%',height:'100vh',margin:'0 auto'}}
         >
         <TileLayer
           attribution='&copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'

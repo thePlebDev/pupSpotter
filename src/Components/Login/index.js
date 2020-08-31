@@ -6,26 +6,11 @@ import useLogin from '../../Hooks/useLogin';
 import {loginValidation} from '../../utils/Validation';
 import axios from 'axios'
 import {backendUrl} from '../../utils/Constants'
-import {Container,Form,Input,Text,Button} from '../../Assets/FormStylings';
+import {Container,Form,Input,Text,Button,Label,InputSpan} from '../../Assets/FormStylings';
 
 
-const ErrorIndicator = styled.span`
-  color:red;
-  font-weight:700;
-  letter-spacing:2px;
-`
-const ErrorMessage = styled.div`
-  position:absolute;
-  width:100%;
-  margin:0 auto;
-  text-align:center;
-  font-size:1.3em;
-  color:red;
-  font-weight:700;
-  letter-spacing:2px;
-  text-transform:uppercase;
 
-`
+
 
 const Login =(props)=>{
   const handleClick=()=>{
@@ -35,6 +20,10 @@ const Login =(props)=>{
   }
 
   const {state,handleChange,handleSubmit,errors,authStatus,badLogin} = useLogin(loginValidation)
+
+  const handleFocus=()=>{
+    console.log('clicked')
+  }
 
   useEffect(()=>{
     if(authStatus){
@@ -47,52 +36,20 @@ const Login =(props)=>{
   return(
     <Container>
       <Form onSubmit={(e)=>handleSubmit(e)}>
-        <label>
-          <Text>
-            {
-              errors.username || badLogin
-                  ?
-              <div>
-                <ErrorIndicator>Username</ErrorIndicator>
-              </div>
-                  :
-              <div>Username</div>
-            }
-          </Text>
-          <Input type="text" name="username" value={state.username} onChange={(e)=>handleChange(e)}/>
-        </label>
-
-        <label>
-          <Text>
-            {
-              errors.password || badLogin
-                  ?
-              <div>
-                <ErrorIndicator>Password</ErrorIndicator>
-              </div>
-                  :
-              <div>Password</div>
-            }
-          </Text>
-          <Input type='password' name="password" value={state.password}  onChange={(e)=>handleChange(e)}/>
-        </label>
-
-        <Button type="submit">Login</Button>
+        <div style={{position:'relative',marginBottom:'80px'}}>
+          <Input type="text" name="username" value={state.username}onChange={(e)=>handleChange(e)} required/>
+          <Label for="username" >
+            <InputSpan>Username</InputSpan>
+          </Label>
+        </div>
+        <div style={{position:'relative',marginBottom:'80px'}}>
+          <Input type="password" name="password" value={state.password}onChange={(e)=>handleChange(e)} required/>
+          <Label for="password" >
+            <InputSpan>Password</InputSpan>
+          </Label>
+        </div>
+        <Button>Login</Button>
       </Form>
-      <div stye={{position:'relative'}}>
-
-        {
-          errors.username || errors.password
-                      ?
-            <ErrorMessage>
-              Fill out highlighted sections
-            </ErrorMessage>
-                      :
-          <div></div>
-        }
-      </div>
-
-
     </Container>
   )
 }

@@ -2,7 +2,7 @@ import React,{useState,useEffect} from 'react';
 import styled from 'styled-components'
 
 import useForm from '../../Hooks/useForm';
-import {Container,Form,Input,Text,Button} from '../../Assets/FormStylings';
+import {Container,Form,Input,Text,Button,InputSpan,Label} from '../../Assets/FormStylings';
 
 
 
@@ -59,16 +59,15 @@ const [loadingState,setLoadState] = useState(false)
       <Added state={state.location}>Location Added</Added>
 
       <Form onSubmit={(e)=>{handleSubmit(e)}} state={loadingState}>
+      <div style={{position:'relative',marginBottom:'80px'}}>
+        <Input type="text" name="name" value={state.name}onChange={(e)=>handleChange(e)} required/>
+        <Label for="doggy" >
+          <InputSpan>Dog Name</InputSpan>
+        </Label>
+      </div>
+
         <label>
-          <Text>The Pup's Name</Text>
-
-          {errors.name ? <div style={{color:'red'}}>{errors.name}</div>:''}
-
-          <Input state={loadingState} type="text" name='name' value={state.name} onChange={(e)=>{handleChange(e)}}/>
-        </label>
-
-        <label>
-          <Text>Date Pup Spotted</Text>
+          <Text>Date Spotted</Text>
           <Input state={loadingState} type="date" name='date' value={state.date} onChange={(e)=>{handleChange(e)}} />
         </label>
         <div>

@@ -1,38 +1,77 @@
 import styled from 'styled-components';
 
+const InputSpan = styled.span`
+position:absolute;
+z-index:1;
+bottom:0;
+color:#05386B;
+transition: all 0.3s ease;
+`
+
+const Label = styled.label`
+  position:absolute;
+  bottom:0;
+  left:0;
+  width:100%;
+  height:100%;
+  pointer-events:none;
+  transition:all 0.3s ease;
+  font-size:1.1em;
+  letter-spacing:2px;
+
+
+`
 
 const Input = styled.input`
 width:100%;
+height:50px;
 font-size:18px;
-padding:10px;
-border-radius:4px;
+border-bottom:1px solid #05386B;
+border-top:none;
+border-left:none;
+border-right:none;
+padding-bottom:5px;
 outline:none;
+background-color: #EDF5E1;
+color:#05386B;
 
-margin-top:5px;
-border:1px solid #05386B;
-margin-bottom:30px;
+:focus + Label,:focus Label:valid +InputSpan{
+  transform: translateY(-100%);
+  font-size:1.3em;
+}
+
+
 `
 
 const Form = styled.form`
-  width:80%;
-  margin: 0 auto;
+  width:60%;
+  position:absolute;
+  top:20%;
+  left:20%;
 `
 const Text = styled.div`
-font-size:1.2em;
-font-weight:600;
-letter-spacing:1px;
+font-size:1.1em;
+letter-spacing:2px;
 `
 const Button = styled.button`
-background-color:#05386B;
-padding:10px 36px;
-color:#5CDB95;
-border-radius:4px;
 
-width:105%;
+padding:10px 36px;
+color:#05386B;
+border-radius:4px;
+border: 1px solid #05386B;
+background-color: #EDF5E1;
+cursor:pointer;
+width:100%;
 font-size:1.2em;
 letter-spacing:1px;
 outline:none;
 text-align:center;
+transition:all 0.3s ease;
+:hover{
+  color:#5CDB95;
+  background-color: #05386B;
+}
+
 margin:10px auto;
 @media only screen and (min-width: 1200px) {
   width:103%;
@@ -47,14 +86,20 @@ const Errors = styled.div`
   letter-spacing:1px;
 `
 const Container = styled.div`
-position:relative;
-width:80%;
-margin: 0 auto;
+position:absolute;
+left:20%;
+top:10%;
+width:65%;
+height:60vh;
+margin:0 auto;
 border: 1px solid #05386B;
 padding:30px;
 border-radius:4px;
+@media only screen and (max-width:600px){
+  left:12%;
+}
 `
 
 
 
-export {Input,Form,Text,Button,Errors,Container}
+export {Input,Form,Text,Button,Errors,Container,Label,InputSpan}

@@ -2,7 +2,7 @@ import React,{useEffect,useState} from 'react';
 import {Map,TileLayer,Marker,Popup} from 'react-leaflet';
 import axios from 'axios'
 
-import Loader from '../Loader';
+
 
 
 
@@ -30,11 +30,7 @@ console.log(mapData)
   },[])
   return(
     <div>
-    {
-      loading
-        ?
-      <Loader />
-        :
+    
         <Map
           center={[state.lat,state.lng]}
           zoom={state.zoom}
@@ -66,7 +62,7 @@ console.log(mapData)
           </Marker>
 
         </Map>
-      }
+
     </div>
   )
 }

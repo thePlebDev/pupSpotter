@@ -26,7 +26,7 @@ const Input = styled.input`
 width:100%;
 height:50px;
 font-size:18px;
-border-bottom:1px solid #05386B;
+border-bottom:${props=> props.error? '1px solid error;': '1px solid #05386B;'}
 border-top:none;
 border-left:none;
 border-right:none;
@@ -46,7 +46,7 @@ color:#05386B;
 const Form = styled.form`
   width:60%;
   position:absolute;
-  top:20%;
+  top:10%;
   left:20%;
 `
 const Text = styled.div`
@@ -90,7 +90,7 @@ position:absolute;
 left:20%;
 top:10%;
 width:65%;
-height:60vh;
+height:70vh;
 margin:0 auto;
 border: 1px solid #05386B;
 padding:30px;

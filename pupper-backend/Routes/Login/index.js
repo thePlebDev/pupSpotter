@@ -18,9 +18,9 @@ loginRouter.post("/login",passport.authenticate('login'), //authenticate pulls o
   }
 )
 
-loginRouter.get("/logout",function(req,res){
+loginRouter.get('/logout', function(req, res){
   req.logout();
-  res.redirect("/")
+  res.send('you have now logged out');
 });
 
 

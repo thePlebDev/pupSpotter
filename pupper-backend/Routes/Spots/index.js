@@ -6,6 +6,8 @@ const spottingRouter = express.Router();
 function ensureAuthenticated(req,res,next){
   if(req.isAuthenticated()){
     console.log('AUTHENTICATED')
+    console.log(req.user)
+    console.log(req.username)
     next();
   }else {
     res.send('not authenticated')
@@ -19,9 +21,9 @@ spottingRouter.get('/all',(req,res)=>{
 })
 
 
-// A POST REQUEST TO RECIEVE ALL OF THE SPOTS FROM THE DATA BASE
-spottingRouter.post('/',(req,res,next)=>{
-  //what will it send when it is not authenticated? maybe the error
+// A POST REQUEST TO create a spotting of a pupper.
+spottingRouter.post('/',ensureAuthenticated,(req,res,next)=>{
+  //ensureAuthenticated should ensure that the user is authenticated.
   const {name,image,location,date} = req.body;
   const newSpotting = new Spotting({
     name,

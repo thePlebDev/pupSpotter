@@ -101,20 +101,26 @@ const NavBar = ()=>{
     </Arrow>
       <Link to='/'>
         <TextContainer>
-          <i className="fa fa-home" style={{fontSize:'100px',color:'#5CDB95'}}></i> <Text >Home</Text>
+          <i className="fa fa-home" style={{fontSize:'70px',color:'#5CDB95'}}></i> <Text >Home</Text>
         </TextContainer>
       </Link>
       <Link to='/pupSpotting'>
         <TextContainer>
-          <i className="fa fa-paw" style={{fontSize:'100px',color:'#5CDB95'}}></i><Text>Doggos</Text>
+          <i className="fa fa-paw" style={{fontSize:'70px',color:'#5CDB95'}}></i><Text>Doggos</Text>
         </TextContainer>
       </Link>
       <Link to='/login'>
         <TextContainer>
-          <i className="fa fa-registered" style={{fontSize:'100px',color:'#5CDB95'}}></i>
+          <i className="fa fa-registered" style={{fontSize:'70px',color:'#5CDB95'}}></i>
           <Text>Login</Text>
           </TextContainer>
-          </Link>
+      </Link>
+      <Link to='/register'>
+        <TextContainer>
+          <i className="fa fa-registered" style={{fontSize:'70px',color:'#5CDB95'}}></i>
+          <Text>Register</Text>
+          </TextContainer>
+      </Link>
 
     </Container>
   )

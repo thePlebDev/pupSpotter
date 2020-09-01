@@ -29,7 +29,8 @@ spottingRouter.post('/',ensureAuthenticated,(req,res,next)=>{
     name,
     image,
     location:{lat:location.lat,lon:location.long},
-    date
+    date,
+    user:req.user._id
   })
   newSpotting.save()
   .then(data=>res.json({message:'new Spotting created',status:200}))

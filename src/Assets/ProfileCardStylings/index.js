@@ -18,16 +18,6 @@ const BackCard = styled.div`
   transform:rotateY(180deg);
 `
 
-const Location = styled.div`
-align-self:flex-end;
-
-font-size:1.3em;
-width:80px;
-text-align:center;
-margin-left:50px;
-margin-bottom:11.5px;
-padding:5px;
-`
 const About = styled.div`
 align-self:flex-end;
 cursor:pointer;
@@ -101,4 +91,4 @@ const AboutBack = styled.div`
   font-size:1.4em;
 
 `
-export{ About,Location,BackCard,FrontCard,Button,AboutButton,CardContainer,Image,Name,AboutBack}
+export{ About,BackCard,FrontCard,Button,AboutButton,CardContainer,Image,Name,AboutBack}

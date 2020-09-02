@@ -3,13 +3,13 @@ import {useEffect,useState} from 'react'
 
 
 const useOutsideClick = (ref,callback)=>{
-  const [show,setShow] = useState(false)
+  const [display,setDisplay] = useState(false)
 
   const handleClick=(e)=>{
     if(ref.current === e.target){
-      setShow(true)
+      setDisplay(true)
     }else{
-      setShow(false)
+      setDisplay(false)
     }
   }
 
@@ -21,8 +21,7 @@ const useOutsideClick = (ref,callback)=>{
     };
   });
   return{
-    show,
-    setShow
+    display,
   }
 };
 

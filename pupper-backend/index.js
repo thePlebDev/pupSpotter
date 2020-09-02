@@ -6,6 +6,8 @@ const MongoStore = require('connect-mongo')(session)
 const passport = require('passport');
 const passportConfig = require('./passportConfig')
 const cors = require("cors");
+const mongoSanitize = require('express-mongo-sanitize')
+const xss = require('xss-clean');
 
 const User = require('./Models/User')
 
@@ -34,7 +36,9 @@ db.once('error',err=>{
   console.error('connection error',err)
 })
 
-
+//Data sanitization against NoSQL query injection
+app.use(mongoSanitize());
+app.use(xss())
 
 app.use(bodyParser.json())
 app.use(session({

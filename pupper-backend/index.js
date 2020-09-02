@@ -12,8 +12,8 @@ const User = require('./Models/User')
 //Routers
 const loginRouter = require('./Routes/Login');
 const registerRouter = require('./Routes/Register');
-const spottingRouter = require('./Routes/Spots')
-const profileRouter = require('./Routes/Register')
+const spottingRouter = require('./Routes/Spots');
+const profileRouter = require('./Routes/Profile');
 
 
 const app = express()

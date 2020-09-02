@@ -1,13 +1,11 @@
 const express = require('express')
 const Spotting = require('../../Models/Spotting');
 
+
 const spottingRouter = express.Router();
 
 function ensureAuthenticated(req,res,next){
   if(req.isAuthenticated()){
-    console.log('AUTHENTICATED')
-    console.log(req.user)
-    console.log(req.username)
     next();
   }else {
     res.send('not authenticated')
@@ -32,6 +30,7 @@ spottingRouter.post('/',ensureAuthenticated,(req,res,next)=>{
     date,
     user:req.user._id
   })
+
   newSpotting.save()
   .then(data=>res.json({message:'new Spotting created',status:200}))
   .catch(error=>res.send(error))

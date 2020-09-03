@@ -1,8 +1,8 @@
-import React,{useState,useRef} from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-import Sidebar from '../SideBar';
+
 
 const Container = styled.nav`
   width:150px;
@@ -90,7 +90,6 @@ const Arrow = styled.div`
 `
 
 const NavBar = ()=>{
-  const [state,setState] = useState(true)
 
 
 

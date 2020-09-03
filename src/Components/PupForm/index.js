@@ -41,8 +41,6 @@ const FileLabel = styled.label`
 
 `
 
-
-
 const Added = styled.div`
   width: 40%;
   background-color:#5CDB95;
@@ -69,7 +67,7 @@ const {show}=useOutsideClick(node)
     if(createdSpotting){
       props.history.push('/')
     }
-  },[createdSpotting])
+  },[createdSpotting,props.history])
 
   return(
     <Container >
@@ -83,10 +81,16 @@ const {show}=useOutsideClick(node)
       </Added>
 
       <Form onSubmit={(e)=>{handleSubmit(e)}} state={loadingState}>
-      <div style={{position:'relative',marginBottom:'80px'}}>
+      <div style={{position:'relative',marginBottom:'30px'}}>
         <Input type="text" name="name" error={errors.name} value={state.name}onChange={(e)=>handleChange(e)}/>
         <Label for="doggy" >
           <InputSpan>Dog Name</InputSpan>
+        </Label>
+      </div>
+      <div style={{position:'relative',marginBottom:'50px'}}>
+        <Input type="text" name="description" value={state.description}onChange={(e)=>handleChange(e)}/>
+        <Label for="description" >
+          <InputSpan>Description</InputSpan>
         </Label>
       </div>
 

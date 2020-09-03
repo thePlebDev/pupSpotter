@@ -5,7 +5,7 @@ import {backendUrl} from '../../utils/Constants';
 import axios from 'axios';
 
 const useForm = ()=>{
-  const [state,setState] =useState({name:'',location:'',date:'',image:''})
+  const [state,setState] =useState({name:'',location:'',date:'',image:'',description:''})
   const [errors,setErrors] = useState({})
   const [isSubmitting,setIsSubmitting] = useState(false)
   const [createdSpotting,setCreatedSpotting] = useState(false);

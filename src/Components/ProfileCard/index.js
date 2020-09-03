@@ -1,7 +1,7 @@
-import React,{useRef,useState,useEffect} from 'react';
+import React,{useRef,useState} from 'react';
 import styled from 'styled-components'
 
-import { About,BackCard,FrontCard,Button,AboutButton,CardContainer,Image,Name,AboutBack} from '../../Assets/ProfileCardStylings';
+import { About,BackCard,FrontCard,CardContainer,Image,Name,AboutBack} from '../../Assets/ProfileCardStylings';
 import useOutsideClick from '../../Hooks/UseOutsideClick';
 import useProfileCardHook from '../../Hooks/useProfileCardHook';
 

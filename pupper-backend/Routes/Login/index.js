@@ -5,17 +5,10 @@ const loginRouter = express.Router()
 
 loginRouter.post("/login",passport.authenticate('login'), //authenticate pulls out username and password automatically.
   function(req,res,next){ // this gets called on a successful login
-    try{
       res.json({
         status:200,
         message:'Login successful n stuff'
       })
-    }
-    catch(error){
-      console.log(error)
-      next(error)
-    }
-
   }
 )
 

@@ -3,13 +3,8 @@ import {Map,TileLayer,Marker,Popup} from 'react-leaflet';
 import axios from 'axios'
 
 
-
-
-
-
 const MapContainer= ()=>{
 const [state] = useState({lat:45.897820,lng:-64.368279,zoom:13})
-const [loading, setLoading] = useState(false);
 const [mapData,setMapData] = useState('');
 console.log(mapData)
 
@@ -21,16 +16,11 @@ console.log(mapData)
       console.log(data.data)
       setMapData(data.data)})
     .catch(err=>console.log(err))
-    function changing(){
-      setLoading(false)
-    }
-
-    setTimeout(changing,3000)
 
   },[])
   return(
     <div>
-    
+
         <Map
           center={[state.lat,state.lng]}
           zoom={state.zoom}

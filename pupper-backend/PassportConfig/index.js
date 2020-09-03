@@ -19,17 +19,21 @@ passport.deserializeUser(function(id, done) {
 passport.use('login', new LocalStrategy(
   function(username, password, done) { // username and password will get extracted from req by Passport,
     console.log(username)
+    console.log(password)
     User.findOne({ username: username }, function (err, user) {
+      console.log('looking for the user')
       if (err) { return done(err); }
       if (!user) {
         return done(null, false, { message: 'Incorrect username.User not found!' });
       }
        user.checkPassword(password,function(err,isMatch){
+         console.log('checkking password')
          if(err){return done(err)}
          if(isMatch){
            //console.log(user) it is definetly the user object that we want
            return done(null,user);
          }else{
+           console.log('password no bueno')
            return done(null,false,{message:"Invalid password"})
          }
        });

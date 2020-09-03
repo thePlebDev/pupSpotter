@@ -30,7 +30,9 @@ userSchema.pre('save',function(done){
 });
 
 userSchema.methods.checkPassword = function(guess,done){
+  console.log(this.password)
   bcrypt.compare(guess,this.password, function(err,isMatch){
+
     done(err,isMatch)
   })
 }

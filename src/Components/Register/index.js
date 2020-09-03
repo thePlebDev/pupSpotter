@@ -1,11 +1,11 @@
-import React,{useState} from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 
 import useRegister from '../../Hooks/UseRegister'
 import {registerValidation} from '../../utils/Validation';
 import {Success,Fail} from '../../utils/ResponseMessage';
-import {Form,Text,Button,Errors,Container,Label,InputSpan} from '../../Assets/FormStylings';
+import {Form,Button,Container,Label,InputSpan} from '../../Assets/FormStylings';
 
 const Input = styled.input`
 width:100%;
@@ -65,7 +65,7 @@ const Register = () =>{
           </Label>
         </div>
         <div style={{position:'relative',marginBottom:'30px'}}>
-          <Input type="password" name="password" error={errors.email} value={email}onChange={(e)=>handleChange(e)} />
+          <Input type="password" name="password" error={errors.password} value={password}onChange={(e)=>handleChange(e)} />
           <Label for="password" >
             <InputSpan>Password</InputSpan>
           </Label>

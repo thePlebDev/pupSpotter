@@ -1,12 +1,12 @@
-import React,{useState,useEffect} from 'react';
+import React,{useEffect} from 'react';
 import styled from 'styled-components'
-import {Redirect} from 'react-router-dom';
+//import {Redirect} from 'react-router-dom';
 
 import useLogin from '../../Hooks/useLogin';
 import {loginValidation} from '../../utils/Validation';
-import axios from 'axios'
-import {backendUrl} from '../../utils/Constants'
-import {Container,Form,Text,Button,Label,InputSpan} from '../../Assets/FormStylings';
+// import axios from 'axios'
+// import {backendUrl} from '../../utils/Constants'
+import {Container,Form,Button,Label,InputSpan} from '../../Assets/FormStylings';
 
 const Input = styled.input`
 width:100%;
@@ -28,27 +28,20 @@ color:#05386B;
 
 
 const Login =(props)=>{
-  const handleClick=()=>{
-    axios(`${backendUrl}thing`)
-    .then(data=>{console.log(data)})
-    .catch(err=>{console.error(err)})
-  }
 
   const {state,handleChange,handleSubmit,errors,authStatus,badLogin} = useLogin(loginValidation)
   if(errors){
     console.log(errors)
   }
 
-  const handleFocus=()=>{
-    console.log('clicked')
-  }
+
 
   useEffect(()=>{
     if(authStatus){
       props.history.push('/')
     }
 
-  },[authStatus])
+  },[authStatus,props.history])
 
 
   return(

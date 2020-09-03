@@ -4,23 +4,30 @@ const passport = require('passport')
 const loginRouter = express.Router()
 
 loginRouter.post("/login",passport.authenticate('login'), //authenticate pulls out username and password automatically.
-  function(req,res){
-    res.json({
-      status:200,
-      message:'Login successful'
-    })
-  },
-  function(req,res){
-    res.json({
-      status:204,
-      message:"Password or Username was incorrect"
-    })
+  function(req,res,next){ // this gets called on a successful login
+    try{
+      res.json({
+        status:200,
+        message:'Login successful n stuff'
+      })
+    }
+    catch(error){
+      console.log(error)
+      next(error)
+    }
+
   }
 )
 
-loginRouter.get('/logout', function(req, res){
-  req.logout();
-  res.send('you have now logged out');
+loginRouter.get('/logout', function(req, res,next){
+  try{
+    req.logout();
+    res.send('you have now logged out');
+  }
+  catch(error){
+    console.log(error)
+    next(error)
+  }
 });
 
 

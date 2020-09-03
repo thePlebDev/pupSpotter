@@ -5,22 +5,32 @@ const profileRouter = express.Router()
 
 
 function ensureAuthenticated(req,res,next){
-  if(req.isAuthenticated()){
-    console.log('AUTHENTICATED')
-    next();
-  }else {
-    res.send('not authenticated')
+  try {
+    if(req.isAuthenticated()){
+      console.log('AUTHENTICATED')
+      next();
+    }else {
+      res.send('not authenticated')
+    }
+
+  } catch (e) {
+    console.log(e)
+    next(e)
   }
 }
 
 
-profileRouter.get('/',ensureAuthenticated,(req,res)=>{
+profileRouter.get('/',ensureAuthenticated,(req,res,next)=>{
 
-  //I need to find all spottings where the .user is equal req.user
-    Spotting.find({user:req.user._id},(err,data)=>{
-      if(err) res.send(err)
-      res.send(data)
-    })
+    try {
+      Spotting.find({user:req.user._id},(err,data)=>{
+        if(err) next(err)
+        res.send(data)
+      })
+    } catch (e) {
+      console.log(e)
+      next(e)
+    }
 })
 
 module.exports = profileRouter

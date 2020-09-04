@@ -29,7 +29,7 @@ const useLogin =(validation)=>{
       axios.post(`${backendUrl}user/login`,{
         username:state.username,
         password:state.password
-      })
+      },{withCredentials:true})
       .then(data=> data.data.status ? setAuthStatus(true):'')
       .then(()=>setIsSubmitting(false))
 

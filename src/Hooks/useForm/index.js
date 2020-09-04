@@ -19,16 +19,14 @@ const useForm = ()=>{
   useEffect(()=>{
     console.log('called')
     if(isSubmitting && Object.keys(errors).length === 0){
-      const {name,location,date,image} = state
-      console.log('below this------------')
-      console.log(state.location)
-      console.log('above this------------')
+      const {name,location,date,image,description} = state
       axios.post(`${backendUrl}spot`,{
         name,
         location,
         date,
-        image
-      })
+        image,
+        description
+      },{withCredentials:true})
       .then(data=>{
         if(data.data.status ===200){
           setCreatedSpotting(true)
@@ -45,7 +43,7 @@ const useForm = ()=>{
   }
   const handleClick=(e)=>{
     navigator.geolocation.getCurrentPosition((position) => {
-    setState({...state,location:{lat:position.coords.latitude, long:position.coords.longitude}});
+    setState({...state,location:{lat:position.coords.latitude, lon:position.coords.longitude}});
     console.log(state)
   });
 }

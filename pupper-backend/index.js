@@ -5,6 +5,7 @@ const session = require("express-session");
 const MongoStore = require('connect-mongo')(session)
 const passport = require('passport');
 const passportConfig = require('./passportConfig')
+const cookieParser = require('cookie-parser');
 const cors = require("cors");
 const mongoSanitize = require('express-mongo-sanitize')
 const xss = require('xss-clean');
@@ -28,7 +29,7 @@ const sessionStore = new MongoStore({ mongooseConnection: connection, collection
 
 
 mongoose.connect(url,{useUnifiedTopology: true,
-useNewUrlParser: true,});
+useNewUrlParser: true});
 db.once('open',()=>{
   console.log('Database connected',url)
 })
@@ -51,6 +52,7 @@ app.use(session({
  }
 
 }));
+ app.use(cookieParser("TKRv0IJs=HYqrvagQ#&!F!%V]Ww/4KiVs$s,<<MX"))
 app.use(passport.initialize());
 app.use(passport.session());
 

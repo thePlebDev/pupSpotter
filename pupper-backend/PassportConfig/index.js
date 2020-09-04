@@ -30,7 +30,8 @@ passport.use('login', new LocalStrategy(
          console.log('checkking password')
          if(err){return done(err)}
          if(isMatch){
-           //console.log(user) it is definetly the user object that we want
+           console.log('Username matches')
+           //req.user is not populated yet
            return done(null,user);
          }else{
            console.log('password no bueno')

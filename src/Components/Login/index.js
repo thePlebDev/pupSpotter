@@ -1,5 +1,6 @@
 import React,{useEffect} from 'react';
-import styled from 'styled-components'
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 //import {Redirect} from 'react-router-dom';
 
 import useLogin from '../../Hooks/useLogin';
@@ -25,6 +26,21 @@ color:#05386B;
   font-size:1.3em;
 }`
 
+const Links = styled.div`
+margin:10px 0;
+cursor:pointer;
+border:1px solid #05386B;
+border-radius:4px;
+padding:10px 36px;
+text-align:center;
+width:170px;
+transition:all 0.3s ease;
+:hover{
+  color:#5CDB95;
+  background-color: #05386B;
+}
+
+`
 
 
 const Login =(props)=>{
@@ -45,7 +61,7 @@ const Login =(props)=>{
 
 
   return(
-    <Container>
+    <Container style={{marginBottom:'100px'}}>
       <Form onSubmit={(e)=>handleSubmit(e)}>
         <div style={{position:'relative',marginBottom:'80px'}}>
           <Input type="text" name="username" error={errors.username} value={state.username}onChange={(e)=>handleChange(e)} />
@@ -60,6 +76,9 @@ const Login =(props)=>{
           </Label>
         </div>
         <Button>Login</Button>
+        <Link to='/register'>
+          <Links >Need an account?</Links>
+        </Link>
       </Form>
     </Container>
   )

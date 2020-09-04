@@ -114,12 +114,6 @@ const NavBar = ()=>{
           <Text>Login</Text>
           </TextContainer>
       </Link>
-      <Link to='/register'>
-        <TextContainer>
-          <i className="fa fa-registered" style={{fontSize:'70px',color:'#5CDB95'}}></i>
-          <Text>Register</Text>
-          </TextContainer>
-      </Link>
 
     </Container>
   )

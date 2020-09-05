@@ -114,6 +114,12 @@ const NavBar = ()=>{
           <Text>Login</Text>
           </TextContainer>
       </Link>
+      <Link to='/login'>
+        <TextContainer>
+          <i className="fa fa-user" style={{fontSize:'70px',color:'#5CDB95',marginLeft:'15px'}}></i>
+          <Text>Profile</Text>
+          </TextContainer>
+      </Link>
 
     </Container>
   )

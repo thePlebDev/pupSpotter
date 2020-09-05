@@ -27,7 +27,8 @@ padding:5px;
 `
 
 
-const ProfileCard = ()=>{
+const ProfileCard = ({name,description,location})=>{
+
   const node= useRef();
   const node2 = useRef();
   const [text,setText] = useState(false);
@@ -51,7 +52,7 @@ const ProfileCard = ()=>{
           <div>
             <Image  src='https://images.unsplash.com/photo-1561037404-61cd46aa615b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80'
             alt={'cute doggy'}  />
-            <Name>Dave</Name>
+            <Name>{name}</Name>
           </div>
           <About ref={node} onClick={(e)=>handleClickAbout(e)} >About</About>
           <Location ref={node2}onClick={(e)=>handleClick(e)}>Location</Location>
@@ -61,10 +62,17 @@ const ProfileCard = ()=>{
             {
                 text
                   ?
-                <AboutBack>113 Main St, Smileville, AB E4L 4RT</AboutBack>
+                <AboutBack>Latitude: {location.lat} Longitude: {location.lon}</AboutBack>
                   :
                 <AboutBack>
-                  Dave is a very good boy! I saw him jumping in a puddle.
+                  {
+                    description
+                        ?
+                    <div>{description}</div>
+                        :
+                    <div>not a good boy but the best!</div>
+                  }
+
                 </AboutBack>
             }
           </BackCard>

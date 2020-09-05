@@ -17,6 +17,7 @@ const loginRouter = require('./Routes/Login');
 const registerRouter = require('./Routes/Register');
 const spottingRouter = require('./Routes/Spots');
 const profileRouter = require('./Routes/Profile');
+const authenticatedCheckRouter = require('./Routes/isAuthenticated')
 
 
 const app = express()
@@ -76,6 +77,7 @@ app.use('/user',loginRouter)
 app.use('/spot',spottingRouter)
 app.use('/profile',profileRouter)
 app.use('/register',registerRouter)
+app.use('/isAuthenticated',authenticatedCheckRouter)
 
 app.all('*',(req,res,next)=>{
   const err = new Error(`Can not find ${req.originalUrl}`)

@@ -28,7 +28,7 @@ spottingRouter.get('/all',(req,res,next)=>{
 spottingRouter.post('/',ensureAuthenticated,(req,res,next)=>{
   //ensureAuthenticated should ensure that the user is authenticated.
   try{
-    const {name,image,location,date} = req.body;
+    const {name,image,location,date,description} = req.body;
     console.log('the user should be below')
     console.log(req.user) // the result of the session should be stored here I think. ONce we log in
     const newSpotting = new Spotting({
@@ -36,7 +36,8 @@ spottingRouter.post('/',ensureAuthenticated,(req,res,next)=>{
       image,
       location:{lat:location.lat,lon:location.lon},
       date,
-      user:req.user._id
+      user:req.user._id,
+      description
     })
 
     newSpotting.save()

@@ -1,7 +1,12 @@
-import React from 'react';
-import styled from 'styled-components'
+import React,{useState,useEffect} from 'react';
+import styled from 'styled-components';
+
+
 
 import ProfileCard from '../ProfileCard'
+import Loading from '../Loading';
+import NoDogs from '../NoDogs';
+import useProfile from '../../Hooks/UseProfileApiCall';
 
 const Container = styled.div`
   display:grid;
@@ -17,17 +22,38 @@ const Container = styled.div`
 `
 
 
-
 const Profile = (props)=>{
   const arrays = [1,2,3]
+  const [dogData,setDogData] = useState();
+  const {status} = useProfile()
+
+
+  useEffect(()=>{
+    if(status.status === 200){
+      setDogData(status.data)
+    }
+
+    else if(status.status===400){
+      props.history.push('/login')
+    }
+  },[status,props.history])
+
+  if(status.status === 204){
+    return <NoDogs/>
+  }
 
   return(
     <Container >
       {
-        arrays.map((item,index)=>{
-          return <ProfileCard key={index}/>
+        dogData
+          ?
+        dogData.map((item,index)=>{
+          return <ProfileCard key={item._id} name={item.name} description={item.description} location={item.location}/>
         })
+        :
+        <Loading/>
       }
+
     </Container>
   )
 }

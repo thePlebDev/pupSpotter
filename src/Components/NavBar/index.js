@@ -1,7 +1,9 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import axios from 'axios'
 
+import {backendUrl} from '../../utils/Constants'
 
 
 const Container = styled.nav`
@@ -89,9 +91,12 @@ const Arrow = styled.div`
 
 `
 
-const NavBar = ()=>{
-
-
+const NavBar = ({status,setNavStatus})=>{
+  const handleClick =()=>{
+    axios.get(`${backendUrl}user/logout`)
+    .then((data)=>{setNavStatus(false)})
+    .catch((error)=>{console.error(error)})
+  }
 
   return(
     <Container>
@@ -111,15 +116,27 @@ const NavBar = ()=>{
       <Link to='/login'>
         <TextContainer>
           <i className="fa fa-registered" style={{fontSize:'70px',color:'#5CDB95'}}></i>
-          <Text>Login</Text>
+          {
+            status
+              ?
+            <Text onClick={(e)=>handleClick(e)}>Logout</Text>
+              :
+            <Text>Login</Text>
+          }
           </TextContainer>
       </Link>
+          {
+            status
+              ?
       <Link to='/login'>
         <TextContainer>
           <i className="fa fa-user" style={{fontSize:'70px',color:'#5CDB95',marginLeft:'15px'}}></i>
           <Text>Profile</Text>
           </TextContainer>
       </Link>
+              :
+          <div></div>
+        }
 
     </Container>
   )

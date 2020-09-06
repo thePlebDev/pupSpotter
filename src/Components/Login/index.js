@@ -46,14 +46,11 @@ transition:all 0.3s ease;
 const Login =(props)=>{
 
   const {state,handleChange,handleSubmit,errors,authStatus,badLogin} = useLogin(loginValidation)
-  if(errors){
-    console.log(errors)
-  }
-
 
 
   useEffect(()=>{
     if(authStatus){
+      props.setNavStatus(true)
       props.history.push('/')
     }
 

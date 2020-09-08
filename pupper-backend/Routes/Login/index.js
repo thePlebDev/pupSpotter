@@ -15,7 +15,10 @@ loginRouter.post("/login",passport.authenticate('login'), //authenticate pulls o
 loginRouter.get('/logout', function(req, res,next){
   try{
     req.logout();
-    res.send('you have now logged out');
+    res.json({
+      status:200,
+      message:'Login successful n stuff'
+    })
   }
   catch(error){
     console.log(error)

@@ -1,0 +1,145 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`testing testing snapshot of SideBar 1`] = `
+<div
+  className="sc-Axmtr gyjOmI"
+>
+  <div
+    style={
+      Object {
+        "position": "relative",
+      }
+    }
+  >
+    <div
+      className="sc-fzozJi hHVLEE"
+    >
+      <span>
+        Username Taken!
+      </span>
+    </div>
+  </div>
+  <form
+    className="sc-AxhCb fjWdks"
+    onSubmit={[Function]}
+  >
+    <div
+      style={
+        Object {
+          "position": "relative",
+        }
+      }
+    >
+      <div
+        style={
+          Object {
+            "marginBottom": "30px",
+            "position": "relative",
+          }
+        }
+      >
+        <input
+          className="sc-AxmLO jkpzj"
+          name="username"
+          onChange={[Function]}
+          type="text"
+        />
+        <label
+          className="sc-AxirZ iRSiUU"
+          for="username"
+        >
+          <span
+            className="sc-AxjAm iJGPez"
+          >
+            Username
+          </span>
+        </label>
+      </div>
+    </div>
+    <div
+      style={
+        Object {
+          "marginBottom": "30px",
+          "position": "relative",
+        }
+      }
+    >
+      <input
+        className="sc-AxmLO jkpzj"
+        name="email"
+        onChange={[Function]}
+        type="text"
+        value=""
+      />
+      <label
+        className="sc-AxirZ iRSiUU"
+        for="email"
+      >
+        <span
+          className="sc-AxjAm iJGPez"
+        >
+          Email
+        </span>
+      </label>
+    </div>
+    <div
+      style={
+        Object {
+          "marginBottom": "30px",
+          "position": "relative",
+        }
+      }
+    >
+      <input
+        className="sc-AxmLO jkpzj"
+        name="bio"
+        onChange={[Function]}
+        type="text"
+        value=""
+      />
+      <label
+        className="sc-AxirZ iRSiUU"
+        for="bio"
+      >
+        <span
+          className="sc-AxjAm iJGPez"
+        >
+          Bio
+        </span>
+      </label>
+    </div>
+    <div
+      style={
+        Object {
+          "marginBottom": "30px",
+          "position": "relative",
+        }
+      }
+    >
+      <input
+        className="sc-AxmLO jkpzj"
+        name="password"
+        onChange={[Function]}
+        type="password"
+        value=""
+      />
+      <label
+        className="sc-AxirZ iRSiUU"
+        for="password"
+      >
+        <span
+          className="sc-AxjAm iJGPez"
+        >
+          Password
+        </span>
+      </label>
+    </div>
+    <button
+      className="sc-AxgMl eeblGN"
+      type="submit"
+    >
+      Register
+    </button>
+  </form>
+</div>
+`;

@@ -1,9 +1,14 @@
-
+import React from 'react';
+import Register from '../Components/Register';
+import renderer from 'react-test-renderer';
 import { mount } from 'enzyme';
 
 
 describe('testing',()=>{
-  it('stuff',()=>{
-    expect(1).toEqual(1)
+  test('testing snapshot of SideBar',()=>{
+    const tree = renderer
+      .create(<Register></Register>)
+      .toJSON();
+    expect(tree).toMatchSnapshot();
   })
 })

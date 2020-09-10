@@ -1,145 +1,100 @@
-import React,{useEffect} from 'react';
-import styled from 'styled-components';
-import { Link } from 'react-router-dom';
-import axios from 'axios'
+import React,{useState} from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
+import AccountCircle from '@material-ui/icons/AccountCircle';
+import MenuItem from '@material-ui/core/MenuItem';
+import Menu from '@material-ui/core/Menu';
+import PetsIcon from '@material-ui/icons/Pets';
+import {Link} from 'react-router-dom';
 
-import {backendUrl} from '../../utils/Constants'
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+  menuButton: {
+    marginRight: theme.spacing(2),
+  },
+  title: {
+    flexGrow: 1,
+  },
+}));
 
+export default function NavBar() {
+  const classes = useStyles();
+  const [auth, setAuth] = useState(true);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const open = Boolean(anchorEl);
 
-const Container = styled.nav`
-  width:150px;
-  height:100vh;
-  padding:0;
-  margin:0;
-  position:fixed;
-  background-color:#05386B;
-  z-index:100000;
-  display:flex;
-  flex-direction:column;
-  transition:100ms ease;
+  const handleChange = (event) => {
+    setAuth(event.target.checked);
+  };
 
+  const handleMenu = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
 
-  :hover{
-    width:300px;
-  }
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
-  :hover div div{
-    display:block;
-    margin-left:2em;
-  }
-  :hover .arrow{
-    opacity:1;
-    transform:rotate(180deg);
-  }
-  @media only screen and (max-width:600px){
-    bottom:0;
-    width:100vh;
-    height:100px;
-    flex-direction:row;
-    justify-content:space-center;
-    :hover{
-      width:100vh;
-    }
-    :hover div div{
-      display:none;
-      margin-left:2em;
-    }
+  return (
+    <div className={classes.root}>
 
-  }
+      <AppBar position="static">
+        <Toolbar>
 
-`
-
-const TextContainer = styled.div`
-  display:flex;
-  align-items:center;
-  height:100px;
-  margin:2em 1em;
-  background-color:#05386B;
-  border-radius:4px;
-  transition:100ms ease;
-  padding:5px;
-  opacity:0.3;
-  :hover{
-    opacity:1;
-  }
-  padding:5px;
-  @media only screen and (max-width:600px){
-  margin: 0 2.2em;
-  }
-
-
-
-`
-const Text= styled.div`
-
-display:none;
-font-size:1.8em;
-color:#5CDB95;
-
-
-`
-const Arrow = styled.div`
-  color:#5CDB95;
-  display:flex;
-  justify-content:center;
-  opacity:0.3;
-  padding:5px;
-  transition:300ms ease;
-  transform:rotate(0deg);
-  @media only screen and (max-width:600px){
-    display:none; }
-
-`
-
-const NavBar = ({status,setNavStatus})=>{
-  const handleClick =()=>{
-    axios.get(`${backendUrl}user/logout`)
-    .then((data)=>{setNavStatus(false)})
-    .catch((error)=>{console.error(error)})
-  }
-
-  return(
-    <Container>
-    <Arrow className="arrow">
-      <i className="fa fa-arrow-right" style={{fontSize:'50px'}}></i>
-    </Arrow>
-      <Link to='/'>
-        <TextContainer>
-          <i className="fa fa-home" style={{fontSize:'70px',color:'#5CDB95'}}></i> <Text >Home</Text>
-        </TextContainer>
-      </Link>
-      <Link to='/pupSpotting'>
-        <TextContainer>
-          <i className="fa fa-paw" style={{fontSize:'70px',color:'#5CDB95'}}></i><Text>Doggos</Text>
-        </TextContainer>
-      </Link>
-      <Link to='/login'>
-        <TextContainer>
-          <i className="fa fa-registered" style={{fontSize:'70px',color:'#5CDB95'}}></i>
-          {
-            status
-              ?
-            <Text onClick={(e)=>handleClick(e)}>Logout</Text>
-              :
-            <Text>Login</Text>
-          }
-          </TextContainer>
-      </Link>
-          {
-            status
-              ?
-      <Link to='/login'>
-        <TextContainer>
-          <i className="fa fa-user" style={{fontSize:'70px',color:'#5CDB95',marginLeft:'15px'}}></i>
-          <Text>Profile</Text>
-          </TextContainer>
-      </Link>
-              :
-          <div></div>
-        }
-
-    </Container>
-  )
+          <Typography variant="h3" className={classes.title}>
+            <Link to="/">
+            Doggo Watcho
+            </Link>
+          </Typography>
+          {auth && (
+            <div>
+              <IconButton
+                aria-label="account of current user"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                onClick={handleMenu}
+                color="inherit"
+              >
+                <AccountCircle style={{fontSize:'2em'}}/>
+              </IconButton>
+              <Menu
+                id="menu-appbar"
+                anchorEl={anchorEl}
+                anchorOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                open={open}
+                onClose={handleClose}
+              >
+                <MenuItem style={{fontSize:'1.5em',padding:'10px'}} onClick={handleClose}>Profile</MenuItem>
+                <MenuItem style={{fontSize:'1.5em',padding:'10px'}} onClick={handleClose}>Log out</MenuItem>
+              </Menu>
+            </div>
+          )}
+          <IconButton
+            aria-label="account of current user"
+            aria-controls="menu-appbar"
+            aria-haspopup="true"
+            color="inherit"
+          >
+          <Link to="/pupSpotting">
+            <PetsIcon style={{fontSize:'2em'}} />
+          </Link>
+          </IconButton>
+        </Toolbar>
+      </AppBar>
+    </div>
+  );
 }
-
-export default NavBar

@@ -79,7 +79,6 @@ const Register = (props) =>{
         <div style={{position:'relative',marginBottom:'30px'}}>
           <TextField className={classes.root} id="standard-basic" label="Username" value={name}onChange={(e)=>handleChange(e)} name="username"/>
         </div>
-
         </div>
         <div style={{position:'relative',marginBottom:'30px'}}>
           <TextField className={classes.root} id="standard-basic" label="Email"  value={email}onChange={(e)=>handleChange(e)} name="email" />
@@ -90,10 +89,7 @@ const Register = (props) =>{
         <div style={{position:'relative',marginBottom:'30px'}}>
           <TextField className={classes.root} type="password" id="standard-basic" label="Password" value={password}onChange={(e)=>handleChange(e)}  name='password' />
         </div>
-
-          <Button type="submit" ref={ref}>Register</Button>
-
-
+        <Button type="submit" ref={ref}>Register</Button>
       </Form>
     </Container>
   )

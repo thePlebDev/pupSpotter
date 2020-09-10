@@ -44,7 +44,7 @@ color:#05386B;
 `
 
 const Form = styled.form`
-  width:60%;
+  width:100%;
   position:absolute;
   top:10%;
   left:20%;

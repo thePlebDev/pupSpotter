@@ -1,7 +1,8 @@
 import React,{useEffect} from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-//import {Redirect} from 'react-router-dom';
+import TextField from '@material-ui/core/TextField';
+import { makeStyles } from '@material-ui/core/styles';
 
 import useLogin from '../../Hooks/useLogin';
 import {loginValidation} from '../../utils/Validation';
@@ -39,14 +40,22 @@ transition:all 0.3s ease;
   color:#5CDB95;
   background-color: #05386B;
 }
-
 `
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    '& > *': {
+      margin: theme.spacing(1),
+      width: '73ch',
+    },
+  },
+}));
 
 
 const Login =(props)=>{
 
   const {state,handleChange,handleSubmit,errors,authStatus,badLogin} = useLogin(loginValidation)
-
+  const classes = useStyles();
 
   useEffect(()=>{
     if(authStatus){
@@ -61,16 +70,10 @@ const Login =(props)=>{
     <Container style={{marginBottom:'100px'}}>
       <Form onSubmit={(e)=>handleSubmit(e)}>
         <div style={{position:'relative',marginBottom:'80px'}}>
-          <Input type="text" name="username" error={errors.username} value={state.username}onChange={(e)=>handleChange(e)} />
-          <Label for="username" >
-            <InputSpan>Username</InputSpan>
-          </Label>
+          <TextField className={classes.root} id="standard-basic" label="Username" name="username" value={state.username}onChange={(e)=>handleChange(e)}/>
         </div>
         <div style={{position:'relative',marginBottom:'80px'}}>
-          <Input type="password" name="password" error={errors.password} value={state.password}onChange={(e)=>handleChange(e)} />
-          <Label for="password" >
-            <InputSpan>Password</InputSpan>
-          </Label>
+            <TextField className={classes.root} type="password" id="standard-basic" label="Password" name="password" value={state.password}onChange={(e)=>handleChange(e)}/>
         </div>
         <Button>Login</Button>
         <Link to='/register'>

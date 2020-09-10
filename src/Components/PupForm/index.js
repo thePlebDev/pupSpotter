@@ -1,5 +1,8 @@
 import React,{useState,useEffect,useRef} from 'react';
 import styled from 'styled-components';
+import {makeStyles} from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
+import {KeyboardDatePicker,MuiPickersUtilsProvider} from '@material-ui/pickers';
 
 
 import useForm from '../../Hooks/useForm';
@@ -56,8 +59,18 @@ const Added = styled.div`
   top:2%;
   left:4%;
 `
+const useStyles = makeStyles((theme) => ({
+  root: {
+    '& > *': {
+      margin: theme.spacing(1),
+      width: '58.5ch',
+      'font-size':'1.2em'
+    },
+  },
+}));
 
 const PupForm =(props)=>{
+  const classes = useStyles()
 const {handleClick,handleChange,handleSubmit,state,errors,createdSpotting} = useForm()
 const [loadingState,setLoadState] = useState(false)
 const node = useRef();
@@ -69,35 +82,22 @@ const {show}=useOutsideClick(node)
     }
   },[createdSpotting,props.history])
 
+
   return(
     <Container >
 
-      <Added state={state.location}show={show}>
-        <div style={{display:'flex',justifyContent:'space-between',alignItems:'center'}}>
-          <i className="fa fa-bell"  style={{fontSize:'1.3em',color:'#05386B'}}></i>
-          <span>Location Added</span>
-          <span style={{fontSize:'1.3em',color:'#05386B',fontWeight:600}}>X</span>
-        </div>
-      </Added>
 
       <Form onSubmit={(e)=>{handleSubmit(e)}} state={loadingState}>
       <div style={{position:'relative',marginBottom:'30px'}}>
-        <Input type="text" name="name" error={errors.name} value={state.name}onChange={(e)=>handleChange(e)}/>
-        <Label for="doggy" >
-          <InputSpan>Dog Name</InputSpan>
-        </Label>
+        <TextField className={classes.root} id="standard-basic" label="Dog Name"
+        error={errors.name} value={state.name} onChange={(e)=>handleChange(e)} name='name'/>
+
       </div>
       <div style={{position:'relative',marginBottom:'50px'}}>
-        <Input type="text" name="description" value={state.description}onChange={(e)=>handleChange(e)}/>
-        <Label for="description" >
-          <InputSpan>Description</InputSpan>
-        </Label>
+        <TextField className={classes.root} id="standard-basic" label="Description"
+        name="description" value={state.description}onChange={(e)=>handleChange(e)}/>
       </div>
-
-        <label>
-          <Text>Date Spotted</Text>
-          <Input state={loadingState} type="date" name='date' value={state.date} onChange={(e)=>{handleChange(e)}} />
-        </label>
+        
         <div>
           <FileLabel>
             <Text>Upload Image</Text>
@@ -117,7 +117,6 @@ const {show}=useOutsideClick(node)
           <Button type="Submit">Submit</Button>
         </div>
       </Form>
-
     </Container>
   )
 }

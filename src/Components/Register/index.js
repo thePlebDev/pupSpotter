@@ -1,5 +1,7 @@
 import React,{useState,useRef} from 'react';
 import styled from 'styled-components';
+import TextField from '@material-ui/core/TextField';
+import { makeStyles } from '@material-ui/core/styles';
 
 
 import useRegister from '../../Hooks/UseRegister'
@@ -40,11 +42,21 @@ const Added = styled.div`
   top:2%;
   left:4%;
 `
+const useStyles = makeStyles((theme) => ({
+  root: {
+    '& > *': {
+      margin: theme.spacing(1),
+      width: '59ch',
+      'font-size':'1.2em'
+    },
+  },
+}));
 
 const Register = (props) =>{
   const {name,bio,email,password,handleChange,handleSubmit,errors,status} = useRegister(registerValidation)
   const ref = useRef();
   const {show} = useOutSideClickV2(ref,status)
+  const classes = useStyles();
   //status is async
 
   return(
@@ -65,30 +77,18 @@ const Register = (props) =>{
       <Form onSubmit={(e)=>handleSubmit(e)}>
         <div style={{position:'relative'}}>
         <div style={{position:'relative',marginBottom:'30px'}}>
-          <Input type="text" name="username" error={errors.username} value={name}onChange={(e)=>handleChange(e)} />
-          <Label for="username" >
-            <InputSpan>Username</InputSpan>
-          </Label>
+          <TextField className={classes.root} id="standard-basic" label="Username" value={name}onChange={(e)=>handleChange(e)} name="username"/>
         </div>
 
         </div>
         <div style={{position:'relative',marginBottom:'30px'}}>
-          <Input type="text" name="email" error={errors.email} value={email}onChange={(e)=>handleChange(e)} />
-          <Label for="email" >
-            <InputSpan>Email</InputSpan>
-          </Label>
+          <TextField className={classes.root} id="standard-basic" label="Email"  value={email}onChange={(e)=>handleChange(e)} name="email" />
         </div>
         <div style={{position:'relative',marginBottom:'30px'}}>
-          <Input type="text" name="bio" error={''} value={bio}onChange={(e)=>handleChange(e)} />
-          <Label for="bio" >
-            <InputSpan>Bio</InputSpan>
-          </Label>
+          <TextField className={classes.root} id="standard-basic" label="Bio" value={bio}onChange={(e)=>handleChange(e)}  name='bio' />
         </div>
         <div style={{position:'relative',marginBottom:'30px'}}>
-          <Input type="password" name="password" error={errors.password} value={password}onChange={(e)=>handleChange(e)} />
-          <Label for="password" >
-            <InputSpan>Password</InputSpan>
-          </Label>
+          <TextField className={classes.root} type="password" id="standard-basic" label="Password" value={password}onChange={(e)=>handleChange(e)}  name='password' />
         </div>
 
           <Button type="submit" ref={ref}>Register</Button>

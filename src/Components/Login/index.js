@@ -3,29 +3,16 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert from '@material-ui/lab/Alert';
+import Button from '@material-ui/core/Button';
 
 import useLogin from '../../Hooks/useLogin';
 import {loginValidation} from '../../utils/Validation';
 // import axios from 'axios'
 // import {backendUrl} from '../../utils/Constants'
-import {Container,Form,Button,Label,InputSpan} from '../../Assets/FormStylings';
+import {Form} from '../../Assets/FormStylings';
 
-const Input = styled.input`
-width:100%;
-height:50px;
-font-size:18px;
-border-bottom:${props =>props.error ? '2px solid red':'1px solid #05386B;'};
-border-top:none;
-border-left:none;
-border-right:none;
-padding-bottom:5px;
-outline:none;
-background-color: #EDF5E1;
-color:#05386B;
-:focus + Label,:focus Label:valid +InputSpan{
-  transform: translateY(-100%);
-  font-size:1.3em;
-}`
 
 const Links = styled.div`
 margin:10px 0;
@@ -46,8 +33,18 @@ const useStyles = makeStyles((theme) => ({
   root: {
     '& > *': {
       margin: theme.spacing(1),
-      width: '73ch',
     },
+  },
+  buttons: {
+    width:'70%',
+    '& > * + *': {
+      marginTop: theme.spacing(2),
+    },
+    padding:'10px',
+    border:'1px solid #05386B',
+    marginBottom:'20px',
+    marginLeft:'15%'
+
   },
 }));
 
@@ -67,20 +64,22 @@ const Login =(props)=>{
 
 
   return(
-    <Container style={{marginBottom:'100px'}}>
       <Form onSubmit={(e)=>handleSubmit(e)}>
+      <div style={{border:'1px solid rgba(0, 0, 0, 0.87)',width:'60%',margin:'0 auto',padding:'50px',borderRadius:'4px'}} >
         <div style={{position:'relative',marginBottom:'80px'}}>
-          <TextField className={classes.root} id="standard-basic" label="Username" name="username" value={state.username}onChange={(e)=>handleChange(e)}/>
+          <TextField className={classes.root} id="standard-basic" label="Username"
+           name="username" error={errors.username} style={{width:'70%',marginLeft:'15%',padding:'5px'}} value={state.username}onChange={(e)=>handleChange(e)}/>
         </div>
         <div style={{position:'relative',marginBottom:'80px'}}>
-            <TextField className={classes.root} type="password" id="standard-basic" label="Password" name="password" value={state.password}onChange={(e)=>handleChange(e)}/>
+            <TextField className={classes.root} type="password" id="standard-basic"
+            label="Password" error={errors.username} style={{width:'70%',marginLeft:'15%',padding:'5px'}} name="password" value={state.password}onChange={(e)=>handleChange(e)}/>
         </div>
-        <Button>Login</Button>
+        <Button className={classes.buttons} type='submit'>Login</Button>
         <Link to='/register'>
-          <Links >Need an account?</Links>
+          <Links style={{marginLeft:'15%'}} >Need an account?</Links>
         </Link>
+        </div>
       </Form>
-    </Container>
   )
 }
 

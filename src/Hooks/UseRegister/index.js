@@ -18,7 +18,7 @@ const useRegister =(validator)=>{
   }
 
   const handleChange =(e)=>{
-
+    console.log(state)
     const {name,value} = e.target
     setState({...state,[name]:value})
   }

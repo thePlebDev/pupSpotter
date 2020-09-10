@@ -9,6 +9,7 @@ const useForm = ()=>{
   const [errors,setErrors] = useState({})
   const [isSubmitting,setIsSubmitting] = useState(false)
   const [createdSpotting,setCreatedSpotting] = useState(false);
+  const [open,setOpen] = useState(false)
 
   const handleSubmit =(e)=>{
     e.preventDefault()
@@ -45,12 +46,15 @@ const useForm = ()=>{
     navigator.geolocation.getCurrentPosition((position) => {
     setState({...state,location:{lat:position.coords.latitude, lon:position.coords.longitude}});
     console.log(state)
+    setOpen(true)
   });
 }
 
   return{
     state,
     errors,
+    open,
+    setOpen,
     createdSpotting,
     handleSubmit,
     handleChange,

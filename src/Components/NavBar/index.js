@@ -9,6 +9,7 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import PetsIcon from '@material-ui/icons/Pets';
+import HomeIcon from '@material-ui/icons/Home';
 import {Link} from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
@@ -91,6 +92,17 @@ export default function NavBar() {
           >
           <Link to="/pupSpotting">
             <PetsIcon style={{fontSize:'2em'}} />
+          </Link>
+          </IconButton>
+
+          <IconButton
+            aria-label="account of current user"
+            aria-controls="menu-appbar"
+            aria-haspopup="true"
+            color="inherit"
+          >
+          <Link to="/">
+            <HomeIcon style={{fontSize:'2.2em'}} />
           </Link>
           </IconButton>
         </Toolbar>

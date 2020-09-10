@@ -46,8 +46,8 @@ color:#05386B;
 const Form = styled.form`
   width:100%;
   position:absolute;
-  top:10%;
-  left:20%;
+  top:12%;
+
 `
 const Text = styled.div`
 font-size:1.1em;

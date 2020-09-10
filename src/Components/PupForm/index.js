@@ -1,18 +1,13 @@
 import React,{useState,useEffect,useRef} from 'react';
-import styled from 'styled-components';
 import {makeStyles} from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
-import {KeyboardDatePicker,MuiPickersUtilsProvider} from '@material-ui/pickers';
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
 import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-import PhotoCamera from '@material-ui/icons/PhotoCamera';
-import Container from '@material-ui/core/Container';
+
 
 
 import useForm from '../../Hooks/useForm';
-import useOutsideClick from '../../Hooks/UseOutsideClick'
 import {Form} from '../../Assets/FormStylings';
 
 
@@ -22,10 +17,9 @@ const useStyles = makeStyles((theme) => ({
   root: {
     '& > *': {
       margin: theme.spacing(1),
-      width:'120%',
       'font-size':'1.2em',
-
     },
+    marginBottom:'20px',
   },
   alerts: {
     width: '100%',
@@ -34,14 +28,15 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   buttons: {
-    width: '60%',
+    width:'70%',
     '& > * + *': {
       marginTop: theme.spacing(2),
     },
     padding:'10px',
     border:'1px solid #05386B',
-    marginBottom:'20px',
-    marginLeft:'60px',
+    marginBottom:'40px',
+    marginLeft:'15%'
+
   },
 
 }));
@@ -52,11 +47,11 @@ function Alert(props) {
 
 const PupForm =(props)=>{
   const classes = useStyles()
-const {handleClick,handleChange,handleSubmit,state,errors,createdSpotting} = useForm()
+const {handleChange,handleClick,open,setOpen,handleSubmit,state,errors,createdSpotting} = useForm()
 const [loadingState,setLoadState] = useState(false)
-const [open,setOpen] = useState(false)
 const node = useRef();
-const {show}=useOutsideClick(node)
+
+
 const handleClose = (event, reason) => {
     if (reason === 'clickaway') {
       return;
@@ -74,31 +69,32 @@ const handleClose = (event, reason) => {
 
   return(
     <div  >
-      <Snackbar className={classes.alerts} open={open} autoHideDuration={6000} onClose={handleClose}>
-        <Alert onClose={handleClose} severity="success">
-          Location Added!!
-        </Alert>
-      </Snackbar>
-
+    <Snackbar open={open} className={classes.alerts} autoHideDuration={6000} onClose={handleClose}>
+      <Alert onClose={handleClose} severity="success">
+        Location Added!
+      </Alert>
+    </Snackbar>
 
       <Form onSubmit={(e)=>{handleSubmit(e)}} state={loadingState}>
+      <div style={{border:'1px solid rgba(0, 0, 0, 0.87)',width:'60%',margin:'0 auto',padding:'50px',borderRadius:'4px'}} >
       <div style={{position:'relative',marginBottom:'30px'}}>
-        <TextField className={classes.root} id="standard-basic" label="Dog Name" width="75%"
+        <TextField className={classes.root} id="standard-basic" label="Dog Name" style={{width:'70%',marginLeft:'15%',padding:'5px'}}
         error={errors.name} value={state.name} onChange={(e)=>handleChange(e)} name='name'/>
 
       </div>
       <div style={{position:'relative',marginBottom:'50px'}}>
-        <TextField className={classes.root} id="standard-basic" label="Description"
+        <TextField className={classes.root} id="standard-basic" label="Description" style={{width:'70%',marginLeft:'15%'}}
         name="description" value={state.description}onChange={(e)=>handleChange(e)}/>
       </div>
         <div>
 
           <Button color={errors.loc?'secondary':''} className={classes.buttons} type="button" value={state.location}
-          ref={node} onClick={(e)=>{setOpen(true)}} >Add Location</Button>
+          ref={node} onClick={(e)=>{handleClick()}} disableRipple={true} >Add Location</Button>
         </div>
 
         <div>
-          <Button className={classes.buttons}  type="Submit">Submit</Button>
+          <Button className={classes.buttons}  type="Submit" disableRipple={true}>Submit</Button>
+        </div>
         </div>
       </Form>
     </div>

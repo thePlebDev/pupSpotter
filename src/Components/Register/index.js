@@ -1,98 +1,90 @@
-import React,{useState,useRef} from 'react';
-import styled from 'styled-components';
+import React,{useState,useEffect,useRef} from 'react';
+import {makeStyles} from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
-import { makeStyles } from '@material-ui/core/styles';
-
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert from '@material-ui/lab/Alert';
+import Button from '@material-ui/core/Button';
 
 import useRegister from '../../Hooks/UseRegister'
 import {registerValidation} from '../../utils/Validation';
-import {Success,Fail} from '../../utils/ResponseMessage';
-import {Form,Button,Container,Label,InputSpan} from '../../Assets/FormStylings';
-import useOutSideClickV2 from '../../Hooks/UseOutsideClickV2';
 
-const Input = styled.input`
-width:100%;
-height:50px;
-font-size:18px;
-border-bottom:${props =>props.error ? '2px solid red':'1px solid #05386B;'};
-border-top:none;
-border-left:none;
-border-right:none;
-padding-bottom:5px;
-outline:none;
-background-color: #EDF5E1;
-color:#05386B;
-:focus + Label,:focus Label:valid +InputSpan{
-  transform: translateY(-100%);
-  font-size:1.3em;
-}`
+import {Form} from '../../Assets/FormStylings';
 
-const Added = styled.div`
-  width: 40%;
-  background-color:${props=>props.status ===204?'red':'#5CDB95'};
-  padding:10px;
-  border-radius:4px;
-  text-align:center;
-  font-size:1.2em;
-  position:absolute;
-  transition: all .5s;
-  transform:${props=>props.show?'translateX(250px)':'translateX(1400px)'};
-  opacity:${props=>props.show?'1': 0};
-  z-index:1;
-  top:2%;
-  left:4%;
-`
+
+
+
 const useStyles = makeStyles((theme) => ({
   root: {
     '& > *': {
       margin: theme.spacing(1),
-      width: '59ch',
-      'font-size':'1.2em'
+      'font-size':'1.2em',
+    },
+    marginBottom:'20px',
+  },
+  alerts: {
+    width: '100%',
+    '& > * + *': {
+      marginTop: theme.spacing(2),
     },
   },
+  buttons: {
+    width:'70%',
+    '& > * + *': {
+      marginTop: theme.spacing(2),
+    },
+    padding:'10px',
+    border:'1px solid #05386B',
+    marginBottom:'20px',
+    marginLeft:'15%'
+
+  },
+
 }));
 
-const Register = (props) =>{
-  const {name,bio,email,password,handleChange,handleSubmit,errors,status} = useRegister(registerValidation)
-  const ref = useRef();
-  const {show} = useOutSideClickV2(ref,status)
-  const classes = useStyles();
-  //status is async
+function Alert(props) {
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
+
+const Register =(props)=>{
+  const {state,bio,email,password,errors,handleChange,handleSubmit} = useRegister(registerValidation)
+  const classes = useStyles()
+
+const [loadingState,setLoadState] = useState(false)
+const [open,setOpen] = useState(false)
+
+
 
   return(
-    <Container>
-      <div style={{position:'relative'}}>
-        {
-          <Added show={show} status={status}>
-            {
-              status ===200
-                    ?
-              <span>UserCreated</span>
-                    :
-              <span>Username Taken!</span>
-            }
-          </Added>
-        }
+    <div>
+
+      <Form onSubmit={(e)=>{handleSubmit(e)}} state={loadingState}>
+      <div style={{border:'1px solid rgba(0, 0, 0, 0.87)',width:'60%',margin:'0 auto',padding:'50px',borderRadius:'4px'}} >
+      <div style={{position:'relative',marginBottom:'30px'}}>
+        <TextField className={classes.root} id="standard-basic" label="Username" style={{width:'70%',marginLeft:'15%',padding:'5px'}}
+        error={errors.username} value={state} onChange={(e)=>handleChange(e)} name='username'/>
+
       </div>
-      <Form onSubmit={(e)=>handleSubmit(e)}>
-        <div style={{position:'relative'}}>
-        <div style={{position:'relative',marginBottom:'30px'}}>
-          <TextField className={classes.root} id="standard-basic" label="Username" value={name}onChange={(e)=>handleChange(e)} name="username"/>
+      <div style={{position:'relative',marginBottom:'50px'}}>
+        <TextField className={classes.root} id="standard-basic" label="Email" style={{width:'70%',marginLeft:'15%'}}
+        name="email" error={errors.email}  value={email} onChange={(e)=>handleChange(e)}/>
+      </div>
+      <div style={{position:'relative',marginBottom:'50px'}}>
+        <TextField className={classes.root} id="standard-basic" label="Bio" style={{width:'70%',marginLeft:'15%'}}
+        name="bio" value={bio}onChange={(e)=>handleChange(e)}/>
+      </div>
+      <div style={{position:'relative',marginBottom:'50px'}}>
+        <TextField className={classes.root} id="standard-basic" label="Password" style={{width:'70%',marginLeft:'15%'}}
+        name="password" error={errors.password}  type='password' value={password}onChange={(e)=>handleChange(e)}/>
+      </div>
+
+
+        <div>
+          <Button className={classes.buttons}  type="Submit" disableRipple={true}>Submit</Button>
         </div>
         </div>
-        <div style={{position:'relative',marginBottom:'30px'}}>
-          <TextField className={classes.root} id="standard-basic" label="Email"  value={email}onChange={(e)=>handleChange(e)} name="email" />
-        </div>
-        <div style={{position:'relative',marginBottom:'30px'}}>
-          <TextField className={classes.root} id="standard-basic" label="Bio" value={bio}onChange={(e)=>handleChange(e)}  name='bio' />
-        </div>
-        <div style={{position:'relative',marginBottom:'30px'}}>
-          <TextField className={classes.root} type="password" id="standard-basic" label="Password" value={password}onChange={(e)=>handleChange(e)}  name='password' />
-        </div>
-        <Button type="submit" ref={ref}>Register</Button>
       </Form>
-    </Container>
+    </div>
   )
 }
 
-export default Register;
+export default Register

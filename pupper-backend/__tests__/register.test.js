@@ -22,16 +22,15 @@ describe('testing the POST',()=>{
     jest.setTimeout(100000);
      //clear out the database before each test. then populate it again with initial data
      await User.deleteMany({})
-     initialData.forEach(async(item)=>{
-       let userObject = new User(item)
+
+       let userObject = new User(initialData[0])
        await userObject.save()
-       console.log('saved')
-     })
+       console.log('SAVED---------------')
   });
   test('testing the post route',async (done)=>{
     const response = await api.post('/register')
-        .send({username:'time and the hat',password:'12345'})
-        expect(response.body.status).toBe(200)
+        .send({username:'dave',password:'12345'})
+        expect(response.body.status).toBe(204)
         done()
 
   })

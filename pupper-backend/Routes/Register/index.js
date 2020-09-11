@@ -30,18 +30,18 @@ registerRouter.post('/',(req,res,next)=>{
 
 
 })
-// registerRouter.get('/all',(req,res,next)=>{
-//   try{
-//     User.findOne({},(err,user)=>{
-//       if(err){console.log(err)}
-//       else{
-//         res.json({Users:user})
-//       }
-//     })
-//   }catch(error){
-//     console.log(error)
-//     next(error)
-//   }
-// })
+registerRouter.get('/all',(req,res,next)=>{
+  try{
+    User.findOne({},(err,user)=>{
+      if(err){console.log(err)}
+      else{
+        res.json({Users:user})
+      }
+    })
+  }catch(error){
+    console.log(error)
+    next(error)
+  }
+})
 
 module.exports = registerRouter

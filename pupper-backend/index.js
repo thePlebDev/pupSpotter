@@ -22,7 +22,7 @@ const authenticatedCheckRouter = require('./Routes/isAuthenticated')
 
 const app = express()
 passportConfig()
-const url ='';
+const url ='mongodb+srv://camoSheets:vQFvBxS67LILByJX@cluster0.xgzqn.mongodb.net/new-db?retryWrites=true&w=majority';
 const db = mongoose.connection
 const connection = mongoose.createConnection(url)
 const sessionStore = new MongoStore({ mongooseConnection: connection, collection: 'sessions' })

@@ -22,7 +22,6 @@ const authenticatedCheckRouter = require('./Routes/isAuthenticated')
 
 const app = express()
 passportConfig()
-const port = 3001
 const url ='';
 const db = mongoose.connection
 const connection = mongoose.createConnection(url)
@@ -98,8 +97,5 @@ app.use((err,req,res,next)=>{
 });
 
 
-app.listen(port,()=>{
-  console.log('listening on port 3000')
-})
 
 module.exports = app

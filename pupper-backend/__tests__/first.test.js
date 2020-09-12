@@ -9,16 +9,12 @@ describe('trying to get stuff to work',()=>{
     jest.setTimeout(100000);
   });
 
-
   test('testing the home page', async (done)=>{
      await api
         .get('/spot/all')
         .expect(200)
         .expect('Content-Type',/application\/json/)
         done()
-
-
-
   })
   afterAll( async(done)=>{
      await mongoose.connection.close()

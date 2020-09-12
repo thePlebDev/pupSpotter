@@ -44,6 +44,12 @@ describe('testing the POST',()=>{
     expect(res.body.status).toBe(200)
     done()
   })
+  test('testing a failed login',async(done)=>{
+    const res = await api.post('/user/login')
+    .send({username:'eatme like a cupcake',password:'12345'})
+    expect(res.status).toBe(401)
+    done()
+  })
 
   afterAll( async(done)=>{
      await mongoose.connection.close()

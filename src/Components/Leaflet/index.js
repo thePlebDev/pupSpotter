@@ -1,6 +1,8 @@
 import React,{useEffect,useState} from 'react';
 import {Map,TileLayer,Marker,Popup} from 'react-leaflet';
 import axios from 'axios'
+
+import Filter from '../Filter'
 import {backendUrl} from '../../utils/Constants'
 
 const MapContainer= ({setLoggedIn})=>{
@@ -30,7 +32,7 @@ useEffect(()=>{
   },[])
   return(
     <div>
-
+          <Filter/>
         <Map
           center={[state.lat,state.lng]}
           zoom={state.zoom}

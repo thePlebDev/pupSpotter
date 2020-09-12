@@ -1,5 +1,6 @@
 const express = require('express')
 const Spotting = require('../../Models/Spotting');
+const multer = require('multer')
 
 
 const spottingRouter = express.Router();

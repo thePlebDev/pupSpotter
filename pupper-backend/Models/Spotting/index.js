@@ -7,7 +7,7 @@ const spottingSchema = new Schema({
   name:{type:String,required:true},
   description:{type:String},
   date:{type:Date,default:Date.now},
-  image:{type:String},
+  image:{data:Buffer,contentType:String},
   location:{
     lat:Number,
     lon:Number

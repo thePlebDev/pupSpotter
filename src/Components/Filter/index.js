@@ -1,0 +1,60 @@
+import React,{useState,useRef} from 'react';
+import styled from 'styled-components'
+import SearchIcon from '@material-ui/icons/Search';
+import useOutsideClick from '../../Hooks/UseOutsideClick';
+
+const SideBar = styled.div`
+  position:absolute;
+  right:0;
+  background-color:#3f51b5;
+  height:90vh;
+  width:230px;
+  opacity:0.8;
+  transition:all 0.3s ease;
+  transform:${props => props.show? 'translateX(0px)' : 'translateX(175px)'};
+  z-index:999999;
+`
+const Text = styled.h3`
+  margin-left:43%;
+  color:white;
+`
+const Button = styled.button`
+  width:160px;
+  text-align:center;
+  margin-left:25%;
+  margin-bottom:50px;
+  margin-top:50px;
+  padding:8px 32px;
+  border-radius:8px;
+  display:block;
+  outline:none;
+  border:none;
+  color:#3f51b5;
+  background-color:#5CDB95;
+  opacity:0.8;
+  cursor:pointer;
+  box-shadow:0 5px 20px rgba(0,0,0,0.25);
+  &:hover{
+    opacity:1;
+    transform:scale(1.03);
+
+  }
+
+`
+
+const Filter = ({props})=>{
+  const node = useRef(null);
+  const {show,setShow} = useOutsideClick(node)
+  //const [show,setShow] = useState(true)
+  return(
+
+    <SideBar show={show}>
+      <SearchIcon ref={node} style={{fontSize:'60',color:'white',cursor:'pointer'}} onClick={()=>setShow(!show)}/>
+      <Text>Filter by:</Text>
+      <Button>Personal Spots</Button>
+    </SideBar>
+  )
+}
+
+
+export default Filter

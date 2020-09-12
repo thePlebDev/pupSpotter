@@ -9,6 +9,7 @@ const cookieParser = require('cookie-parser');
 const cors = require("cors");
 const mongoSanitize = require('express-mongo-sanitize')
 const xss = require('xss-clean');
+const {MONGODB_URI} = require('./enviromentConfig')
 
 const User = require('./Models/User')
 
@@ -19,10 +20,9 @@ const spottingRouter = require('./Routes/Spots');
 const profileRouter = require('./Routes/Profile');
 const authenticatedCheckRouter = require('./Routes/isAuthenticated')
 
-
 const app = express()
 passportConfig()
-const url ='';
+const url =MONGODB_URI;
 const db = mongoose.connection
 const connection = mongoose.createConnection(url)
 const sessionStore = new MongoStore({ mongooseConnection: connection, collection: 'sessions' })

@@ -65,7 +65,8 @@ const Login =(props)=>{
   return(
       <Form onSubmit={(e)=>handleSubmit(e)}>
       <div style={{border:'1px solid rgba(0, 0, 0, 0.87)',width:'60%',margin:'0 auto',padding:'50px',borderRadius:'4px'}} >
-        <div style={{position:'relative',marginBottom:'80px'}}>
+        <div style={{color:'rgba(0, 0, 0, 0.5)',opacity:'0.8',textTransform:'uppercase',marginLeft:'45%',fontSize:'2.6em'}}>Login</div>
+        <div style={{position:'relative',marginTop:'40px',marginBottom:'80px'}}>
           <TextField className={classes.root} id="standard-basic" label="Username"
            name="username" error={errors.username} style={{width:'70%',marginLeft:'15%',padding:'5px'}} value={state.username}onChange={(e)=>handleChange(e)}/>
         </div>

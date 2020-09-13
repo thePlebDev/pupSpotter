@@ -5,11 +5,9 @@ import HomeIcon from '@material-ui/icons/Home';
 import PersonIcon from '@material-ui/icons/Person';
 import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
 import {Link} from 'react-router-dom';
-import {SideBar,Tab} from '../../Assets/SideBarStyles';
+import {Tab} from '../../Assets/SideBarStyles';
+import LoginStatus from '../LoginStatus';
 
-
-const LeftSideBar = styled(SideBar)`
-`
 const HomeTab = styled(Tab)`
   left:0px;
   border-radius:4px;
@@ -47,26 +45,29 @@ const Text = styled.div`
 `
 
 
-const NavBar = (props)=> {
+const NavBar = ({loggedIn,setLoggedIn})=> {
   const [show,setShow] = useState(true)
   return (
     <div style={{position:'absolute',left:0,height:'100vh'}} >
+      <HomeTab>
+        <Link to="/">
+          <Text>Home</Text>
+        </Link>
+          <HomeIcon style={{fontSize:'60',color:'white',cursor:'pointer'}} onClick={()=>setShow(!show)}  />
 
-      <HomeTab show={show}>
-        <Text>Home</Text>
-        <HomeIcon style={{fontSize:'60',color:'white',cursor:'pointer'}} onClick={()=>setShow(!show)}  />
       </HomeTab>
-      <SpotTab show={show}>
-        <Text>Spot</Text>
+      <SpotTab>
+        <Link to="/pupSpotting">
+          <Text>Spot</Text>
+        </Link>
         <PetsIcon style={{fontSize:'60',color:'white',cursor:'pointer'}} onClick={()=>setShow(!show)}  />
       </SpotTab>
 
-      <LoginTab show={show}>
-        <Text>Login</Text>
-        <PersonIcon style={{fontSize:'60',color:'white',cursor:'pointer'}} onClick={()=>setShow(!show)}  />
+      <LoginTab>
+          <LoginStatus loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
       </LoginTab>
 
-      <AboutTab show={show}>
+      <AboutTab>
         <Text>About</Text>
         <HelpOutlineIcon style={{fontSize:'60',color:'white',cursor:'pointer'}} onClick={()=>setShow(!show)}  />
       </AboutTab>

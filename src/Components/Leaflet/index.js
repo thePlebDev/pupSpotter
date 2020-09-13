@@ -5,7 +5,7 @@ import axios from 'axios'
 import Filter from '../Filter'
 import {backendUrl} from '../../utils/Constants'
 
-const MapContainer= ({setLoggedIn})=>{
+const MapContainer= (props)=>{
 const [state] = useState({lat:45.897820,lng:-64.368279,zoom:13})
 
 const [mapData,setMapData] = useState('');
@@ -16,7 +16,7 @@ useEffect(()=>{
   axios.get(`${backendUrl}isAuthenticated`,{withCredentials:true})
   .then(data=>{
     if(data.data.status === 200){
-      setLoggedIn(true)
+      props.setLoggedIn(true)
     }})
   .catch(e=>console.error('error------> ' + e))
 },[])

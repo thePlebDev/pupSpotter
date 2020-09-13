@@ -17,7 +17,7 @@ loginRouter.get('/logout', function(req, res,next){
     req.logout();
     res.json({
       status:200,
-      message:'Login successful n stuff'
+      message:'user logged out'
     })
   }
   catch(error){

@@ -59,6 +59,7 @@ const [open,setOpen] = useState(false)
 
       <Form onSubmit={(e)=>{handleSubmit(e)}} state={loadingState}>
       <div style={{border:'1px solid rgba(0, 0, 0, 0.87)',width:'60%',margin:'0 auto',padding:'50px',borderRadius:'4px'}} >
+      <div style={{color:'rgba(0, 0, 0, 0.5)',opacity:'0.8',textTransform:'uppercase',marginLeft:'40%',fontSize:'2.6em'}}>Register</div>
       <div style={{position:'relative',marginBottom:'30px'}}>
         <TextField className={classes.root} id="standard-basic" label="Username" style={{width:'70%',marginLeft:'15%',padding:'5px'}}
         error={errors.username} value={state} onChange={(e)=>handleChange(e)} name='username'/>

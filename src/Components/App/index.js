@@ -13,9 +13,9 @@ const App =()=>{
   const [loggedIn,setLoggedIn] = useState(false)
   return(
     <div>
-      <NavBar loggedIn={loggedIn} />
+      <NavBar loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>
       <Switch>
-        <Route exact path ='/' component={Map} render={(props)=><Map setLoggedIn={setLoggedIn} {...props} /> }/>
+        <Route exact path ='/' render={(props)=> <Map {...props} setLoggedIn={setLoggedIn} /> }/>
         <Route exact path ='/pupSpotting' component={PupForm} />
         <Route exact path ='/register' component={Register} />
         <Route exact path ='/login' component={Login } />

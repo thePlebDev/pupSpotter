@@ -46,7 +46,7 @@ color:#05386B;
 const Form = styled.form`
   width:100%;
   position:absolute;
-  top:12%;
+  top:5px;
 
 `
 const Text = styled.div`

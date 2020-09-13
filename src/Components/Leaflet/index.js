@@ -36,7 +36,7 @@ useEffect(()=>{
         <Map
           center={[state.lat,state.lng]}
           zoom={state.zoom}
-          style={{width:'70%',height:'90vh',margin:'0 auto'}}
+          style={{width:'70%',height:'100vh',margin:'0 auto'}}
         >
         <TileLayer
           attribution='&copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'

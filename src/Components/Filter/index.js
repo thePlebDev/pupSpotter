@@ -4,19 +4,14 @@ import SearchIcon from '@material-ui/icons/Search';
 import useOutsideClick from '../../Hooks/UseOutsideClick';
 import axios from 'axios';
 
-import {backendUrl} from '../../utils/Constants'
+import {backendUrl} from '../../utils/Constants';
+import {SideBar,Tab} from '../../Assets/SideBarStyles';
 
-const SideBar = styled.div`
-  position:absolute;
-  right:0;
-  background-color:#3f51b5;
-  height:90vh;
-  width:230px;
-  opacity:0.8;
-  transition:all 0.3s ease;
-  transform:${props => props.show? 'translateX(0px)' : 'translateX(240px)'};
-  z-index:999999;
+const RightSideBar =styled(SideBar)`
+right:0;
+transform:${props => props.show? 'translateX(0px)' : 'translateX(240px)'};
 `
+
 const Text = styled.h3`
   margin-left:43%;
   color:white;
@@ -41,8 +36,14 @@ const Button = styled.button`
     opacity:1;
     transform:scale(1.03);
   }
-
 `
+const RightTab = styled(Tab)`
+right:200px;
+&:hover{
+  right:205px;
+}
+`
+
 
 const Filter = (props)=>{
   const node = useRef(null);
@@ -64,14 +65,14 @@ const Filter = (props)=>{
 
   return(
 
-    <SideBar show={show}>
-      <div style={{padding:'5px',top:'5px',borderRadius:'30%',backgroundColor:'#3f51b5',position:'absolute',right:'200px',width:'100px'}}>
-      <SearchIcon ref={node} style={{fontSize:'60',color:'white',cursor:'pointer'}} onClick={()=>setShow(!show)}/>
-      </div>
+    <RightSideBar show={show}>
+      <RightTab>
+        <SearchIcon ref={node} style={{fontSize:'60',color:'white',cursor:'pointer'}} onClick={()=>setShow(!show)}/>
+      </RightTab>
       <Text>Filter by:</Text>
       <Button onClick={()=>handleReset()}>Reset Filters</Button>
       <Button onClick={()=>handleClick()}>Personal Spots</Button>
-    </SideBar>
+    </RightSideBar>
   )
 }
 

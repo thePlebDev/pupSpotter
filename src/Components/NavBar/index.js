@@ -1,112 +1,78 @@
 import React,{useState} from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
-import AccountCircle from '@material-ui/icons/AccountCircle';
-import MenuItem from '@material-ui/core/MenuItem';
-import Menu from '@material-ui/core/Menu';
+import styled from 'styled-components';
 import PetsIcon from '@material-ui/icons/Pets';
 import HomeIcon from '@material-ui/icons/Home';
+import PersonIcon from '@material-ui/icons/Person';
+import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
 import {Link} from 'react-router-dom';
+import {SideBar,Tab} from '../../Assets/SideBarStyles';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
-  title: {
-    flexGrow: 1,
-  },
-}));
 
-export default function NavBar() {
-  const classes = useStyles();
-  const [auth, setAuth] = useState(true);
-  const [anchorEl, setAnchorEl] = useState(null);
-  const open = Boolean(anchorEl);
+const LeftSideBar = styled(SideBar)`
+`
+const HomeTab = styled(Tab)`
+  left:0px;
+  border-radius:4px;
+  width:215px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  opacity:0.8;
+  transform:translateX(-150px);
+  cursor:pointer;
+  z-index:99999999999999999;
 
-  const handleChange = (event) => {
-    setAuth(event.target.checked);
-  };
+  &:hover{
+    opacity:1;
+    transform:translateX(-30px);:
+  }
+`
+const SpotTab = styled(HomeTab)`
+  top:15%;
+`
+const LoginTab = styled(HomeTab)`
+  top:30%;
+`
+const AboutTab = styled(HomeTab)`
+  top:45%;
+`
 
-  const handleMenu = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
 
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
 
+const Text = styled.div`
+  font-size:1.4em;
+  color:white;
+  margin-left:60px;
+  cursor:pointer;
+`
+
+
+const NavBar = (props)=> {
+  const [show,setShow] = useState(true)
   return (
-    <div className={classes.root}>
+    <div style={{position:'absolute',left:0,height:'100vh'}} >
 
-      <AppBar position="static">
-        <Toolbar>
+      <HomeTab show={show}>
+        <Text>Home</Text>
+        <HomeIcon style={{fontSize:'60',color:'white',cursor:'pointer'}} onClick={()=>setShow(!show)}  />
+      </HomeTab>
+      <SpotTab show={show}>
+        <Text>Spot</Text>
+        <PetsIcon style={{fontSize:'60',color:'white',cursor:'pointer'}} onClick={()=>setShow(!show)}  />
+      </SpotTab>
 
-          <Typography variant="h3" className={classes.title}>
-            <Link to="/">
-            Doggo Watcho
-            </Link>
-          </Typography>
-          {auth && (
-            <div>
-              <IconButton
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                onClick={handleMenu}
-                color="inherit"
-              >
-                <AccountCircle style={{fontSize:'2em'}}/>
-              </IconButton>
-              <Menu
-                id="menu-appbar"
-                anchorEl={anchorEl}
-                anchorOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                open={open}
-                onClose={handleClose}
-              >
-                <MenuItem style={{fontSize:'1.5em',padding:'10px'}} onClick={handleClose}>Profile</MenuItem>
-                <MenuItem style={{fontSize:'1.5em',padding:'10px'}} onClick={handleClose}>Log out</MenuItem>
-              </Menu>
-            </div>
-          )}
-          <IconButton
-            aria-label="account of current user"
-            aria-controls="menu-appbar"
-            aria-haspopup="true"
-            color="inherit"
-          >
-          <Link to="/pupSpotting">
-            <PetsIcon style={{fontSize:'2em'}} />
-          </Link>
-          </IconButton>
+      <LoginTab show={show}>
+        <Text>Login</Text>
+        <PersonIcon style={{fontSize:'60',color:'white',cursor:'pointer'}} onClick={()=>setShow(!show)}  />
+      </LoginTab>
 
-          <IconButton
-            aria-label="account of current user"
-            aria-controls="menu-appbar"
-            aria-haspopup="true"
-            color="inherit"
-          >
-          <Link to="/">
-            <HomeIcon style={{fontSize:'2.2em'}} />
-          </Link>
-          </IconButton>
-        </Toolbar>
-      </AppBar>
+      <AboutTab show={show}>
+        <Text>About</Text>
+        <HelpOutlineIcon style={{fontSize:'60',color:'white',cursor:'pointer'}} onClick={()=>setShow(!show)}  />
+      </AboutTab>
+
     </div>
   );
 }
+
+export default NavBar

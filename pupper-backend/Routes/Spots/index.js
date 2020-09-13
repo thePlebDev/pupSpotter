@@ -9,7 +9,7 @@ function ensureAuthenticated(req,res,next){
   if(req.isAuthenticated()){
     next();
   }else {
-    res.send('not authenticated')
+    res.json({status:401,message:"Not Authenticated"})
   }
 }
 //A GET REQUEST TO RECIEVE ALL OF THE SPOTS FROM THE DATA BASE
@@ -22,6 +22,16 @@ spottingRouter.get('/all',(req,res,next)=>{
     console.log(error)
     next(error)
   }
+})
+
+spottingRouter.get('/filter',ensureAuthenticated,(req,res,next)=>{
+
+    Spotting.find({user: req.user._id})
+    .then(data=>res.send(data))
+    .catch(error=>{
+      console.log(error)
+      next(error)
+    })
 })
 
 

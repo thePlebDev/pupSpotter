@@ -14,7 +14,7 @@ const SideBar = styled.div`
   width:230px;
   opacity:0.8;
   transition:all 0.3s ease;
-  transform:${props => props.show? 'translateX(0px)' : 'translateX(175px)'};
+  transform:${props => props.show? 'translateX(0px)' : 'translateX(240px)'};
   z-index:999999;
 `
 const Text = styled.h3`
@@ -49,6 +49,7 @@ const Filter = (props)=>{
   const {show,setShow} = useOutsideClick(node)
 
 
+
   const handleClick=()=>{
     axios.get(`${backendUrl}spot/filter`,{withCredentials: true})
     .then(data=>props.setMapData(data.data))
@@ -59,12 +60,14 @@ const Filter = (props)=>{
     .then(data=>props.setMapData(data.data))
     .catch(e=>console.error(`ERROR ->` + e))
   }
-  
+
 
   return(
 
     <SideBar show={show}>
+      <div style={{padding:'5px',top:'5px',borderRadius:'30%',backgroundColor:'#3f51b5',position:'absolute',right:'200px',width:'100px'}}>
       <SearchIcon ref={node} style={{fontSize:'60',color:'white',cursor:'pointer'}} onClick={()=>setShow(!show)}/>
+      </div>
       <Text>Filter by:</Text>
       <Button onClick={()=>handleReset()}>Reset Filters</Button>
       <Button onClick={()=>handleClick()}>Personal Spots</Button>

@@ -60,12 +60,7 @@ useEffect(()=>{
           <Marker position={[state.lat,state.lng]} >
             <Popup>
                 <div style={{display:'flex',justifyContent:'center',alignItems:'center',flexDirection:'column'}}>
-                  <img  src="https://images.unsplash.com/photo-1561037404-61cd46aa615b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80" style={{width:'90px',height:'90px',borderRadius:'30%'}} alt='puppy'></img>
-                  <div style={{marginTop:'15px',alignSelf:'flex-end'}}>
-                    <button>Edit</button>
-                    <button>Delete</button>
-                  </div>
-                  <button>Give treat</button>
+                  <div>Tim</div>
                 </div>
             </Popup>
 

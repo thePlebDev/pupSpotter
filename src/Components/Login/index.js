@@ -56,7 +56,6 @@ const Login =(props)=>{
 
   useEffect(()=>{
     if(authStatus){
-      props.setNavStatus(true)
       props.history.push('/')
     }
 

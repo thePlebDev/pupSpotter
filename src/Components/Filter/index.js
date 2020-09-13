@@ -1,7 +1,10 @@
-import React,{useState,useRef} from 'react';
+import React,{useState,useRef,useEffect} from 'react';
 import styled from 'styled-components'
 import SearchIcon from '@material-ui/icons/Search';
 import useOutsideClick from '../../Hooks/UseOutsideClick';
+import axios from 'axios';
+
+import {backendUrl} from '../../utils/Constants'
 
 const SideBar = styled.div`
   position:absolute;
@@ -37,21 +40,34 @@ const Button = styled.button`
   &:hover{
     opacity:1;
     transform:scale(1.03);
-
   }
 
 `
 
-const Filter = ({props})=>{
+const Filter = (props)=>{
   const node = useRef(null);
   const {show,setShow} = useOutsideClick(node)
-  //const [show,setShow] = useState(true)
+
+
+  const handleClick=()=>{
+    axios.get(`${backendUrl}spot/filter`,{withCredentials: true})
+    .then(data=>props.setMapData(data.data))
+    .catch(e=>console.error(`ERROR ->` + e))
+  }
+  const handleReset=()=>{
+    axios.get(`${backendUrl}spot/all`,{withCredentials: true})
+    .then(data=>props.setMapData(data.data))
+    .catch(e=>console.error(`ERROR ->` + e))
+  }
+  
+
   return(
 
     <SideBar show={show}>
       <SearchIcon ref={node} style={{fontSize:'60',color:'white',cursor:'pointer'}} onClick={()=>setShow(!show)}/>
       <Text>Filter by:</Text>
-      <Button>Personal Spots</Button>
+      <Button onClick={()=>handleReset()}>Reset Filters</Button>
+      <Button onClick={()=>handleClick()}>Personal Spots</Button>
     </SideBar>
   )
 }

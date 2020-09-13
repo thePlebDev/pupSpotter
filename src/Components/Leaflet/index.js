@@ -32,7 +32,7 @@ useEffect(()=>{
   },[])
   return(
     <div>
-          <Filter/>
+          <Filter setMapData={setMapData}/>
         <Map
           center={[state.lat,state.lng]}
           zoom={state.zoom}

@@ -9,6 +9,7 @@ const useRegister =(validator)=>{
   const [errors,setErrors] = useState({})
   const [isSubmiting,setIsSubmitting] = useState(false)
   const [status,setStatus] = useState('')
+  const [notification,setNotification] = useState(false)
 
   const handleSubmit =(e)=>{
 
@@ -18,7 +19,6 @@ const useRegister =(validator)=>{
   }
 
   const handleChange =(e)=>{
-    console.log(state)
     const {name,value} = e.target
     setState({...state,[name]:value})
   }
@@ -33,6 +33,7 @@ const useRegister =(validator)=>{
       })
       .then(data=>{
         setStatus(data.data.status)
+        setNotification(true)
         return data.data.status
       })
       .then(data=>console.log(data))
@@ -49,7 +50,10 @@ const useRegister =(validator)=>{
     errors,
     handleChange,
     handleSubmit,
-    status
+    status,
+    notification,
+    setNotification,
+    setStatus
   }
 }
 

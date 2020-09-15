@@ -13,13 +13,12 @@ const Text = styled.div`
   cursor:pointer;
 `
 
-
-
 const LoginStatus = ({loggedIn,setLoggedIn})=>{
   const handleClick =()=>{
     axios.get(`${backendUrl}user/logout`)
     .then(data=>{
       if(data.data.status){
+        console.log(data.data)
         setLoggedIn(false)
       }})
     .catch(e=>console.error(e))

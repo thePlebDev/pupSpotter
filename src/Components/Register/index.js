@@ -4,11 +4,13 @@ import TextField from '@material-ui/core/TextField';
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
 import Button from '@material-ui/core/Button';
+import styled from 'styled-components';
 
 import useRegister from '../../Hooks/UseRegister'
 import {registerValidation} from '../../utils/Validation';
 
 import {Form} from '../../Assets/FormStylings';
+
 
 
 
@@ -41,21 +43,17 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-function Alert(props) {
-  return <MuiAlert elevation={6} variant="filled" {...props} />;
-}
+
 
 const Register =(props)=>{
-  const {state,bio,email,password,errors,handleChange,handleSubmit} = useRegister(registerValidation)
+  const {state,bio,email,password,errors,handleChange,handleSubmit,status,setStatus} = useRegister(registerValidation)
   const classes = useStyles()
 
 const [loadingState,setLoadState] = useState(false)
 const [open,setOpen] = useState(false)
 
-
-
   return(
-    <div>
+    <div className="tab">
 
       <Form onSubmit={(e)=>{handleSubmit(e)}} state={loadingState}>
       <div style={{border:'1px solid rgba(0, 0, 0, 0.87)',width:'60%',margin:'0 auto',padding:'50px',borderRadius:'4px'}} >
@@ -77,7 +75,6 @@ const [open,setOpen] = useState(false)
         <TextField className={classes.root} id="standard-basic" label="Password" style={{width:'70%',marginLeft:'15%'}}
         name="password" error={errors.password}  type='password' value={password}onChange={(e)=>handleChange(e)}/>
       </div>
-
 
         <div>
           <Button className={classes.buttons}  type="Submit" disableRipple={true}>Submit</Button>

@@ -6,7 +6,7 @@ const Schema = mongoose.Schema
 const spottingSchema = new Schema({
   name:{type:String,required:true},
   description:{type:String},
-  date:{type:Date,default:Date.now},
+  date:{type:Date,default:Date.now()},
   image:{data:Buffer,contentType:String},
   location:{
     lat:Number,

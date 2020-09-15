@@ -59,24 +59,27 @@ const handleClose = (event, reason) => {
 
     setOpen(false);
   };
-  useEffect(()=>{
-    setLoadState(true)
-    if(createdSpotting){
-      props.history.push('/')
-    }
-  },[createdSpotting,props.history])
-
 
   return(
     <div  >
     <Snackbar open={open} className={classes.alerts} autoHideDuration={6000} onClose={handleClose}>
-      <Alert onClose={handleClose} severity="success">
-        Location Added!
-      </Alert>
+      {
+          createdSpotting
+              ?
+        <Alert onClose={handleClose} severity="success">
+          Dog Spotted!
+        </Alert>
+            :
+        <Alert onClose={handleClose} severity="success">
+          Location Added!
+        </Alert>
+
+    }
     </Snackbar>
 
       <Form onSubmit={(e)=>{handleSubmit(e)}} state={loadingState} enctype="multipart/form-data">
       <div style={{border:'1px solid rgba(0, 0, 0, 0.87)',width:'60%',margin:'0 auto',padding:'50px',borderRadius:'4px'}} >
+      <div style={{color:'rgba(0, 0, 0, 0.5)',opacity:'0.8',textTransform:'uppercase',marginLeft:'40%',fontSize:'2.6em'}}>SPot a pup</div>
       <div style={{position:'relative',marginBottom:'30px'}}>
         <TextField className={classes.root} id="standard-basic" label="Dog Name" style={{width:'70%',marginLeft:'15%',padding:'5px'}}
         error={errors.name} value={state.name} onChange={(e)=>handleChange(e)} name='name'/>

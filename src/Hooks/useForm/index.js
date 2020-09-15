@@ -30,6 +30,7 @@ const useForm = ()=>{
       },{withCredentials:true})
       .then(data=>{
         if(data.data.status ===200){
+          setOpen(true)
           setCreatedSpotting(true)
         }
         console.log(data.data)})

@@ -7,6 +7,7 @@ const spottingRouter = express.Router();
 
 function ensureAuthenticated(req,res,next){
   if(req.isAuthenticated()){
+    console.log('user is authenticated')
     next();
   }else {
     res.json({status:401,message:"Not Authenticated"})

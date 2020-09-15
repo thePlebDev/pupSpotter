@@ -2,11 +2,11 @@ import React,{useState} from 'react';
 import styled from 'styled-components';
 import PetsIcon from '@material-ui/icons/Pets';
 import HomeIcon from '@material-ui/icons/Home';
-import PersonIcon from '@material-ui/icons/Person';
 import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
 import {Link} from 'react-router-dom';
 import {Tab} from '../../Assets/SideBarStyles';
 import LoginStatus from '../LoginStatus';
+import PropTypes from 'prop-types';
 
 const HomeTab = styled(Tab)`
   left:0px;
@@ -48,32 +48,38 @@ const Text = styled.div`
 const NavBar = ({loggedIn,setLoggedIn})=> {
   const [show,setShow] = useState(true)
   return (
-    <div style={{position:'absolute',left:0,height:'100vh'}} >
-      <HomeTab>
+    <div style={{position:'absolute',left:0,height:'100vh'}}>
+    <div />
+      <HomeTab className="tab">
         <Link to="/">
           <Text>Home</Text>
         </Link>
           <HomeIcon style={{fontSize:'60',color:'white',cursor:'pointer'}} onClick={()=>setShow(!show)}  />
 
       </HomeTab>
-      <SpotTab>
+      <SpotTab className="tab">
         <Link to="/pupSpotting">
           <Text>Spot</Text>
         </Link>
         <PetsIcon style={{fontSize:'60',color:'white',cursor:'pointer'}} onClick={()=>setShow(!show)}  />
       </SpotTab>
 
-      <LoginTab>
+      <LoginTab className="tab">
           <LoginStatus loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
       </LoginTab>
 
-      <AboutTab>
+      <AboutTab className="tab">
         <Text>About</Text>
         <HelpOutlineIcon style={{fontSize:'60',color:'white',cursor:'pointer'}} onClick={()=>setShow(!show)}  />
       </AboutTab>
 
     </div>
   );
+}
+
+NavBar.propTypes ={
+  loggedIn:PropTypes.bool,
+  setLoggedIn:PropTypes.func
 }
 
 export default NavBar

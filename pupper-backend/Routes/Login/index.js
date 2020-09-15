@@ -15,9 +15,12 @@ loginRouter.post("/login",passport.authenticate('login'), //authenticate pulls o
 loginRouter.get('/logout', function(req, res,next){
   try{
     req.logout();
-    res.json({
-      status:200,
-      message:'user logged out'
+    req.session.destroy(function(err){
+      if(err) return next(err)
+      res.json({
+        status:200,
+        message:'user logged out'
+      })
     })
   }
   catch(error){

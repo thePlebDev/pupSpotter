@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`testing the login status component setting up the snapshot 1`] = `
+<div
+  data-testid="login"
+  style={
+    Object {
+      "alignItems": "center",
+      "display": "flex",
+    }
+  }
+>
+  <a
+    href="/login"
+    onClick={[Function]}
+  >
+    <div
+      className="sc-AxjAm eEJuQa"
+    >
+      Login
+    </div>
+  </a>
+  <svg
+    aria-hidden={true}
+    className="MuiSvgIcon-root"
+    focusable="false"
+    style={
+      Object {
+        "color": "white",
+        "cursor": "pointer",
+        "fontSize": "60",
+        "marginLeft": "40px",
+      }
+    }
+    viewBox="0 0 24 24"
+  >
+    <path
+      d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"
+    />
+  </svg>
+</div>
+`;

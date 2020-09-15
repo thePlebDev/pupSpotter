@@ -2,9 +2,9 @@ import React from 'react';
 import NavBar from '../Components/NavBar';
 import renderer from 'react-test-renderer';
 import { shallow } from 'enzyme';
-import Enzyme from 'enzyme';
-import EnzymeAdapter from 'enzyme-adapter-react-16';
 import {BrowserRouter as Router} from 'react-router-dom';
+import EnzymeAdapter from 'enzyme-adapter-react-16';
+import Enzyme from 'enzyme';
 
 
 Enzyme.configure({

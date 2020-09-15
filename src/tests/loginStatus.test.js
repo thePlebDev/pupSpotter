@@ -25,12 +25,20 @@ describe('testing the login status component',()=>{
     const wrapper = component.find('[data-testid="login"]')
     expect(wrapper.length).toBe(1)
   })
-  it('testing the props',()=>{
+  it('testing the props true',()=>{
     const props = {
       loggedIn:true
     }
     const component = shallow(<LoginStatus{...props}/>)
     const wrapper = component.find('[data-testid="login"]')
     expect(wrapper.length).toBe(3)
+  })
+  it('testing the props false',()=>{
+    const props = {
+      loggedIn:false
+    }
+    const component = shallow(<LoginStatus{...props}/>)
+    const wrapper = component.find('[data-testid="login"]')
+    expect(wrapper.length).toBe(1)
   })
 })

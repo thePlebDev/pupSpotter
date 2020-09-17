@@ -1,12 +1,12 @@
 import React from 'react';
 import PupForm from '../Components/PupForm';
-import TestForm from '../Components/TestForm';
-import renderer from 'react-test-renderer';
-import { fireEvent } from "@testing-library/react"
-import { shallow,mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import {BrowserRouter as Router} from 'react-router-dom';
 import EnzymeAdapter from 'enzyme-adapter-react-16';
 import Enzyme from 'enzyme';
+import { renderHook,act } from '@testing-library/react-hooks';
+import useCounter from '../Hooks/useTesting';
+
 
 Enzyme.configure({
   adapter: new EnzymeAdapter()
@@ -38,14 +38,12 @@ describe('testing the pupForm',()=>{
     expect(updatedNameInput.props().value).toEqual('Dave')
     expect(updatedDescInput.props().value).toEqual('bueno boy')
   })
-  it('testing the addLocation button',()=>{
-    const wrapper = shallow(<PupForm/>);
-    let addLocationBtn = wrapper.find('#button')
-    addLocationBtn.simulate('click',{target:{
-      name:'location',
-      value:'turkey'
-    }})
-    addLocationBtn = wrapper.find('#button')
-    expect(addLocationBtn.props().value).toEqual('eat')
+  it('testing the custom useForm hook',()=>{
+    const {result} = renderHook(()=>useCounter())
+    act(()=>{
+      result.current.increment()
+    })
+
+    expect(result.current.count).toBe(3)
   })
 })

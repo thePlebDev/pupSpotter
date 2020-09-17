@@ -65,7 +65,7 @@ const Filter = (props)=>{
 
   return(
 
-    <RightSideBar show={show}>
+    <RightSideBar show={show} id="filter">
       <RightTab>
         <SearchIcon ref={node} style={{fontSize:'60',color:'white',cursor:'pointer'}} onClick={()=>setShow(!show)}/>
       </RightTab>

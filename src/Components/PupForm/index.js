@@ -81,22 +81,22 @@ const handleClose = (event, reason) => {
       <div style={{border:'1px solid rgba(0, 0, 0, 0.87)',width:'60%',margin:'0 auto',padding:'50px',borderRadius:'4px'}} >
       <div style={{color:'rgba(0, 0, 0, 0.5)',opacity:'0.8',textTransform:'uppercase',marginLeft:'40%',fontSize:'2.6em'}}>SPot a pup</div>
       <div style={{position:'relative',marginBottom:'30px'}}>
-        <TextField className={classes.root} id="standard-basic" label="Dog Name" style={{width:'70%',marginLeft:'15%',padding:'5px'}}
-        error={errors.name} value={state.name} onChange={(e)=>handleChange(e)} name='name'/>
+        <TextField inputProps={{ "data-testid": "content-input" }} className={classes.root} id="name-input" label="Dog Name" style={{width:'70%',marginLeft:'15%',padding:'5px'}}
+        error={errors.name} data-testid="pupForm" value={state.name} onChange={(e)=>handleChange(e)} name='name'/>
 
       </div>
       <div style={{position:'relative',marginBottom:'50px'}}>
-        <TextField className={classes.root} id="standard-basic" label="Description" style={{width:'70%',marginLeft:'15%'}}
-        name="description" value={state.description}onChange={(e)=>handleChange(e)}/>
+        <TextField className={classes.root} id="description-input" label="Description" style={{width:'70%',marginLeft:'15%'}}
+        name="description" data-testid="pupForm" value={state.description}onChange={(e)=>handleChange(e)}/>
       </div>
         <div>
 
-          <Button color={errors.loc?'secondary':''} className={classes.buttons} type="button" value={state.location}
-          ref={node} onClick={(e)=>{handleClick()}} disableRipple={true} >Add Location</Button>
+          <Button color={errors.loc?'secondary':'default'} className={classes.buttons} id="button" type="button" value={state.location}
+          ref={node} onClick={(e)=>{handleClick()}} data-testid="pupForm" disableRipple={true} >Add Location</Button>
         </div>
 
         <div>
-          <Button className={classes.buttons}  type="Submit" disableRipple={true}>Submit</Button>
+          <Button className={classes.buttons} data-testid="pupForm"  type="Submit" disableRipple={true}>Submit</Button>
         </div>
         </div>
       </Form>

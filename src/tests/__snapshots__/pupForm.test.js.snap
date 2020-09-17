@@ -1,0 +1,187 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`testing the pupForm testing the snapshot 1`] = `
+<div>
+  <form
+    className="sc-AxhCb esycsr"
+    onSubmit={[Function]}
+  >
+    <div
+      style={
+        Object {
+          "border": "1px solid rgba(0, 0, 0, 0.87)",
+          "borderRadius": "4px",
+          "margin": "0 auto",
+          "padding": "50px",
+          "width": "60%",
+        }
+      }
+    >
+      <div
+        style={
+          Object {
+            "color": "rgba(0, 0, 0, 0.5)",
+            "fontSize": "2.6em",
+            "marginLeft": "40%",
+            "opacity": "0.8",
+            "textTransform": "uppercase",
+          }
+        }
+      >
+        SPot a pup
+      </div>
+      <div
+        style={
+          Object {
+            "marginBottom": "30px",
+            "position": "relative",
+          }
+        }
+      >
+        <div
+          className="MuiFormControl-root MuiTextField-root makeStyles-root-1"
+          data-testid="pupForm"
+          style={
+            Object {
+              "marginLeft": "15%",
+              "padding": "5px",
+              "width": "70%",
+            }
+          }
+        >
+          <label
+            className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated"
+            data-shrink={false}
+            htmlFor="name-input"
+            id="name-input-label"
+          >
+            Dog Name
+          </label>
+          <div
+            className="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-formControl MuiInput-formControl"
+            onClick={[Function]}
+          >
+            <input
+              aria-invalid={false}
+              autoFocus={false}
+              className="MuiInputBase-input MuiInput-input"
+              disabled={false}
+              id="name-input"
+              name="name"
+              onAnimationStart={[Function]}
+              onBlur={[Function]}
+              onChange={[Function]}
+              onFocus={[Function]}
+              required={false}
+              type="text"
+              value=""
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        style={
+          Object {
+            "marginBottom": "50px",
+            "position": "relative",
+          }
+        }
+      >
+        <div
+          className="MuiFormControl-root MuiTextField-root makeStyles-root-1"
+          data-testid="pupForm"
+          style={
+            Object {
+              "marginLeft": "15%",
+              "width": "70%",
+            }
+          }
+        >
+          <label
+            className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated"
+            data-shrink={false}
+            htmlFor="description-input"
+            id="description-input-label"
+          >
+            Description
+          </label>
+          <div
+            className="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-formControl MuiInput-formControl"
+            onClick={[Function]}
+          >
+            <input
+              aria-invalid={false}
+              autoFocus={false}
+              className="MuiInputBase-input MuiInput-input"
+              disabled={false}
+              id="description-input"
+              name="description"
+              onAnimationStart={[Function]}
+              onBlur={[Function]}
+              onChange={[Function]}
+              onFocus={[Function]}
+              required={false}
+              type="text"
+              value=""
+            />
+          </div>
+        </div>
+      </div>
+      <div>
+        <button
+          className="MuiButtonBase-root MuiButton-root MuiButton-text makeStyles-buttons-3"
+          data-testid="pupForm"
+          disabled={false}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onDragLeave={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchEnd={[Function]}
+          onTouchMove={[Function]}
+          onTouchStart={[Function]}
+          tabIndex={0}
+          type="button"
+          value=""
+        >
+          <span
+            className="MuiButton-label"
+          >
+            Add Location
+          </span>
+        </button>
+      </div>
+      <div>
+        <button
+          className="MuiButtonBase-root MuiButton-root MuiButton-text makeStyles-buttons-3"
+          data-testid="pupForm"
+          disabled={false}
+          onBlur={[Function]}
+          onDragLeave={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchEnd={[Function]}
+          onTouchMove={[Function]}
+          onTouchStart={[Function]}
+          tabIndex={0}
+          type="Submit"
+        >
+          <span
+            className="MuiButton-label"
+          >
+            Submit
+          </span>
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
+`;

@@ -3,6 +3,8 @@ import styled from 'styled-components'
 import SearchIcon from '@material-ui/icons/Search';
 import useOutsideClick from '../../Hooks/UseOutsideClick';
 import axios from 'axios';
+// import axiosGet from '../../Utils/axiosGet.js'
+import Button from '../Button'
 
 import {backendUrl} from '../../utils/Constants';
 import {SideBar,Tab} from '../../Assets/SideBarStyles';
@@ -16,27 +18,7 @@ const Text = styled.h3`
   margin-left:43%;
   color:white;
 `
-const Button = styled.button`
-  width:160px;
-  text-align:center;
-  margin-left:25%;
-  margin-bottom:50px;
-  margin-top:50px;
-  padding:8px 32px;
-  border-radius:8px;
-  display:block;
-  outline:none;
-  border:none;
-  color:#3f51b5;
-  background-color:#5CDB95;
-  opacity:0.8;
-  cursor:pointer;
-  box-shadow:0 5px 20px rgba(0,0,0,0.25);
-  &:hover{
-    opacity:1;
-    transform:scale(1.03);
-  }
-`
+
 const RightTab = styled(Tab)`
 right:200px;
 &:hover{
@@ -70,8 +52,8 @@ const Filter = (props)=>{
         <SearchIcon ref={node} style={{fontSize:'60',color:'white',cursor:'pointer'}} onClick={()=>setShow(!show)}/>
       </RightTab>
       <Text>Filter by:</Text>
-      <Button onClick={()=>handleReset()}>Reset Filters</Button>
-      <Button onClick={()=>handleClick()}>Personal Spots</Button>
+      <Button handleClick={handleReset} words='Reset Filters'/>
+      <Button handleClick={handleClick} words='Personal Spots'/>
     </RightSideBar>
   )
 }

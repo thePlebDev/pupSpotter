@@ -13,15 +13,21 @@ const [mapData,setMapData] = useState('');
 console.log(mapData)
 
 useEffect(()=>{
-  axiosGet(`${backendUrl}isAuthenticated`,props.setLoggedIn)
+   axiosGet(`${backendUrl}isAuthenticated`)
+   .then(data=>{
+     if(data.status ===200){
+       props.setLoggedIn(true)
+     }
+   })
+   .catch(error=>{console.error('there is an error------> ' + error)})
 },[])
 
   useEffect(()=>{
     // make a get request to get all of the spotting
-    axios.get('http://localhost:3001/spot/all')
+    axiosGet('http://localhost:3001/spot/all')
     .then(data=>{
-      console.log(data.data)
-      setMapData(data.data)})
+      console.log(data)
+      setMapData(data)})
     .catch(err=>console.log(err))
 
   },[])

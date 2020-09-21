@@ -5,12 +5,9 @@ const axiosGet = async(url,method)=>{
 
 }
 
-// .then(data=>{
-//   if(data.data.status === 200){
-//     method(true)
-//     return data
-//   }else{
-//     return data
-//   }})
+const axiosPost = async(url,items)=>{
+  const response = await axios.post(url,items,{withCredentials:true})
+  return response.data
+}
 
-export {axiosGet}
+export {axiosGet,axiosPost}

@@ -8,7 +8,9 @@ import Button from '@material-ui/core/Button';
 
 
 import useForm from '../../Hooks/useForm';
+import {axiosPost} from '../../utils/AxiosFuncs'
 import {Form} from '../../Assets/FormStylings';
+import {signupValidation} from '../../utils/Validation';
 
 
 
@@ -47,7 +49,7 @@ function Alert(props) {
 
 const PupForm =(props)=>{
   const classes = useStyles()
-const {handleChange,handleClick,open,setOpen,handleSubmit,state,errors,createdSpotting} = useForm()
+const {handleChange,handleClick,open,setOpen,handleSubmit,state,errors,createdSpotting} = useForm(axiosPost,signupValidation)
 const [loadingState,setLoadState] = useState(false)
 const node = useRef();
 

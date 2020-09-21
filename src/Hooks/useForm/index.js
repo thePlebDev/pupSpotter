@@ -1,10 +1,9 @@
 import {useState,useEffect} from 'react';
 
-import {signupValidation} from '../../utils/Validation';
 import {backendUrl} from '../../utils/Constants';
 import axios from 'axios';
 
-const useForm = ()=>{
+const useForm = (axiosMethod,validation)=>{
   const [state,setState] =useState({name:'',location:'',date:'',image:'',description:''})
   const [errors,setErrors] = useState({})
   const [isSubmitting,setIsSubmitting] = useState(false)
@@ -13,15 +12,14 @@ const useForm = ()=>{
 
   const handleSubmit =(e)=>{
     e.preventDefault()
-    setErrors(signupValidation(state))
+    setErrors(validation(state))
     setIsSubmitting(true)
   }
 
   useEffect(()=>{
-    console.log('called')
     if(isSubmitting && Object.keys(errors).length === 0){
       const {name,location,date,image,description} = state
-      axios.post(`${backendUrl}spot`,{
+      axiosMethod(`${backendUrl}spot`,{
         name,
         location,
         date,
@@ -29,11 +27,11 @@ const useForm = ()=>{
         description
       },{withCredentials:true})
       .then(data=>{
-        if(data.data.status ===200){
+        if(data.status ===200){
           setOpen(true)
           setCreatedSpotting(true)
         }
-        console.log(data.data)})
+        console.log(data)})
       .catch(error=>{console.log(error)})
     }
     setIsSubmitting(false)

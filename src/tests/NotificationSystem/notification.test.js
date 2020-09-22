@@ -11,22 +11,17 @@ Enzyme.configure({
 describe('testing the Notification',()=>{
   it('should render correctly',()=>{
     const component = shallow(<Notification/>)
-    const wrapper = component.find('#notification')
+    const wrapper = component.find('#notification500')
     expect(wrapper.length).toBe(1)
   })
   it('should render the 200 status',()=>{
     const component = shallow(<Notification status={200} words={'cow in the house'}/>)
-    const wrapper = component.find('[data-testid="notification"]')
+    const wrapper = component.find('[data-testid="notification200"]')
     expect(wrapper.length).toBe(1)
   })
   it('should render the 201 status',()=>{
-     const component = shallow(<Notification status={201} words={'Please log in first'}/>)
-     const wrapper = component.find('[data-testid="notification"]');
-     expect(wrapper.length).toBe(1)
-  })
-  it('should render the 500 something went wrong error',()=>{
-    const component = shallow(<Notification status={500} words={'Something went wrong'}/>)
-    const wrapper = component.find('[data-testid="notification"]');
+    const component = shallow(<Notification status={201} words={'it do be like that sometimes'}/>)
+    const wrapper = component.find('[data-testid="notification201"]')
     expect(wrapper.length).toBe(1)
   })
 })

@@ -12,6 +12,7 @@ import {loginValidation} from '../../utils/Validation';
 // import axios from 'axios'
 // import {backendUrl} from '../../utils/Constants'
 import {Form} from '../../Assets/FormStylings';
+import NotificationSystem from '../Notification';
 
 
 const Links = styled.div`
@@ -64,6 +65,7 @@ const Login =(props)=>{
 
   return(
       <Form onSubmit={(e)=>handleSubmit(e)}>
+        <NotificationSystem status={200} words={'success'} />
       <div style={{border:'1px solid rgba(0, 0, 0, 0.87)',width:'60%',margin:'0 auto',padding:'50px',borderRadius:'4px'}} >
         <div style={{color:'rgba(0, 0, 0, 0.5)',opacity:'0.8',textTransform:'uppercase',marginLeft:'45%',fontSize:'2.6em'}}>Login</div>
         <div style={{position:'relative',marginTop:'40px',marginBottom:'80px'}}>

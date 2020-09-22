@@ -7,7 +7,7 @@ const Notification=({status,words})=>{
       return(
           <div id="notification">
             <div data-testid="notification">
-              <Notificaiton200 staus={status} words={words} />
+              <Notificaiton200 staus={status} words={words}/>
             </div>
           </div>
       )

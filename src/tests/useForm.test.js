@@ -8,17 +8,25 @@ jest.mock('axios') // this will mock all the methods on axios
 
 describe('testing the useForm hook',()=>{
   it('testing state',()=>{
-    const {result} = renderHook(()=>useForm())
-
+    const data ={
+      data:{
+        message:'spotting created',
+        status:200
+      }
+    }
+    const mock = jest.fn
+    axios.post.mockImplementationOnce(()=>Promise.resolve(data))
+    const {result} = renderHook(()=>useForm(axiosPost,mock))
     act(()=>{
       result.current.handleChange({target:{name:'name',value:'bob'}})
     })
     act(()=>{
-      result.current.handleChange({target:{name:'description',value:'a buneo boy'}})
-    })
-    act(()=>{
       result.current.handleChange({target:{name:'location',value:['54','-28']}})
     })
+    act(()=>{
+      result.current.handleSubmit({preventDefault:function(){}})
+    })
+    expect(mock.mock.calls.length).toBe(1);
   })
   it('testing the positive axios post method',async()=>{
     const data ={

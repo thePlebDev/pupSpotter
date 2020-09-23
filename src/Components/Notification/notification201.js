@@ -6,16 +6,19 @@ import CloseIcon from '@material-ui/icons/Close';
 
 const Content201 = styled(Content)`
   background-color:#ff9800;
+  display:${props=>props.show?'':'none'};
+
+
 `
 
-const Notificaiton201 = ({staus,words})=>{
+const Notificaiton201 = ({setShow,words,show})=>{
 
   return(
     <Container data-testId="201">
-      <Content201>
+      <Content201 show={show}>
         <WarningIcon/>
         <div data-testId="words">{words}</div>
-        <CloseIcon/>
+        <CloseIcon style={{cursor:'pointer'}} onClick={()=>{setShow(false)}}/>
       </Content201>
     </Container>
   )

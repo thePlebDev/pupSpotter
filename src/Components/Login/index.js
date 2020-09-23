@@ -3,8 +3,6 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
-import Snackbar from '@material-ui/core/Snackbar';
-import MuiAlert from '@material-ui/lab/Alert';
 import Button from '@material-ui/core/Button';
 
 import useLogin from '../../Hooks/useLogin';
@@ -12,7 +10,6 @@ import {loginValidation} from '../../utils/Validation';
 // import axios from 'axios'
 // import {backendUrl} from '../../utils/Constants'
 import {Form} from '../../Assets/FormStylings';
-import NotificationSystem from '../Notification';
 
 
 const Links = styled.div`
@@ -65,7 +62,6 @@ const Login =(props)=>{
 
   return(
       <Form onSubmit={(e)=>handleSubmit(e)}>
-        <NotificationSystem status={500} words={'Error! Please try again'} />
       <div style={{border:'1px solid rgba(0, 0, 0, 0.87)',width:'60%',margin:'0 auto',padding:'50px',borderRadius:'4px'}} >
         <div style={{color:'rgba(0, 0, 0, 0.5)',opacity:'0.8',textTransform:'uppercase',marginLeft:'45%',fontSize:'2.6em'}}>Login</div>
         <div style={{position:'relative',marginTop:'40px',marginBottom:'80px'}}>

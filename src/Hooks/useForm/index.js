@@ -7,8 +7,9 @@ const useForm = (axiosMethod,validation)=>{
   const [state,setState] =useState({name:'',location:'',date:'',image:'',description:''})
   const [errors,setErrors] = useState({})
   const [isSubmitting,setIsSubmitting] = useState(false)
-  const [createdSpotting,setCreatedSpotting] = useState(false);
-  const [open,setOpen] = useState(false)
+
+  const [status,setStatus] = useState(false)
+  const [show,setShow] = useState(false)
 
   const handleSubmit =(e)=>{
     e.preventDefault()
@@ -28,11 +29,25 @@ const useForm = (axiosMethod,validation)=>{
       },{withCredentials:true})
       .then(data=>{
         if(data.status ===200){
-          setOpen(true)
-          setCreatedSpotting(true)
+          setStatus(200)
+          setShow(true)
         }
-        console.log(data)})
-      .catch(error=>{console.log(error)})
+        if(data.status === 401){
+          //set show for not logged in
+          setStatus(401)
+          setShow(true)
+        }
+        else{
+          //set show for 500
+          setStatus(500)
+          setShow(true)
+        }})
+      .catch(error=>{
+        console.log(error)
+        setStatus(500)
+        setShow(true)
+      }
+      )
     }
     setIsSubmitting(false)
   },[errors,isSubmitting,state])
@@ -45,19 +60,18 @@ const useForm = (axiosMethod,validation)=>{
     navigator.geolocation.getCurrentPosition((position) => {
     setState({...state,location:{lat:position.coords.latitude, lon:position.coords.longitude}});
     console.log(state)
-    setOpen(true)
   });
 }
 
   return{
     state,
+    show,
+    status,
     errors,
-    open,
-    setOpen,
-    createdSpotting,
     handleSubmit,
     handleChange,
-    handleClick
+    handleClick,
+    setShow
   }
 }
 

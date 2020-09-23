@@ -6,12 +6,13 @@ import {Container,Content} from '../../Assets/NotificationStylings';
 
 const Content500 = styled(Content)`
   background-color:#f44336;
+  display:${props=>props.show?'':'none'};
 `
 
-const Notification500 = ({status,words})=>{
+const Notification500 = ({status,words,show})=>{
   return(
     <Container data-testId={status}>
-      <Content500>
+      <Content500 show={show}>
         <ErrorIcon/>
         <div data-testId="words">{words}</div>
         <CloseIcon/>

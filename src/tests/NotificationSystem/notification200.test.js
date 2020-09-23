@@ -26,4 +26,8 @@ describe('testing the Notificaiton200 from the staus',()=>{
     const wrapper = component.find('[data-testid="words"]')
     expect(wrapper.text()).toEqual(words)
   })
+  it('should find the content id',()=>{
+    const wrapper = component.find('[data-testid="content"]')
+    expect(wrapper.length).toBe(1)
+  })
 })

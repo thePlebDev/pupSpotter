@@ -9,7 +9,7 @@ const Content = styled.div`
   display:flex;
   align-items:center;
   justify-content:space-around;
-  width:20%;
+  width:30%;
   margin:0 auto;
   text-align:center;
   height:30px;
@@ -19,6 +19,7 @@ const Content = styled.div`
   font-weight:500;
   color:white;
   box-shadow: 0 5px 25px 0 rgba(0,0,0,.25);
+
 `
 
 export {Container,Content}

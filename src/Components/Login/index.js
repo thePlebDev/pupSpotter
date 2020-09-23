@@ -65,7 +65,7 @@ const Login =(props)=>{
 
   return(
       <Form onSubmit={(e)=>handleSubmit(e)}>
-        <NotificationSystem status={201} words={'Please login first'} />
+        <NotificationSystem status={500} words={'Error! Please try again'} />
       <div style={{border:'1px solid rgba(0, 0, 0, 0.87)',width:'60%',margin:'0 auto',padding:'50px',borderRadius:'4px'}} >
         <div style={{color:'rgba(0, 0, 0, 0.5)',opacity:'0.8',textTransform:'uppercase',marginLeft:'45%',fontSize:'2.6em'}}>Login</div>
         <div style={{position:'relative',marginTop:'40px',marginBottom:'80px'}}>

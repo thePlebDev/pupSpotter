@@ -1,6 +1,7 @@
 import React from 'react';
 import Notification200 from './notification200';
 import Notification201 from './notification201';
+import Notification500 from './notification500';
 
 const Notification=({status,words})=>{
     switch(status){
@@ -22,8 +23,10 @@ const Notification=({status,words})=>{
       )
       default:
       return(
-        <div id="notification500">
-          <div data-testid="notification">{words}</div>
+        <div id="notification">
+          <div data-testid="notification500">
+            <Notification500 staus={status} words={words}/>
+          </div>
         </div>
       )
     }

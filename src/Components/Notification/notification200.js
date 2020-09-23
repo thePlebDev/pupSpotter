@@ -9,13 +9,13 @@ const Content200 = styled(Content)`
   display:${props=>props.show?'':'none'};
 `
 
-const Notfication200 =({status,words,show})=>{
+const Notfication200 =({status,words,show,setShow})=>{
   return(
     <Container data-testid="200">
       <Content200 data-testid="content" show={show}>
         <CheckCircleIcon/>
         <div data-testid="words">{words}</div>
-        <CloseIcon style={{cursor:'pointer'}}/>
+        <CloseIcon style={{cursor:'pointer'}} onClick={()=>{setShow(false)}}/>
       </Content200>
     </Container>
   )

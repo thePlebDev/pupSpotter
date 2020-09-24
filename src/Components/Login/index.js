@@ -9,7 +9,7 @@ import useLogin from '../../Hooks/useLogin';
 import {loginValidation} from '../../utils/Validation';
 // import axios from 'axios'
 // import {backendUrl} from '../../utils/Constants'
-import {Form} from '../../Assets/FormStylings';
+import {Form,TextFieldContainer,Title,FormContentContainer} from '../../Assets/FormStylings';
 
 
 const Links = styled.div`
@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
     },
     padding:'10px',
     border:'1px solid #05386B',
-    marginBottom:'20px',
+    marginBottom:'40px',
     marginLeft:'15%'
 
   },
@@ -72,21 +72,21 @@ const Login =(props)=>{
     <div style={{height:'100%',display:'flex',alignItems:'center'}}>
     <Image src={require("../../Assets/images/singleDog.png")} style={{width:'50%'}}  alt="a single dog" />
       <Form onSubmit={(e)=>handleSubmit(e)}>
-      <div style={{width:'90%',margin:'0 auto',paddingTop:'130px'}} >
-        <div style={{color:'rgba(0, 0, 0, 0.5)',opacity:'0.8',textTransform:'uppercase',textAlign:'center',fontSize:'2.6em'}}>Login</div>
-        <div style={{position:'relative',marginTop:'10px',marginBottom:'40px'}}>
-          <TextField data-testid="loginForm" className={classes.root} id="username" label="Username"
-           name="username" error={errors.username} style={{ fontSize:'2.2em',width:'70%',marginLeft:'15%',padding:'5px'}} value={state.username}onChange={(e)=>handleChange(e)}/>
-        </div>
-        <div style={{position:'relative',marginBottom:'80px'}}>
-            <TextField data-testid="loginForm" className={classes.root} type="password" id="standard-basic"
-            label="Password" error={errors.username} style={{width:'70%',marginLeft:'15%',padding:'5px'}} name="password" value={state.password}onChange={(e)=>handleChange(e)}/>
-        </div>
-        <Button className={classes.buttons} type='submit'>Login</Button>
-        <Link to='/register'>
-          <Links style={{marginLeft:'15%'}} >Need an account?</Links>
-        </Link>
-        </div>
+        <FormContentContainer style={{paddingTop:'165px'}} >
+            <Title>Login</Title>
+            <TextFieldContainer>
+              <TextField data-testid="loginForm" className={classes.root} id="username" label="Username"
+               name="username" error={errors.username} style={{width:'70%',marginLeft:'15%',padding:'5px'}} value={state.username}onChange={(e)=>handleChange(e)}/>
+            </TextFieldContainer>
+            <TextFieldContainer>
+                <TextField data-testid="loginForm" className={classes.root} type="password" id="standard-basic"
+                label="Password" error={errors.username} style={{width:'70%',marginLeft:'15%',padding:'5px'}} name="password" value={state.password}onChange={(e)=>handleChange(e)}/>
+            </TextFieldContainer>
+            <Button className={classes.buttons} type='submit'>Login</Button>
+            <Link to='/register'>
+              <Button className={classes.buttons} type='button'>Need an account?</Button>
+            </Link>
+        </FormContentContainer>
       </Form>
     </div>
   )

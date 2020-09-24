@@ -97,8 +97,22 @@ border-radius:4px;
 @media only screen and (max-width:600px){
   left:12%;
 }
+
+`
+const Title = styled.div`
+color:rgba(0, 0, 0, 0.5);
+opacity:0.8;
+text-transform:uppercase;
+text-align:center;
+font-size:2.6em;
+`
+const TextFieldContainer = styled.div`
+  position:relative;
+  margin-bottom:30px;
+`
+const FormContentContainer = styled.div`
+  margin: 0 auto;
+  padding:50px;
 `
 
-
-
-export {Input,Form,Text,Button,Errors,Container,Label,InputSpan}
+export {FormContentContainer,Input,Form,Text,Button,Errors,Container,Label,InputSpan,Title,TextFieldContainer}

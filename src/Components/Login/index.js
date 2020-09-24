@@ -59,14 +59,24 @@ const Login =(props)=>{
 
   },[authStatus,props.history])
 
+  const Image = styled.img`
+    display:none;
+    padding-top:100px;
+    @media screen and (min-width: 992px) {
+    display:block;
+  }
+  `
+
 
   return(
+    <div style={{height:'100%',display:'flex',alignItems:'center'}}>
+    <Image src={require("../../Assets/images/singleDog.png")} style={{width:'50%'}}  alt="a single dog" />
       <Form onSubmit={(e)=>handleSubmit(e)}>
-      <div style={{border:'1px solid rgba(0, 0, 0, 0.87)',width:'60%',margin:'0 auto',padding:'50px',borderRadius:'4px'}} >
-        <div style={{color:'rgba(0, 0, 0, 0.5)',opacity:'0.8',textTransform:'uppercase',marginLeft:'45%',fontSize:'2.6em'}}>Login</div>
-        <div style={{position:'relative',marginTop:'40px',marginBottom:'80px'}}>
+      <div style={{width:'90%',margin:'0 auto',paddingTop:'130px'}} >
+        <div style={{color:'rgba(0, 0, 0, 0.5)',opacity:'0.8',textTransform:'uppercase',textAlign:'center',fontSize:'2.6em'}}>Login</div>
+        <div style={{position:'relative',marginTop:'10px',marginBottom:'40px'}}>
           <TextField data-testid="loginForm" className={classes.root} id="username" label="Username"
-           name="username" error={errors.username} style={{width:'70%',marginLeft:'15%',padding:'5px'}} value={state.username}onChange={(e)=>handleChange(e)}/>
+           name="username" error={errors.username} style={{ fontSize:'2.2em',width:'70%',marginLeft:'15%',padding:'5px'}} value={state.username}onChange={(e)=>handleChange(e)}/>
         </div>
         <div style={{position:'relative',marginBottom:'80px'}}>
             <TextField data-testid="loginForm" className={classes.root} type="password" id="standard-basic"
@@ -78,6 +88,7 @@ const Login =(props)=>{
         </Link>
         </div>
       </Form>
+    </div>
   )
 }
 

@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   buttons: {
-    width:'70%',
+    width:'80%',
     '& > * + *': {
       marginTop: theme.spacing(2),
     },

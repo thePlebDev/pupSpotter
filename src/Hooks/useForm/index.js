@@ -62,7 +62,8 @@ const useForm = (axiosMethod,validation)=>{
   const handleClick=(e)=>{
     navigator.geolocation.getCurrentPosition((position) => {
     setState({...state,location:{lat:position.coords.latitude, lon:position.coords.longitude}});
-    console.log(state)
+    setStatus(202)
+    setShow(true)
   });
 }
 

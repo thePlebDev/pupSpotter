@@ -21,6 +21,14 @@ const Notification=({status,words,show,setShow})=>{
           </div>
         </div>
       )
+      case 202:
+      return(
+        <div id="notification">
+          <div data-testid="notification202">
+            <Notification200 staus={status} words={"Location Added"} show={show} setShow={setShow}/>
+          </div>
+        </div>
+      )
       default:
       return(
         <div id="notification">

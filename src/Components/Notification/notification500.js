@@ -6,7 +6,8 @@ import {Container,Content} from '../../Assets/NotificationStylings';
 
 const Content500 = styled(Content)`
   background-color:#f44336;
-  display:${props=>props.show?'':'none'};
+  opacity:${props=>props.show?1:0};
+  transition:all .3s;
 `
 
 const Notification500 = ({status,words,show,setShow})=>{

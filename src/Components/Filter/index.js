@@ -21,6 +21,7 @@ const Text = styled.h3`
 
 const RightTab = styled(Tab)`
 right:200px;
+border-radius:10%;
 &:hover{
   right:205px;
 }
@@ -48,12 +49,13 @@ const Filter = (props)=>{
   return(
 
     <RightSideBar show={show} id="filter">
-      <RightTab>
-        <SearchIcon ref={node} style={{fontSize:'60',color:'white',cursor:'pointer'}} onClick={()=>setShow(!show)}/>
+      <RightTab onClick={()=>setShow(!show)}>
+        <SearchIcon ref={node} style={{fontSize:'60',color:'white',cursor:'pointer'}}/>
       </RightTab>
-      <Text>Filter by:</Text>
+      <Text>Filters:</Text>
       <Button handleClick={handleReset} words='Reset Filters'/>
-      <Button handleClick={handleClick} words='Personal Spots'/>
+      <Button handleClick={handleClick} words='Best Boy'/>
+      <Button handleClick={handleClick} words='Worst Boy'/>
     </RightSideBar>
   )
 }

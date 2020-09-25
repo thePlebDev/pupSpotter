@@ -13,7 +13,7 @@ const Button = styled.button`
   outline:none;
   border:none;
   color:#3f51b5;
-  background-color:#5CDB95;
+  background-color:white;
   opacity:0.8;
   cursor:pointer;
   box-shadow:0 5px 20px rgba(0,0,0,0.25);

@@ -10,6 +10,7 @@ import useRegister from '../../Hooks/UseRegister'
 import {registerValidation} from '../../utils/Validation';
 
 import {Form,TextFieldContainer,Title,FormContentContainer} from '../../Assets/FormStylings';
+import NotificationSystem from '../Notification';
 
 
 
@@ -52,13 +53,14 @@ const Image = styled.img`
 
 
 const Register =(props)=>{
-  const {state,bio,email,password,errors,handleChange,handleSubmit,status,setStatus} = useRegister(registerValidation)
+  const {state,bio,email,password,errors,handleChange,handleSubmit,status,setShow,show} = useRegister(registerValidation)
   const classes = useStyles()
 
   return(
-    <div style={{height:'100%',display:'flex',alignItems:'center'}}>
+    <div style={{height:'100%',display:'flex',alignItems:'center',paddingTop:'50px'}}>
       <Image src={require("../../Assets/images/ladyDog.png")} style={{width:'50%'}}  alt="dog in nature" />
       <Form onSubmit={(e)=>{handleSubmit(e)}} >
+      <NotificationSystem show={show} status={status} setShow={setShow}/>
       <FormContentContainer>
           <Title>Register</Title>
 
@@ -82,7 +84,7 @@ const Register =(props)=>{
             name="password" error={errors.password}  type='password' value={password}onChange={(e)=>handleChange(e)}/>
           </TextFieldContainer>
           <Button className={classes.buttons}  type="Submit" disableRipple={true}>Submit</Button>
-          
+
         </FormContentContainer>
       </Form>
     </div>

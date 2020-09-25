@@ -55,7 +55,7 @@ const Login =(props)=>{
 
 
   return(
-    <div style={{height:'100%',display:'flex',alignItems:'center'}}>
+    <div style={{height:'100%',display:'flex',alignItems:'center',paddingTop:'100px'}}>
     <Image src={require("../../Assets/images/singleDog.png")} style={{width:'50%'}}  alt="a single dog" />
       <Form onSubmit={(e)=>handleSubmit(e)}>
         <NotificationSystem status={status} show={show} setShow={setShow}/>

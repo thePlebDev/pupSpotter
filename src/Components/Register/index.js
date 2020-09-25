@@ -42,6 +42,12 @@ const useStyles = makeStyles((theme) => ({
   },
 
 }));
+const Image = styled.img`
+  display:none;
+  @media screen and (min-width: 992px) {
+  display:block;
+}
+`
 
 
 
@@ -51,32 +57,33 @@ const Register =(props)=>{
 
   return(
     <div style={{height:'100%',display:'flex',alignItems:'center'}}>
-
+      <Image src={require("../../Assets/images/ladyDog.png")} style={{width:'50%'}}  alt="dog in nature" />
       <Form onSubmit={(e)=>{handleSubmit(e)}} >
-      <div style={{width:'60%',margin:'0 auto',padding:'50px',borderRadius:'4px'}} >
-      <Title>Register</Title>
-      <div style={{position:'relative',marginBottom:'30px'}}>
-        <TextField className={classes.root} id="standard-basic" label="Username" style={{width:'70%',marginLeft:'15%',padding:'5px'}}
-        error={errors.username} value={state} onChange={(e)=>handleChange(e)} name='username'/>
+      <FormContentContainer>
+          <Title>Register</Title>
 
-      </div>
-      <div style={{position:'relative',marginBottom:'50px'}}>
-        <TextField className={classes.root} id="standard-basic" label="Email" style={{width:'70%',marginLeft:'15%'}}
-        name="email" error={errors.email}  value={email} onChange={(e)=>handleChange(e)}/>
-      </div>
-      <div style={{position:'relative',marginBottom:'50px'}}>
-        <TextField className={classes.root} id="standard-basic" label="Bio" style={{width:'70%',marginLeft:'15%'}}
-        name="bio" value={bio}onChange={(e)=>handleChange(e)}/>
-      </div>
-      <div style={{position:'relative',marginBottom:'50px'}}>
-        <TextField className={classes.root} id="standard-basic" label="Password" style={{width:'70%',marginLeft:'15%'}}
-        name="password" error={errors.password}  type='password' value={password}onChange={(e)=>handleChange(e)}/>
-      </div>
+          <TextFieldContainer>
+            <TextField className={classes.root} id="standard-basic" label="Username" style={{width:'70%',marginLeft:'15%',padding:'5px'}}
+            error={errors.username} value={state} onChange={(e)=>handleChange(e)} name='username'/>
+          </TextFieldContainer>
 
-        <div>
+          <TextFieldContainer>
+            <TextField className={classes.root} id="standard-basic" label="Email" style={{width:'70%',marginLeft:'15%'}}
+            name="email" error={errors.email}  value={email} onChange={(e)=>handleChange(e)}/>
+          </TextFieldContainer>
+
+          <TextFieldContainer>
+            <TextField className={classes.root} id="standard-basic" label="Bio" style={{width:'70%',marginLeft:'15%'}}
+            name="bio" value={bio}onChange={(e)=>handleChange(e)}/>
+          </TextFieldContainer
+          >
+          <TextFieldContainer>
+            <TextField className={classes.root} id="standard-basic" label="Password" style={{width:'70%',marginLeft:'15%'}}
+            name="password" error={errors.password}  type='password' value={password}onChange={(e)=>handleChange(e)}/>
+          </TextFieldContainer>
           <Button className={classes.buttons}  type="Submit" disableRipple={true}>Submit</Button>
-        </div>
-        </div>
+          
+        </FormContentContainer>
       </Form>
     </div>
   )

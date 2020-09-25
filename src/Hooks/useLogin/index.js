@@ -3,6 +3,7 @@ import axios from 'axios'
 //import { Redirect } from 'react-router-dom';
 
 import {backendUrl} from '../../utils/Constants';
+import {axiosPost} from '../../utils/AxiosFuncs';
 
 const useLogin =(validation)=>{
 
@@ -11,6 +12,8 @@ const useLogin =(validation)=>{
   const [isSubmitting,setIsSubmitting ] = useState(false);
   const [authStatus,setAuthStatus] = useState(false);
   const [badLogin,setBadLogin] = useState(false);
+  const [status,setStatus] = useState(false);
+  const [show,setShow] = useState(false)
 
   const handleChange = (e)=>{
     const {name,value} = e.target
@@ -20,21 +23,24 @@ const useLogin =(validation)=>{
 
   const handleSubmit =(e)=>{
     e.preventDefault()
-    console.log('submitted')
     setErrors(validation(state))
     setIsSubmitting(true)
   }
   useEffect(()=>{
     if(isSubmitting && Object.keys(errors).length === 0){
-      axios.post(`${backendUrl}user/login`,{
+      axiosPost(`${backendUrl}user/login`,{
         username:state.username,
         password:state.password
-      },{withCredentials:true})
-      .then(data=> data.data.status ? setAuthStatus(true):'')
-      .then(()=>setIsSubmitting(false))
-
-      .catch(error=>setBadLogin(true))
+      })
+      .then(data=> data.status ? setAuthStatus(true):'')
+      .then(()=>{
+        setIsSubmitting(false)})
+      .catch(error=>{
+        setStatus(203)
+        setShow(true)
+      })
     }
+
     setIsSubmitting(false)
   },[errors,isSubmitting,state.password,state.username])
 
@@ -42,6 +48,9 @@ const useLogin =(validation)=>{
 
   return{
     state,
+    status,
+    show,
+    setShow,
     handleChange,
     handleSubmit,
     errors,

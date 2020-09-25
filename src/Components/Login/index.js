@@ -10,22 +10,8 @@ import {loginValidation} from '../../utils/Validation';
 // import axios from 'axios'
 // import {backendUrl} from '../../utils/Constants'
 import {Form,TextFieldContainer,Title,FormContentContainer} from '../../Assets/FormStylings';
+import NotificationSystem from '../Notification';
 
-
-const Links = styled.div`
-margin:10px 0;
-cursor:pointer;
-border:1px solid #05386B;
-border-radius:4px;
-padding:10px 36px;
-text-align:center;
-width:170px;
-transition:all 0.3s ease;
-:hover{
-  color:#5CDB95;
-  background-color: #05386B;
-}
-`
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -49,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Login =(props)=>{
 
-  const {state,handleChange,handleSubmit,errors,authStatus,badLogin} = useLogin(loginValidation)
+  const {state,handleChange,handleSubmit,errors,authStatus,show,setShow,status} = useLogin(loginValidation)
   const classes = useStyles();
 
   useEffect(()=>{
@@ -72,7 +58,8 @@ const Login =(props)=>{
     <div style={{height:'100%',display:'flex',alignItems:'center'}}>
     <Image src={require("../../Assets/images/singleDog.png")} style={{width:'50%'}}  alt="a single dog" />
       <Form onSubmit={(e)=>handleSubmit(e)}>
-        <FormContentContainer style={{paddingTop:'165px'}} >
+        <NotificationSystem status={status} show={show} setShow={setShow}/>
+        <FormContentContainer >
             <Title>Login</Title>
             <TextFieldContainer>
               <TextField data-testid="loginForm" className={classes.root} id="username" label="Username"

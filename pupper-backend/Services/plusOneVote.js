@@ -1,10 +1,16 @@
-const userVote = require('../Subscribers/userVote')
-
-const plusOneVote = async(id)=>{
-  const response = await userVote(id) // this is in the data access layer
-
-  return {response}
-}
+const votingSubscriber = require('../Subscribers/userVote')
 
 
-module.exports = plusOneVote
+const spotFilterServices =(function(){
+
+  return{
+    plusOneVote: async function(id){
+      const response = await votingSubscriber.voteOnce(id) // this is in the data access layer
+      return {response}
+    }
+
+  }
+}())
+
+
+module.exports = spotFilterServices

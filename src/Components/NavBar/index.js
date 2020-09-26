@@ -2,7 +2,7 @@ import React,{useState} from 'react';
 import styled from 'styled-components';
 import PetsIcon from '@material-ui/icons/Pets';
 import HomeIcon from '@material-ui/icons/Home';
-import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
+import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
 import {Link} from 'react-router-dom';
 import {Tab} from '../../Assets/SideBarStyles';
 import LoginStatus from '../LoginStatus';
@@ -69,8 +69,8 @@ const NavBar = ({loggedIn,setLoggedIn})=> {
       </LoginTab>
 
       <AboutTab className="tab">
-        <Text>About</Text>
-        <HelpOutlineIcon style={{fontSize:'60',color:'white',cursor:'pointer'}} onClick={()=>setShow(!show)}  />
+        <Text>Donate</Text>
+        <AttachMoneyIcon style={{fontSize:'60',color:'white',cursor:'pointer'}} onClick={()=>setShow(!show)}  />
       </AboutTab>
 
     </div>

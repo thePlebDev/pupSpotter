@@ -1,6 +1,7 @@
 const express = require('express')
 const Spotting = require('../../Models/Spotting');
 const multer = require('multer')
+const plusOneVote = require('../../Services/plusOneVote')
 
 
 const spottingRouter = express.Router();
@@ -23,6 +24,14 @@ spottingRouter.get('/all',(req,res,next)=>{
     console.log(error)
     next(error)
   }
+})
+
+//A POST REQUEST TO ADD PLUS ONE TO THE VOTE ON THE MODELS
+spottingRouter.post('/vote',
+  async (req,res,next)=>{
+    const {id} = req.body
+    const {response} = await plusOneVote(id) // this will be located in the service layer
+    return res.json({response})
 })
 
 spottingRouter.get('/filter',ensureAuthenticated,(req,res,next)=>{

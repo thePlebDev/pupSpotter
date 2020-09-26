@@ -12,6 +12,7 @@ const spottingSchema = new Schema({
     lat:Number,
     lon:Number
   },
+  vote:{type:Number,default:0},
   user:{type:Schema.Types.ObjectId,ref:"User"} // the type will be a an ObjectId and during population the model to be used will be the User
 
 

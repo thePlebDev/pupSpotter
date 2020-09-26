@@ -11,11 +11,18 @@ const votingSubscriber=(function(){
       vote: data.vote + 1
     }).exec()
       return{response}
+    },
+
+    highestVote: async function(){
+      const response =await Spotting.find({vote:{$gte:1}}).exec()
+      return {response}
+    },
+
+    lowestVote: async function(){
+      const response = await Spotting.find().exec()
+      return{response}
     }
-
-
   }
 }())
-
 
 module.exports = votingSubscriber

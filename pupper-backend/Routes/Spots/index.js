@@ -34,6 +34,18 @@ spottingRouter.post('/vote',
     return res.json({response})
 })
 
+//GET REQUESTS TO FIND THE MODEL WITH THE LOWEST AND HIGHEST VOTES
+spottingRouter.get('/highest',
+  async(req,res,next)=>{
+    const {data} = await spotFilterServices.findHighestVote()
+    return res.json({data})
+  })
+spottingRouter.get('/lowest',
+  async(req,res,next)=>{
+    const {data} = await spotFilterServices.findLowestVote()
+    return res.json({data})
+  })
+
 spottingRouter.get('/filter',ensureAuthenticated,(req,res,next)=>{
 
     Spotting.find({user: req.user._id})

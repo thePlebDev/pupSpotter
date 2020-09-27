@@ -18,8 +18,24 @@ const spotFilterServices =(function(){
       const {response} = await votingSubscriber.lowestVote()
       let data = response.reduce((min,item)=>item.vote < min.vote ?item : min,response[0])
     return {data}
+  },
+    getAllSpots: async function(){
+      try {
+        const response = await votingSubscriber.getAllSpots()
+        return response
+      } catch (e) {
+        return e
+      }
+    },
+    newSpotting: async function(name,image,location,date,description,id){
+      try{
+        const {response} = await votingSubscriber.newSpotting(name,image,location,date,description,id)
+        return response
+      }
+      catch(e){
+        return e
+      }
     }
-
   }
 }())
 

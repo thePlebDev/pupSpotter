@@ -21,6 +21,36 @@ const votingSubscriber=(function(){
     lowestVote: async function(){
       const response = await Spotting.find().exec()
       return{response}
+    },
+    getAllSpots: async function(){
+      try{
+         const response = await Spotting.find().exec()
+         return response
+      }catch(error){
+        return error
+      }
+    },
+    newSpotting: async function(name,image,location,date,description,id){
+      try{
+        const newSpotting = new Spotting({
+          name,
+          image,
+          location:{lat:location.lat,lon:location.lon},
+          date,
+          user:id,
+          description
+        })
+      let response = await newSpotting.save()
+        .then(data=>{
+          return {message:'new Spotting created',status:200}})
+        .catch(error=>{return error})
+
+      return {response}
+      }
+      //{message:'new Spotting created',status:200}
+      catch(error){
+        return error
+      }
     }
   }
 }())

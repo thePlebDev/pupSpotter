@@ -15,13 +15,11 @@ function ensureAuthenticated(req,res,next){
   }
 }
 //A GET REQUEST TO RECIEVE ALL OF THE SPOTS FROM THE DATA BASE
-spottingRouter.get('/all',(req,res,next)=>{
+spottingRouter.get('/all', async(req,res,next)=>{
   try{
-    Spotting.find()
-    .then(data=>res.send(data))
-    .catch(err=>res.send(err))
+    const response = await spotFilterServices.getAllSpots()
+    res.json({response})
   }catch(error){
-    console.log(error)
     next(error)
   }
 })
@@ -46,36 +44,15 @@ spottingRouter.get('/lowest',
     return res.json({data})
   })
 
-spottingRouter.get('/filter',ensureAuthenticated,(req,res,next)=>{
-
-    Spotting.find({user: req.user._id})
-    .then(data=>res.send(data))
-    .catch(error=>{
-      console.log(error)
-      next(error)
-    })
-})
-
 
 // A POST REQUEST TO create a spotting of a pupper.
-spottingRouter.post('/',ensureAuthenticated,(req,res,next)=>{
-  //ensureAuthenticated should ensure that the user is authenticated.
+spottingRouter.post('/',ensureAuthenticated,
+  async (req,res,next)=>{
   try{
     const {name,image,location,date,description} = req.body;
-    console.log('the user should be below')
-    console.log(req.user) // the result of the session should be stored here I think. ONce we log in
-    const newSpotting = new Spotting({
-      name,
-      image,
-      location:{lat:location.lat,lon:location.lon},
-      date,
-      user:req.user._id,
-      description
-    })
-
-    newSpotting.save()
-    .then(data=>res.json({message:'new Spotting created',status:200}))
-    .catch(error=>res.send(error))
+    const id = req.user._id
+    const response = await spotFilterServices.newSpotting(name,image,location,date,description,id)
+    return res.json({response})
   }
   catch(error){
     console.log(error)

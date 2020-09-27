@@ -1,47 +1,16 @@
 const express = require('express');
-const User = require('../../Models/User')
+const registerUserService = require('../../Services/registerUserService')
 
 const registerRouter = express.Router()
 
-registerRouter.post('/',(req,res,next)=>{
+registerRouter.post('/', (req,res,next)=>{
   const {username,password,bio,email} = req.body
-    try{
-      User.findOne({ username:username},function(err,user){
-        if(err){ return next(err)}
-        if(user){
-          return  res.json({status:204,message:'User already exits'})
-        }
-        const newUser = new User({
-          username,
-          password,
-          bio,
-          email
-        });
-        console.log('')
-        newUser.save(next)
-        res.json({status:200,message:"User Created"})
-
-
-      })
-    }catch(error){
-      console.log(error)
-      next(error)
-    }
-
-
-})
-registerRouter.get('/all',(req,res,next)=>{
-  try{
-    User.findOne({},(err,user)=>{
-      if(err){console.log(err)}
-      else{
-        res.json({Users:user})
-      }
+  registerUserService.registerUser(username,password,bio,email,next)
+    .then(data=>{
+      res.json(data)
     })
-  }catch(error){
-    console.log(error)
-    next(error)
-  }
+    .catch(error=>{next(error)})
 })
+
 
 module.exports = registerRouter

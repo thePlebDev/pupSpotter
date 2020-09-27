@@ -10,7 +10,9 @@ const userSchema = new Schema({
   email:String,
   bio:String,
   password:{type:String,required:true},
-  posts:[{type:Schema.Types.ObjectId, ref:'Spot'}]
+  posts:[{type:Schema.Types.ObjectId, ref:'Spot'}],
+  resestPasswordToken:String,
+  resestPasswordExpires:Date
 
 })
 

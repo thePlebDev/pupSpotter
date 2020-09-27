@@ -83,4 +83,5 @@ spottingRouter.post('/',ensureAuthenticated,(req,res,next)=>{
   }
 })
 
+
 module.exports = spottingRouter

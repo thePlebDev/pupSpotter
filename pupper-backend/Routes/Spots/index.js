@@ -1,6 +1,4 @@
 const express = require('express')
-const Spotting = require('../../Models/Spotting');
-const multer = require('multer')
 const spotFilterServices = require('../../Services/plusOneVote')
 
 
@@ -36,12 +34,14 @@ spottingRouter.post('/vote',
 spottingRouter.get('/highest',
   async(req,res,next)=>{
     const {data} = await spotFilterServices.findHighestVote()
-    return res.json({data})
+    let response = [data]
+    return res.json({response})
   })
 spottingRouter.get('/lowest',
   async(req,res,next)=>{
     const {data} = await spotFilterServices.findLowestVote()
-    return res.json({data})
+    let response = [data]
+    return res.json({response})
   })
 
 

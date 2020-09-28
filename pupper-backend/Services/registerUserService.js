@@ -4,11 +4,13 @@ const registerUserService = (function(){
 
 
   return{
-    registerUser: function(username,password,bio,email,next){
-
-        registerUserSubscriber.newUser(username,password,bio,email,next)
-        .then(data=>{return data})
-        .catch(error=>{return error})
+    registerUser: async function(username,password,bio,email,next){
+      try{
+        const response = await registerUserSubscriber.newUser(username,password,bio,email,next)
+        return response
+      } catch(e){
+        return e
+      }
   }
   }
 }())

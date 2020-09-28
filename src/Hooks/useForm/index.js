@@ -28,13 +28,14 @@ const useForm = (axiosMethod,validation)=>{
         description
       },{withCredentials:true})
       .then(data=>{
-        console.log(data.status === 200)
-        if(data.status ===200){
+        const {status} = data.response
+        console.log(status === 200)
+        if(status ===200){
           setStatus(200)
           setShow(true)
           return
         }
-        if(data.status === 401){
+        if(status === 401){
           //set show for not logged in
           setStatus(401)
           setShow(true)

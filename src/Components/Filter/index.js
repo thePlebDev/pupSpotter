@@ -8,6 +8,7 @@ import Button from '../Button'
 
 import {backendUrl} from '../../utils/Constants';
 import {SideBar,Tab} from '../../Assets/SideBarStyles';
+import filterFuncs from '../../utils/FilterFuncs';
 
 const RightSideBar =styled(SideBar)`
 right:0;
@@ -32,20 +33,6 @@ const Filter = (props)=>{
   const node = useRef(null);
   const {show,setShow} = useOutsideClick(node)
 
-
-
-  const handleClick=()=>{
-    axios.get(`${backendUrl}spot/filter`,{withCredentials: true})
-    .then(data=>props.setMapData(data.data))
-    .catch(e=>console.error(`ERROR ->` + e))
-  }
-  const handleReset=()=>{
-    axios.get(`${backendUrl}spot/all`,{withCredentials: true})
-    .then(data=>props.setMapData(data.data))
-    .catch(e=>console.error(`ERROR ->` + e))
-  }
-
-
   return(
 
     <RightSideBar show={show} id="filter">
@@ -53,9 +40,9 @@ const Filter = (props)=>{
         <SearchIcon ref={node} style={{fontSize:'60',color:'white',cursor:'pointer'}}/>
       </RightTab>
       <Text>Filters:</Text>
-      <Button handleClick={handleReset} words='Reset Filters'/>
-      <Button handleClick={handleClick} words='Best Boy'/>
-      <Button handleClick={handleClick} words='Worst Boy'/>
+      <Button handleClick={filterFuncs.filter} url={'spot/all'} setData={props.setMapData} words='Reset Filters'/>
+      <Button handleClick={filterFuncs.filter} url={'spot/highest'} setData={props.setMapData} words='Best Boy'/>
+      <Button handleClick={filterFuncs.filter} url={'spot/lowest'} setData={props.setMapData} words='Worst Boy'/>
     </RightSideBar>
   )
 }

@@ -33,6 +33,7 @@ const useRegister =(validator)=>{
         password:state.password
       })
       .then(data=>{
+        console.log(data)
         if(data.status===200){
           setStatus(data.status)
           setShow(true)

@@ -23,9 +23,9 @@ const Button = styled.button`
   }
 `
 
-const ButtonCom = ({handleClick,words})=>{
+const ButtonCom = ({handleClick,words,url,setData})=>{
   return(
-    <Button id="button" onClick={()=>handleClick()}>{words}</Button>
+    <Button id="button" onClick={()=>handleClick(url,setData)} >{words}</Button>
   )
 }
 

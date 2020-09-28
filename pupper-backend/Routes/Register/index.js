@@ -7,6 +7,7 @@ registerRouter.post('/', (req,res,next)=>{
   const {username,password,bio,email} = req.body
   registerUserService.registerUser(username,password,bio,email,next)
     .then(data=>{
+      // console.log(data)
       res.json(data)
     })
     .catch(error=>{next(error)})

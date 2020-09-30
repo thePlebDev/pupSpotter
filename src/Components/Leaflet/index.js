@@ -3,6 +3,7 @@ import {Map,TileLayer,Marker,Popup} from 'react-leaflet';
 import axios from 'axios'
 
 import Filter from '../Filter'
+import About from '../About'
 import {backendUrl} from '../../utils/Constants'
 import {axiosGet} from '../../utils/AxiosFuncs'
 
@@ -66,7 +67,7 @@ useEffect(()=>{
             </Popup>
 
           </Marker>
-
+          <About modalShow={props.modalShow} setModalShow={props.setModalShow}/>
         </Map>
 
     </div>

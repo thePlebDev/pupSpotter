@@ -4,7 +4,6 @@
 import {axiosGet} from '../AxiosFuncs'
 
 const filterFuncs = (function(){
-
   return{
     filter: async (url,setMethod) =>{
       try{

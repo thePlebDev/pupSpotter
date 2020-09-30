@@ -12,12 +12,13 @@ import TestForm from '../TestForm';
 
 const App =()=>{
   const [loggedIn,setLoggedIn] = useState(false)
+  const [modalShow,setModalShow] = useState(false);
   return(
     <div>
-        <NavBar loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>
+        <NavBar loggedIn={loggedIn} setLoggedIn={setLoggedIn} setModalShow={setModalShow}/>
       <Switch>
 
-        <Route exact path ='/' render={(props)=> <Map {...props} setLoggedIn={setLoggedIn} /> }/>
+        <Route exact path ='/' render={(props)=> <Map {...props} setLoggedIn={setLoggedIn} modalShow={modalShow} setModalShow={setModalShow} /> }/>
         <Route exact path ='/pupSpotting' component={PupForm} />
         <Route exact path ='/register' component={Register} />
         <Route exact path ='/login' component={Login } />

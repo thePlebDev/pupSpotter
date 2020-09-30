@@ -2,7 +2,7 @@ import React,{useState} from 'react';
 import styled from 'styled-components';
 import PetsIcon from '@material-ui/icons/Pets';
 import HomeIcon from '@material-ui/icons/Home';
-import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
+import HelpOutlineIcon from '@material-ui/icons/HelpOutline'
 import {Link} from 'react-router-dom';
 import {Tab} from '../../Assets/SideBarStyles';
 import LoginStatus from '../LoginStatus';
@@ -45,7 +45,7 @@ const Text = styled.div`
 `
 
 
-const NavBar = ({loggedIn,setLoggedIn})=> {
+const NavBar = ({loggedIn,setLoggedIn,setModalShow})=> {
   const [show,setShow] = useState(true)
   return (
     <div style={{position:'absolute',left:0,height:'100vh'}}>
@@ -68,9 +68,9 @@ const NavBar = ({loggedIn,setLoggedIn})=> {
           <LoginStatus loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
       </LoginTab>
 
-      <AboutTab className="tab">
-        <Text>Donate</Text>
-        <AttachMoneyIcon style={{fontSize:'60',color:'white',cursor:'pointer'}} onClick={()=>setShow(!show)}  />
+      <AboutTab className="tab" onClick={()=>setModalShow(true)}>
+        <Text>About</Text>
+        <HelpOutlineIcon style={{fontSize:'60',color:'white',cursor:'pointer'}} onClick={()=>setShow(!show)}  />
       </AboutTab>
 
     </div>

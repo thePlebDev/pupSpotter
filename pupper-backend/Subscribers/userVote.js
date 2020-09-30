@@ -7,10 +7,17 @@ const votingSubscriber=(function(){
   return{
     voteOnce: async function(id){
       const data = await Spotting.findById(id).exec()
-      const response = await Spotting.updateOne({ _id: id }, {
-      vote: data.vote + 1
-    }).exec()
-      return{response}
+      if(!data){
+        const response ={status:500,message:"please try agin"}
+        return response
+      }else {
+        const response = await Spotting.updateOne({ _id: id }, {
+        vote: data.vote + 1
+      }).exec()
+        return{response}
+
+      }
+
     },
 
     highestVote: async function(){

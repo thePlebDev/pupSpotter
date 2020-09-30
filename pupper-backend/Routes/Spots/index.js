@@ -25,6 +25,7 @@ spottingRouter.get('/all', async(req,res,next)=>{
 //A POST REQUEST TO ADD PLUS ONE TO THE VOTE ON THE MODELS
 spottingRouter.post('/vote',
   async (req,res,next)=>{
+    console.log(req.body)
     const {id} = req.body
     const {response} = await spotFilterServices.plusOneVote(id) // this will be located in the service layer
     return res.json({response})

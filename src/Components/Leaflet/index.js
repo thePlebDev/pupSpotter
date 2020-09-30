@@ -66,9 +66,9 @@ useEffect(()=>{
               ?
             mapData.map((item,index)=>{
             return(
-              <Marker position={[item.location.lat,item.location.lon]} >
+              <Marker position={[item.location.lat,item.location.lon]} key={item._id}>
                 <Popup>
-                  <LeafletPopup name={item.name} description={item.description} />
+                  <LeafletPopup id={item._id} name={item.name} description={item.description} />
                 </Popup>
               </Marker>
             )

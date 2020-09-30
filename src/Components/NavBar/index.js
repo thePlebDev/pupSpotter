@@ -69,8 +69,10 @@ const NavBar = ({loggedIn,setLoggedIn,setModalShow})=> {
       </LoginTab>
 
       <AboutTab className="tab" onClick={()=>setModalShow(true)}>
-        <Text>About</Text>
-        <HelpOutlineIcon style={{fontSize:'60',color:'white',cursor:'pointer'}} onClick={()=>setShow(!show)}  />
+        <Link to='/'>
+          <Text>About</Text>
+        </Link>
+          <HelpOutlineIcon style={{fontSize:'60',color:'white',cursor:'pointer'}} onClick={()=>setShow(!show)}  />
       </AboutTab>
 
     </div>

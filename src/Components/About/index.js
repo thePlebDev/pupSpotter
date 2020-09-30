@@ -16,7 +16,7 @@ height:100%;
 background-color:rgba(0,0,0,0.4);
 transform:scale(0);
 cursor:default;
-animation:${props=>props.show ? 'unfoldIn 1s forwards':''};
+animation:${props=>props.show ? 'unfoldIn .7s  forwards':''};
 
 @keyframes unfoldIn {
   0%{

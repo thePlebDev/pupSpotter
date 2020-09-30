@@ -1,17 +1,34 @@
 import React,{useEffect,useState} from 'react';
 import {Map,TileLayer,Marker,Popup} from 'react-leaflet';
-import axios from 'axios'
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import styled from 'styled-components'
 
 import Filter from '../Filter'
 import About from '../About'
+import LeafletPopup from '../LeafletComponent'
 import {backendUrl} from '../../utils/Constants'
 import {axiosGet} from '../../utils/AxiosFuncs'
+
+const Title = styled.h2`
+border-bottom:2px solid #3f51b5;
+width:100%;
+text-align:center;
+`
+const Content = styled.div`
+  font-size:1.2em;
+`
+const Heart = styled.div`
+  color:${props=>props.clicked? 'red': '#c3c3c3'};
+`
+
 
 const MapContainer= (props)=>{
 const [state] = useState({lat:45.897820,lng:-64.368279,zoom:13})
 
+
 const [mapData,setMapData] = useState('');
-console.log(mapData)
+
+
 
 useEffect(()=>{
    axiosGet(`${backendUrl}isAuthenticated`)
@@ -51,7 +68,7 @@ useEffect(()=>{
             return(
               <Marker position={[item.location.lat,item.location.lon]} >
                 <Popup>
-                  <div>{item.name}</div>
+                  <LeafletPopup name={item.name} description={item.description} />
                 </Popup>
               </Marker>
             )
@@ -62,7 +79,11 @@ useEffect(()=>{
           <Marker position={[state.lat,state.lng]} >
             <Popup>
                 <div style={{display:'flex',justifyContent:'center',alignItems:'center',flexDirection:'column'}}>
-                  <div>Tim</div>
+                  <Title>Tim</Title>
+                  <Content>He was a very bueno boy with a red coat and a golden leash</Content>
+                  <Heart>
+                    <FavoriteIcon style={{cursor:'pointer',borderRadius:'50%',position:'absolute',left:'10px',top:'5px'}}/>
+                  </Heart>
                 </div>
             </Popup>
 

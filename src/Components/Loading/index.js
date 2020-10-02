@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 const Loader = styled.div`
   position:absolute;
-  left:50%;
+  left:35%;
   top:30%;
   background-color:#EDF5E1;
   width:90px;
@@ -15,6 +15,7 @@ const Loader = styled.div`
   border-right: 1.1em solid rgba(92, 219, 149, 0.2);
   border-bottom: 1.1em solid rgba(92, 219, 149, 0.2);
   border-left: 1.1em solid #5CDB95;
+  z-index:9999999999999999999;
 
 
   @keyframes pulse {

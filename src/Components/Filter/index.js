@@ -41,8 +41,8 @@ const Filter = (props)=>{
       </RightTab>
       <Text>Filters:</Text>
       <Button handleClick={filterFuncs.filter} url={'spot/all'} setData={props.setMapData} words='Reset Filters'/>
-      <Button handleClick={filterFuncs.filter} url={'spot/highest'} setData={props.setMapData} words='Best Boy'/>
-      <Button handleClick={filterFuncs.filter} url={'spot/lowest'} setData={props.setMapData} words='Worst Boy'/>
+      <Button handleClick={filterFuncs.filter} url={'spot/highest'} sSToken={'highest'} setData={props.setMapData} words='Best Boy'/>
+      <Button handleClick={filterFuncs.filter} url={'spot/lowest'} sSToken={'lowest'} setData={props.setMapData} words='Worst Boy'/>
     </RightSideBar>
   )
 }

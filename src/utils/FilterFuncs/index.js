@@ -5,10 +5,18 @@ import {axiosGet} from '../AxiosFuncs'
 
 const filterFuncs = (function(){
   return{
-    filter: async (url,setMethod) =>{
+    filter: async (url,setMethod,sSToken) =>{
       try{
-      let data = await axiosGet(url)
-      setMethod(data.response)
+      const cachedHits = localStorage.getItem(sSToken)
+      if(cachedHits){
+        setMethod(JSON.parse(cachedHits))
+      } else{
+        let data = await axiosGet(url)
+        setMethod(data.response)
+        localStorage.setItem(sSToken, JSON.stringify(data.response))
+
+      }
+
       }
       catch(error){
         console.log(error)

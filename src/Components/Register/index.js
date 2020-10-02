@@ -53,6 +53,7 @@ const Image = styled.img`
 
 
 const Register =(props)=>{
+  console.log(props.location)
   const {state,bio,email,password,errors,handleChange,handleSubmit,status,setShow,show} = useRegister(registerValidation)
   const classes = useStyles()
 

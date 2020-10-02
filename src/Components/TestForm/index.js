@@ -63,7 +63,8 @@ left:50%;
 z-index:999999999999999999999999;
 `
 
-const TestForm = ()=>{
+const TestForm = ({location})=>{
+  console.log(location)
   const [state,setState] = useState(false)
 
   const handleClick =(e)=>{

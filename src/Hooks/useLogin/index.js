@@ -13,7 +13,8 @@ const useLogin =(validation)=>{
   const [authStatus,setAuthStatus] = useState(false);
   const [badLogin,setBadLogin] = useState(false);
   const [status,setStatus] = useState(false);
-  const [show,setShow] = useState(false)
+  const [show,setShow] = useState(false);
+  const [loading,setLoading] = useState(false);
 
   const handleChange = (e)=>{
     const {name,value} = e.target
@@ -28,14 +29,19 @@ const useLogin =(validation)=>{
   }
   useEffect(()=>{
     if(isSubmitting && Object.keys(errors).length === 0){
+      //set lading state on
+      setLoading(true)
       axiosPost(`${backendUrl}user/login`,{
         username:state.username,
         password:state.password
       })
       .then(data=> data.status ? setAuthStatus(true):'')
       .then(()=>{
+        //setLoading state off
+        setLoading(false)
         setIsSubmitting(false)})
       .catch(error=>{
+        setLoading(false)
         setStatus(203)
         setShow(true)
       })
@@ -55,7 +61,8 @@ const useLogin =(validation)=>{
     handleSubmit,
     errors,
     authStatus,
-    badLogin
+    badLogin,
+    loading
   }
 }
 

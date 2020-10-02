@@ -11,6 +11,7 @@ import {loginValidation} from '../../utils/Validation';
 // import {backendUrl} from '../../utils/Constants'
 import {Form,TextFieldContainer,Title,FormContentContainer} from '../../Assets/FormStylings';
 import NotificationSystem from '../Notification';
+import Loading from '../Loading';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -35,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Login =(props)=>{
 
-  const {state,handleChange,handleSubmit,errors,authStatus,show,setShow,status} = useLogin(loginValidation)
+  const {state,handleChange,handleSubmit,errors,authStatus,show,setShow,status,loading} = useLogin(loginValidation)
   const classes = useStyles();
 
   useEffect(()=>{
@@ -53,13 +54,19 @@ const Login =(props)=>{
   }
   `
 
-
   return(
     <div style={{height:'100%',display:'flex',alignItems:'center',paddingTop:'100px'}}>
     <Image src={require("../../Assets/images/singleDog.png")} style={{width:'50%'}}  alt="a single dog" />
       <Form onSubmit={(e)=>handleSubmit(e)}>
-        <NotificationSystem status={status} show={show} setShow={setShow}/>
-        <FormContentContainer >
+        {
+          loading
+            ?
+          <Loading />
+            :
+          <NotificationSystem status={status} show={show} setShow={setShow}/>
+
+        }
+        <FormContentContainer>
             <Title>Login</Title>
             <TextFieldContainer>
               <TextField data-testid="loginForm" className={classes.root} id="username" label="Username"
@@ -67,9 +74,9 @@ const Login =(props)=>{
             </TextFieldContainer>
             <TextFieldContainer>
                 <TextField data-testid="loginForm" className={classes.root} type="password" id="standard-basic"
-                label="Password" error={errors.username} style={{width:'70%',marginLeft:'15%',padding:'5px'}} name="password" value={state.password}onChange={(e)=>handleChange(e)}/>
+                label="Password" error={errors.password} style={{width:'70%',marginLeft:'15%',padding:'5px'}} name="password" value={state.password}onChange={(e)=>handleChange(e)}/>
             </TextFieldContainer>
-            <Button className={classes.buttons} type='submit'>Login</Button>
+            <Button className={classes.buttons} type='submit' disableRipple={true} >Login</Button>
             <Link to='/register'>
               <Button className={classes.buttons} type='button'>Need an account?</Button>
             </Link>

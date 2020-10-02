@@ -12,7 +12,7 @@ const theme = createMuiTheme({
 })
 
 ReactDom.render(
-  <Router>
+  <Router keyLength={8}>
     <ThemeProvider theme={theme}>
       <App />
     </ThemeProvider>

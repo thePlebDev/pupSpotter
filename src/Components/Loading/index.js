@@ -6,7 +6,7 @@ const Loader = styled.div`
   position:absolute;
   left:35%;
   top:30%;
-  background-color:#EDF5E1;
+  background-color:#3f51b5;
   width:90px;
   height:90px;
   border-radius:50%;

@@ -7,7 +7,7 @@ const salt = bcrypt.genSaltSync(10)
 
 const userSchema = new Schema({
   username:{type:String,required:true,unique:true},
-  email:String,
+  email:{type:String},required:true,
   bio:String,
   password:{type:String,required:true},
   posts:[{type:Schema.Types.ObjectId, ref:'Spot'}],

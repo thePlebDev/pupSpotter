@@ -25,7 +25,7 @@ const Button = styled.button`
 
 const ButtonCom = ({handleClick,words,url,setData,sSToken})=>{
   return(
-    <Button id="button" onClick={()=>handleClick(url,setData,sSToken)} >{words}</Button>
+    <Button id="button" data-testid="button" onClick={()=>handleClick(url,setData,sSToken)} >{words}</Button>
   )
 }
 

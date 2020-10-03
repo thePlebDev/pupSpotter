@@ -6,6 +6,7 @@ import Button from '@material-ui/core/Button';
 import styled from 'styled-components';
 
 import NotificationSystem from '../Notification';
+import Loading from '../Loading'
 
 
 
@@ -60,7 +61,7 @@ const Image = styled.img`
 
 const PupForm =(props)=>{
   const classes = useStyles()
-const {handleChange,handleClick,setOpen,show,status,handleSubmit,state,errors,setShow} = useForm(axiosPost,signupValidation)
+const {handleChange,handleClick,setOpen,show,status,handleSubmit,state,errors,setShow,loading} = useForm(axiosPost,signupValidation)
 const [loadingState,setLoadState] = useState(false)
 const node = useRef();
 
@@ -68,7 +69,13 @@ const node = useRef();
     <div style={{height:'100%',display:'flex',alignItems:'center'}}>
       <Image src={require("./images/womanDog.png")} style={{width:'50%'}}  alt="dog in nature" />
       <Form onSubmit={(e)=>{handleSubmit(e)}} state={loadingState} enctype="multipart/form-data">
-        <NotificationSystem status={status} show={show} setShow={setShow} />
+        {
+          loading
+            ?
+          <Loading/>
+            :
+          <NotificationSystem status={status} show={show} setShow={setShow} />
+        }
       <FormContentContainer >
         <Title>Spot a pup</Title>
         <TextFieldContainer>

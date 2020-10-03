@@ -6,11 +6,13 @@ import MuiAlert from '@material-ui/lab/Alert';
 import Button from '@material-ui/core/Button';
 import styled from 'styled-components';
 
+
 import useRegister from '../../Hooks/UseRegister'
 import {registerValidation} from '../../utils/Validation';
 
 import {Form,TextFieldContainer,Title,FormContentContainer} from '../../Assets/FormStylings';
 import NotificationSystem from '../Notification';
+import Loading from '../Loading';
 
 
 
@@ -54,13 +56,20 @@ const Image = styled.img`
 
 const Register =(props)=>{
   console.log(props.location)
-  const {state,bio,email,password,errors,handleChange,handleSubmit,status,setShow,show} = useRegister(registerValidation)
+  const {state,bio,email,password,errors,handleChange,handleSubmit,status,setShow,show,loading} = useRegister(registerValidation)
   const classes = useStyles()
 
   return(
     <div style={{height:'100%',display:'flex',alignItems:'center',paddingTop:'50px'}}>
       <Image src={require("../../Assets/images/ladyDog.png")} style={{width:'50%'}}  alt="dog in nature" />
       <Form onSubmit={(e)=>{handleSubmit(e)}} >
+      {
+        loading
+          ?
+        <Loading />
+          :
+        <NotificationSystem show={show} status={status} setShow={setShow}/>
+      }
       <NotificationSystem show={show} status={status} setShow={setShow}/>
       <FormContentContainer>
           <Title>Register</Title>

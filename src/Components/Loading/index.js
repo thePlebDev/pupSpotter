@@ -6,15 +6,15 @@ const Loader = styled.div`
   position:absolute;
   left:35%;
   top:30%;
-  background-color:#3f51b5;
+  background-color:rgba(255,255,255,0.5);
   width:90px;
   height:90px;
   border-radius:50%;
   animation: 2s infinite pulse linear;
-  border-top: 1.1em solid rgba(92, 219, 149, 0.2);
-  border-right: 1.1em solid rgba(92, 219, 149, 0.2);
-  border-bottom: 1.1em solid rgba(92, 219, 149, 0.2);
-  border-left: 1.1em solid #5CDB95;
+  border-top: 1.1em solid rgba(63, 81, 181, 1);
+  border-right: 1.1em solid rgba(63, 81, 181, 1);
+  border-bottom: 1.1em solid rgba(63, 81, 181, 1);
+  border-left: 1.1em solid white;
   z-index:9999999999999999999;
 
 

@@ -7,8 +7,9 @@ const useForm = (axiosMethod,validation)=>{
   const [state,setState] =useState({name:'',location:'',date:'',image:'',description:''})
   const [errors,setErrors] = useState({})
   const [isSubmitting,setIsSubmitting] = useState(false)
+  const [loading,setLoading] = useState(false);
 
-  const [status,setStatus] = useState(false)
+  const [status,setStatus] = useState(false);
   const [show,setShow] = useState(false)
 
   const handleSubmit =(e)=>{
@@ -20,6 +21,7 @@ const useForm = (axiosMethod,validation)=>{
   useEffect(()=>{
     if(isSubmitting && Object.keys(errors).length === 0){
       const {name,location,date,image,description} = state
+      setLoading(true);
       axiosMethod(`${backendUrl}spot`,{
         name,
         location,
@@ -28,6 +30,7 @@ const useForm = (axiosMethod,validation)=>{
         description
       },{withCredentials:true})
       .then(data=>{
+        setLoading(false);
         const {status} = data.response
         console.log(status === 200)
         if(status ===200){
@@ -43,6 +46,7 @@ const useForm = (axiosMethod,validation)=>{
         }
         else{
           //set show for 500
+          setLoading(false);
           setStatus(500)
           setShow(true)
         }})
@@ -72,6 +76,7 @@ const useForm = (axiosMethod,validation)=>{
     state,
     show,
     status,
+    loading,
     errors,
     handleSubmit,
     handleChange,

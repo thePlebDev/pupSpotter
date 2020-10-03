@@ -63,7 +63,7 @@ const Login =(props)=>{
             ?
           <Loading />
             :
-          <NotificationSystem status={status} show={show} setShow={setShow}/>
+          <NotificationSystem status={status} show={show} setShow={setShow} />
 
         }
         <FormContentContainer>

@@ -1,8 +1,7 @@
 import {useState,useEffect} from 'react';
-import axios from 'axios'
 
-import {backendUrl} from '../../utils/Constants'
-import {axiosPost} from '../../utils/AxiosFuncs'
+import {backendUrl} from '../../utils/Constants';
+import {axiosPost} from '../../utils/AxiosFuncs';
 
 const useRegister =(validator)=>{
 
@@ -11,6 +10,7 @@ const useRegister =(validator)=>{
   const [isSubmiting,setIsSubmitting] = useState(false)
   const [status,setStatus] = useState('')
   const [show,setShow] = useState(false)
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit =(e)=>{
 
@@ -26,6 +26,7 @@ const useRegister =(validator)=>{
 
   useEffect(()=>{
     if(isSubmiting && Object.keys(errors).length === 0){
+      setLoading(true);
       axiosPost(`${backendUrl}register`,{
         username:state.username,
         email:state.username,
@@ -33,6 +34,7 @@ const useRegister =(validator)=>{
         password:state.password
       })
       .then(data=>{
+        setLoading(false)
         console.log(data)
         if(data.status===200){
           setStatus(data.status)
@@ -50,6 +52,7 @@ const useRegister =(validator)=>{
         }
       })
       .catch(error=>{
+        setLoading(false)
         setStatus(500)
         setShow(true)
         console.error(error)})
@@ -67,7 +70,8 @@ const useRegister =(validator)=>{
     handleSubmit,
     status,
     setShow,
-    show
+    show,
+    loading
   }
 }
 

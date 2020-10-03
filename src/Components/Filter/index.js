@@ -35,14 +35,14 @@ const Filter = (props)=>{
 
   return(
 
-    <RightSideBar show={show} id="filter">
-      <RightTab onClick={()=>setShow(!show)}>
+    <RightSideBar show={show} data-testid="filter">
+      <RightTab onClick={()=>setShow(!show)} data-testid="onClick">
         <SearchIcon ref={node} style={{fontSize:'60',color:'white',cursor:'pointer'}}/>
       </RightTab>
       <Text>Filters:</Text>
-      <Button handleClick={filterFuncs.filter} url={'spot/all'} setData={props.setMapData} words='Reset Filters'/>
-      <Button handleClick={filterFuncs.filter} url={'spot/highest'} sSToken={'highest'} setData={props.setMapData} words='Best Boy'/>
-      <Button handleClick={filterFuncs.filter} url={'spot/lowest'} sSToken={'lowest'} setData={props.setMapData} words='Worst Boy'/>
+      <Button data-testid="button" handleClick={filterFuncs.filter} url={'spot/all'} setData={props.setMapData} words='Reset Filters'/>
+      <Button data-testid="button" handleClick={filterFuncs.filter} url={'spot/highest'} sSToken={'highest'} setData={props.setMapData} words='Best Boy'/>
+      <Button data-testid="button" handleClick={filterFuncs.filter} url={'spot/lowest'} sSToken={'lowest'} setData={props.setMapData} words='Worst Boy'/>
     </RightSideBar>
   )
 }

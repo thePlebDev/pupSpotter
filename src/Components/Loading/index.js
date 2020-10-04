@@ -37,7 +37,7 @@ const Loading =()=>{
 
   return(
 
-    <Loader></Loader>
+    <Loader data-testid="loading"></Loader>
   )
 }
 

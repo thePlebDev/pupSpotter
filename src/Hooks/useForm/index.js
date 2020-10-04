@@ -31,7 +31,7 @@ const useForm = (axiosMethod,validation)=>{
       },{withCredentials:true})
       .then(data=>{
         setLoading(false);
-        const {status} = data.response
+        const {status} = data
         console.log(status === 200)
         if(status ===200){
           setStatus(200)

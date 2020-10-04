@@ -8,6 +8,7 @@ import About from '../About'
 import LeafletPopup from '../LeafletComponent'
 import {backendUrl} from '../../utils/Constants'
 import {axiosGet} from '../../utils/AxiosFuncs'
+import useLeaftletHook from '../../Hooks/LeafletComponent'
 
 const Title = styled.h2`
 border-bottom:2px solid #3f51b5;
@@ -68,7 +69,7 @@ useEffect(()=>{
             return(
               <Marker position={[item.location.lat,item.location.lon]} key={item._id}>
                 <Popup>
-                  <LeafletPopup id={item._id} name={item.name} description={item.description} />
+                  <LeafletPopup id={item._id} name={item.name} description={item.description} hook={useLeaftletHook} />
                 </Popup>
               </Marker>
             )

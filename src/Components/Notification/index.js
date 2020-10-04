@@ -17,7 +17,7 @@ const Notification=({status,words,show,setShow})=>{
       return(
         <div id="notification">
           <div data-testid="notification201">
-            <Notification201 staus={status} words={"Not Logged in"} show={show} setShow={setShow}/>
+            <Notification201 staus={status} words={"Login First"} show={show} setShow={setShow}/>
           </div>
         </div>
       )

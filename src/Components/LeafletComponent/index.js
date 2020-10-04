@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import {axiosPost} from '../../utils/AxiosFuncs';
 import {backendUrl} from '../../utils/Constants';
+import useLeaftletHook from '../../Hooks/LeafletComponent';
 
 const Title = styled.h2`
 border-bottom:2px solid #3f51b5;
@@ -16,28 +17,14 @@ const Heart = styled.div`
   color:${props=>props.clicked? 'red': '#c3c3c3'};
 `
 
-const LeafletPopup = ({name,description,id})=>{
-  const [clicked,setClicked] = useState(false);
-  console.log(id)
-
-  const handleClick =()=>{
-    setClicked(true)
-
-  }
-  useEffect(()=>{
-    if(clicked){
-      axiosPost(`${backendUrl}spot/vote`,{id})
-      .then(data=>console.log(data))
-      .catch(error=>console.log(error))
-    }
-
-  },[clicked])
+const LeafletPopup = ({name,description,hook,id})=>{
+  const {handleClick,clicked} = hook(id)
 
   return(
     <div style={{display:'flex',justifyContent:'center',alignItems:'center',flexDirection:'column'}}>
-      <Title>{name}</Title>
-      <Content>{description}</Content>
-      <Heart clicked={clicked} onClick={()=>handleClick(true)}>
+      <Title data-testid="title">{name}</Title>
+      <Content data-testid="content">{description}</Content>
+      <Heart data-testid="heart" clicked={clicked} onClick={()=>handleClick(true)}>
         <FavoriteIcon style={{cursor:'pointer',borderRadius:'50%',position:'absolute',left:'10px',top:'5px'}}/>
       </Heart>
     </div>

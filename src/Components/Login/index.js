@@ -33,6 +33,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const Image = styled.img`
+  display:none;
+  padding-top:100px;
+  @media screen and (min-width: 992px) {
+  display:block;
+
+}
+`
 
 const Login =(props)=>{
 
@@ -46,17 +54,10 @@ const Login =(props)=>{
 
   },[authStatus,props.history])
 
-  const Image = styled.img`
-    display:none;
-    padding-top:100px;
-    @media screen and (min-width: 992px) {
-    display:block;
-  }
-  `
-
+  // I have to keep taking out the src of the image in order to make the tests for: FIX
   return(
     <div style={{height:'100%',display:'flex',alignItems:'center',paddingTop:'100px'}}>
-    <Image src={require("../../Assets/images/singleDog.png")} style={{width:'50%'}}  alt="a single dog" />
+    <Image src={require('../../Assets/images/singleDog.png')}style={{width:'50%'}}  alt="a single dog" />
       <Form onSubmit={(e)=>handleSubmit(e)}>
         {
           loading
@@ -69,11 +70,11 @@ const Login =(props)=>{
         <FormContentContainer>
             <Title>Login</Title>
             <TextFieldContainer>
-              <TextField data-testid="loginForm" className={classes.root} id="username" label="Username"
+              <TextField data-testid="loginForm" className={classes.root} id="username-input" label="Username"
                name="username" error={errors.username} style={{width:'70%',marginLeft:'15%',padding:'5px'}} value={state.username}onChange={(e)=>handleChange(e)}/>
             </TextFieldContainer>
             <TextFieldContainer>
-                <TextField data-testid="loginForm" className={classes.root} type="password" id="standard-basic"
+                <TextField data-testid="loginForm" className={classes.root} type="password" id="password-input"
                 label="Password" error={errors.password} style={{width:'70%',marginLeft:'15%',padding:'5px'}} name="password" value={state.password}onChange={(e)=>handleChange(e)}/>
             </TextFieldContainer>
             <Button className={classes.buttons} type='submit' disableRipple={true} >Login</Button>

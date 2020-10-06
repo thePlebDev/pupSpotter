@@ -50,25 +50,25 @@ const NavBar = ({loggedIn,setLoggedIn,setModalShow})=> {
   return (
     <div style={{position:'absolute',left:0,height:'100vh'}}>
     <div />
-      <HomeTab className="tab">
+      <HomeTab className="tab" data-testid="tab">
         <Link to="/">
           <Text>Home</Text>
         </Link>
           <HomeIcon style={{fontSize:'60',color:'white',cursor:'pointer'}} onClick={()=>setShow(!show)}  />
 
       </HomeTab>
-      <SpotTab className="tab">
+      <SpotTab className="tab" data-testid="tab">
         <Link to="/pupSpotting">
           <Text>Spot</Text>
         </Link>
         <PetsIcon style={{fontSize:'60',color:'white',cursor:'pointer'}} onClick={()=>setShow(!show)}  />
       </SpotTab>
 
-      <LoginTab className="tab">
+      <LoginTab className="tab" data-testid="tab">
           <LoginStatus loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
       </LoginTab>
 
-      <AboutTab className="tab" onClick={()=>setModalShow(true)}>
+      <AboutTab className="tab" data-testid="tab" onClick={()=>setModalShow(true)}>
         <Link to='/'>
           <Text>About</Text>
         </Link>

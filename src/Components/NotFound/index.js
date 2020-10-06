@@ -25,9 +25,9 @@ const NotFound = ()=>{
     <div style={{width:'100%'}} data-testid="notFound">
       <div style={{width:'60%',margin:'0 auto',textAlign:'center'}}>
         <H1> Page not found </H1>
-        <Text>404</Text>
+        <Text data-testid="notFoundText">404</Text>
         <Link to='/'>
-          <H1 style={{cursor:'pointer' }}>Home</H1>
+          <H1 style={{cursor:'pointer' }} data-testid="notFoundHome">Home</H1>
         </Link>
 
       </div>

@@ -1,6 +1,17 @@
 const app =require('./index.js')
 
 const port = 3001
-app.listen(port,()=>{
-  console.log('listening on port 3000')
-})
+
+// this will be the file that runs the loaders.
+async function startServer(){
+  app.listen(port,err=>{
+    if(err){
+      console.log(err);
+      return
+    }
+    
+    console.log('your server is ready !')
+  })
+}
+
+startServer();

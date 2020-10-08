@@ -1,15 +1,15 @@
 const express = require('express');
-const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const session = require("express-session");
-const MongoStore = require('connect-mongo')(session)
 const passport = require('passport');
 const passportConfig = require('./passportConfig')
 const cookieParser = require('cookie-parser');
 const cors = require("cors");
 const mongoSanitize = require('express-mongo-sanitize')
 const xss = require('xss-clean');
-const {MONGODB_URI} = require('./enviromentConfig')
+
+const mongooseLoader = require('./Loaders/mongooseLoader')
+
 
 const User = require('./Models/User')
 
@@ -21,36 +21,17 @@ const authenticatedCheckRouter = require('./Routes/isAuthenticated')
 
 const app = express()
 passportConfig()
-const url =MONGODB_URI;
-const db = mongoose.connection
-const connection = mongoose.createConnection(url)
-const sessionStore = new MongoStore({ mongooseConnection: connection, collection: 'sessions' })
 
-
-mongoose.connect(url,{useUnifiedTopology: true,
-useNewUrlParser: true});
-db.once('open',()=>{
-  console.log('Database connected',url)
-})
-db.once('error',err=>{
-  console.error('connection error',err)
-})
+// MONGOOSE LOADER
+mongooseLoader.connection(app)
 
 //Data sanitization against NoSQL query injection
+
 app.use(mongoSanitize());
 app.use(xss())
-
+//SET UP STUFF
 app.use(bodyParser.json())
-app.use(session({
- secret: "TKRv0IJs=HYqrvagQ#&!F!%V]Ww/4KiVs$s,<<MX",
- resave: false,
- saveUninitialized: true,
- store:sessionStore,
- cookie:{
-   maxAge: 1000 *60*60*24
- }
 
-}));
  app.use(cookieParser("TKRv0IJs=HYqrvagQ#&!F!%V]Ww/4KiVs$s,<<MX"))
 app.use(passport.initialize());
 app.use(passport.session());
@@ -61,21 +42,11 @@ app.use(cors({
 }));
 
 
-app.get('/',(req,res)=>{
-  res.send('THis should be all the pups spotted')
-})
-app.get('/thing',(req,res)=>{
-  console.log(req.user)
-})
-app.get('/testing', (req,res)=>{
- res.json({name:'frodo'})
-})
-
+//BASIC SET UP
 app.use('/user',loginRouter)
 app.use('/spot',spottingRouter)
 app.use('/register',registerRouter)
 app.use('/isAuthenticated',authenticatedCheckRouter)
-
 app.all('*',(req,res,next)=>{
   const err = new Error(`Can not find ${req.originalUrl}`)
   err.status = 'fail';
@@ -83,6 +54,8 @@ app.all('*',(req,res,next)=>{
   next(err)
 });
 
+
+//THIS SHOULD BE AN ERROR LOADER
 const unhandledRejections = new Map();
 process.on('unhandledRejection', function(reason, promise){
   //ANY global unhandled promise rejections.

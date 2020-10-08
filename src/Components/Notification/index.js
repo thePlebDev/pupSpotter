@@ -3,6 +3,8 @@ import Notification200 from './notification200';
 import Notification201 from './notification201';
 import Notification500 from './notification500';
 
+//THIS NEEDS TO GET REFACTORED
+//it should be closed for modification but open for extenstion
 const Notification=({status,words,show,setShow})=>{
     switch(status){
       case 200:

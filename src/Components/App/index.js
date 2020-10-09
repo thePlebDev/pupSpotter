@@ -6,6 +6,7 @@ import Map from '../Leaflet';
 import PupForm from '../PupForm';
 import Register from '../Register';
 import Login from '../Login';
+import Work from '../Work'
 import NotFound from '../NotFound';
 
 
@@ -22,6 +23,7 @@ const App =()=>{
                     <Route exact path ='/pupSpotting' component={PupForm} />
                     <Route exact path ='/register' component={Register} />
                     <Route exact path ='/login' component={Login } />
+                    <Route exact path ='/work' component={Work } />
                     <Route path="*" component={NotFound} />
                   </Switch>
     </div>

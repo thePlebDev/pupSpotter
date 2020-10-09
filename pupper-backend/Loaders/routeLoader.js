@@ -18,7 +18,7 @@ const routeLoader = (function(){
       app.use('/register',registerRouter)
     },
     isAuthenticatedRoute:function(app){
-      app.use('/isAuthenticated',authenticatedCheckRouter)
+      app.use('/hello',authenticatedCheckRouter)
     },
     notFoundRoute:function(app){
       app.all('*',(req,res,next)=>{

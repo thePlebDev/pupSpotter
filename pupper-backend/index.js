@@ -25,6 +25,7 @@ app.use(cors({
 passportLoader.init(app)
 mongooseLoader.connection(app)
 errorHandlingLoader.errorHandling(app)
+
 routeLoader.loginRoute(app)
 routeLoader.spotRoute(app)
 routeLoader.registerRoute(app)

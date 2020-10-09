@@ -4,7 +4,7 @@ const authenticatedCheckRouter = express();
 
 
 
-authenticatedCheckRouter.get('/',(req,res,next)=>{
+authenticatedCheckRouter.get('/auth',(req,res,next)=>{
   console.log('INSIDE THE authenticatedCheckRouter')
     try {
       if(req.isAuthenticated()){
@@ -12,7 +12,7 @@ authenticatedCheckRouter.get('/',(req,res,next)=>{
           message:'Authorized',
           status:200
         })
-        next()
+        
       }else {
         res.json({
           message:'Not Authorized!',

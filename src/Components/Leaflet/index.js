@@ -29,10 +29,10 @@ const [state] = useState({lat:45.897820,lng:-64.368279,zoom:13})
 const [mapData,setMapData] = useState('');
 
 
-// THIS IS CAUSING A MEMORY LEAK
-//also getting not authorized for some reason
+//THIS IS CAUSING THE NOT FOUND BUG
+//this function when we get rerouted from the login page
 useEffect(()=>{
-    axiosGet(`${backendUrl}isAuthenticated`)
+    axiosGet(`${backendUrl}hello/auth`)
     .then(data=>{
       if(data.status ===200){
         console.log('logged it')

@@ -14,7 +14,7 @@ const Content201 = styled(Content)`
 const Notificaiton201 = ({setShow,words,show})=>{
 
   return(
-    <Container data-testId="201">
+    <Container data-testid="201">
       <Content201 show={show}>
         <WarningIcon/>
         <div data-testId="words">{words}</div>

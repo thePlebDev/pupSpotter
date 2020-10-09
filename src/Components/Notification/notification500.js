@@ -12,10 +12,10 @@ const Content500 = styled(Content)`
 
 const Notification500 = ({status,words,show,setShow})=>{
   return(
-    <Container data-testId={status}>
+    <Container data-testid={status}>
       <Content500 show={show}>
         <ErrorIcon/>
-        <div data-testId="words">{words}</div>
+        <div data-testid="words">{words}</div>
         <CloseIcon style={{cursor:'pointer'}} onClick={()=>{setShow(false)}}/>
       </Content500>
     </Container>

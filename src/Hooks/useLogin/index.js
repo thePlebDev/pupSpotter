@@ -35,7 +35,11 @@ const useLogin =(validation)=>{
         username:state.username,
         password:state.password
       })
-      .then(data=> data.status ? setAuthStatus(true):'')
+      .then(data=> {
+        if(data.status === 200){
+          setAuthStatus(true)
+        }
+      })
       .then(()=>{
         //setLoading state off
         setLoading(false)

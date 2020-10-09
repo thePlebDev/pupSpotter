@@ -26,19 +26,22 @@ const Heart = styled.div`
 const MapContainer= (props)=>{
 const [state] = useState({lat:45.897820,lng:-64.368279,zoom:13})
 
-
 const [mapData,setMapData] = useState('');
 
 
-
+// THIS IS CAUSING A MEMORY LEAK
+//also getting not authorized for some reason
 useEffect(()=>{
-   axiosGet(`${backendUrl}isAuthenticated`)
-   .then(data=>{
-     if(data.status ===200){
-       props.setLoggedIn(true)
-     }
-   })
-   .catch(error=>{console.error('there is an error------> ' + error)})
+    axiosGet(`${backendUrl}isAuthenticated`)
+    .then(data=>{
+      if(data.status ===200){
+        console.log('logged it')
+        props.setLoggedIn(true)
+      }else{
+        console.log(data)
+      }
+    })
+    .catch(error=>{console.error('there is an error------> ' + error)})
 },[])
 
   useEffect(()=>{

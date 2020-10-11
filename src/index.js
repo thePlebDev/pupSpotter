@@ -8,7 +8,7 @@ import App from './Components/App';
 import './globalResets.scss'
 
 const theme = createMuiTheme({
-  mainColor:'red'
+  mainBlue:'#3f51b5'
 })
 
 ReactDom.render(

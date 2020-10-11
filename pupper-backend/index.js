@@ -30,7 +30,6 @@ routeLoader.loginRoute(app)
 routeLoader.spotRoute(app)
 routeLoader.registerRoute(app)
 routeLoader.isAuthenticatedRoute(app)
-//app.use('/isAuthenticated',authenticatedCheckRouter)
 routeLoader.notFoundRoute(app)
 
 

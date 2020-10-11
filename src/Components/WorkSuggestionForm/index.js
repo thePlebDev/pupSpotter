@@ -38,7 +38,7 @@ const WorkSuggestionForm =()=>{
     <Container>
     <Form data-testid="form">
         <label style={{width:'100%'}}>
-          <TextArea ></TextArea>
+          <TextArea placeholder="add a suggestion" ></TextArea>
         </label>
     </Form>
     <Button type="submit" data-testid="submit">Add</Button>

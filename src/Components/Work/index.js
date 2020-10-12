@@ -2,41 +2,47 @@ import React from 'react';
 import styled from 'styled-components';
 
 import WorkSuggestion from '../WorkSuggestion';
+import WorkDoing from '../WorkDoing';
 
 
 const WorkContainer = styled.div`
-   display:flex;
-   flex-direction:columns;
-   justify-content:center;
+   display:grid;
    align-items:center;
+
+   @media (min-width:900px){
+     grid-template-columns:repeat(2, 1fr);
+   }
+   @media (min-width:1200px){
+     grid-template-columns:repeat(3,1fr);
+   }
 `
 
-
-
+const WorkItems = styled.div`
+  width:60%;
+  margin:5px auto;
+  align-self:start;
+`
 const Work = ()=>{
 
   return(
     <WorkContainer data-testid="workContainer">
 
-        <div data-testid="workSuggestion" style={{width:'50%'}}>
+        <WorkItems data-testid="workSuggestion"  >
           <WorkSuggestion/>
-        </div>
+        </WorkItems>
 
-        <div data-testid="workList">
+        <WorkItems data-testid="workList" >
+          <WorkSuggestion/>
+        </WorkItems>
 
-        </div>
+        <WorkItems data-testid="workList" >
+          <WorkSuggestion/>
+        </WorkItems>
 
-        <div data-testid="workList">
+        <WorkItems data-testid="workList" >
+          <WorkSuggestion/>
+        </WorkItems>
 
-        </div>
-
-        <div data-testid="workList">
-
-        </div>
-
-        <div data-testid="workList">
-
-        </div>
 
     </WorkContainer>
   )

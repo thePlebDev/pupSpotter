@@ -1,16 +1,24 @@
-import React from 'react';
+import React,{useState} from 'react';
 import styled from 'styled-components';
 
+import useWorkForm from '../../Hooks/UseWorkForm'
+import {workFormValidation} from '../../utils/Validation';
+
 const Container = styled.div`
-  width:100%
+  width:100%;
+  display:flex;
+  align-items:start;
+  justify-content:flex-start;
+  flex-direction:column;
 `
 const Form = styled.form`
-margin:5px auto;
+
+
+text-align:left;
+
 `
 const TextArea = styled.textarea`
   background-color:#DCDCDC;
-  width:95%;
-  margin-left:5px;
   outline:none;
   border-radius:4px;
   overflow:auto;
@@ -23,25 +31,24 @@ border:none;
 background-color:green;
 box-shadow: 0px 5px 25px 0 rgba(0,0,0,0.25);
 outline:none;
-margin-left:5px;
 margin-bottom:5px;
 color:white;
 `
 
 
-
-
-
 const WorkSuggestionForm =()=>{
+  const {errors,state,handleSubmit,handleChange} = useWorkForm(workFormValidation)
+
 
   return(
     <Container>
-    <Form data-testid="form">
-        <label style={{width:'100%'}}>
-          <TextArea placeholder="add a suggestion" ></TextArea>
+    <Form data-testid="form" onSubmit={(e)=>handleSubmit(e)}>
+        <label>
+          <TextArea placeholder="add a suggestion" style={{width:'100%'}} value={state.textarea}  onChange={(e)=>handleChange(e)} name='textarea' ></TextArea>
         </label>
+        <Button type="submit" data-testid="submit">Add</Button>
     </Form>
-    <Button type="submit" data-testid="submit">Add</Button>
+
     </Container>
   )
 }

@@ -41,14 +41,22 @@ const loginValidation=(state)=>{
   const errors ={}
 
   if(!state.username){
-    errors.username= "Please enter a username "
+    errors.username= "Please enter a username"
   }
   if(!state.password){
-    errors.password = "Plase enter a password"
+    errors.password = "Please enter a password"
   }
 
 
   return errors
 }
+const workFormValidation =(state)=>{
+  const errors ={}
 
-export {signupValidation,registerValidation,loginValidation}
+  if(!state.textarea){
+    errors.textarea = 'Input required';
+  }
+  return errors
+}
+
+export {signupValidation,registerValidation,loginValidation,workFormValidation}

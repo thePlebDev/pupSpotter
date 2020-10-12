@@ -2,7 +2,7 @@ import React,{useState} from 'react'
 
 
 const useWorkAccordian =(node)=>{
-  const [show,setShow] = useState(false)
+  const [show,setShow] = useState(true)
   const [scrollHeight,setScrollHeight] = useState('')
 
   const handleClick =()=>{

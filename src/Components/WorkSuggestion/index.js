@@ -42,7 +42,7 @@ const WorkSuggestion =()=>{
           <ArrowUpwardIcon />
         </Arrow>
       </TitleContainer>
-        <Display clicked={show} ref={node} height={scrollHeight} >
+        <Display clicked={show} ref={node} height={scrollHeight} style={{width:'95%'}}>
             {
               data.map((item,index)=>{
                 return<WorkListItem key={index} data-testid="items" items={item.words}/>

@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 const Item = styled.div`
   background-color:#DCDCDC;
-  width:90%;
+
   margin:5px auto;
   border-radius:4px;
   padding:10px;
@@ -13,11 +13,6 @@ const Item = styled.div`
 const Container = styled.div`
   width:100%
 `
-
-
-
-
-
 
 
 const WorkListItem =({items})=>{

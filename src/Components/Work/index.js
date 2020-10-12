@@ -9,11 +9,10 @@ const WorkContainer = styled.div`
    display:grid;
    align-items:center;
 
-   @media (min-width:900px){
-     grid-template-columns:repeat(2, 1fr);
-   }
+
    @media (min-width:1200px){
      grid-template-columns:repeat(3,1fr);
+     grid-auto-rows: 300px;
    }
 `
 
@@ -32,15 +31,15 @@ const Work = ()=>{
         </WorkItems>
 
         <WorkItems data-testid="workList" >
-          <WorkSuggestion/>
+          <WorkDoing title={'Doing'}/>
         </WorkItems>
 
         <WorkItems data-testid="workList" >
-          <WorkSuggestion/>
+          <WorkDoing title={'Testing'}/>
         </WorkItems>
 
         <WorkItems data-testid="workList" >
-          <WorkSuggestion/>
+          <WorkDoing title={'Done'}/>
         </WorkItems>
 
 

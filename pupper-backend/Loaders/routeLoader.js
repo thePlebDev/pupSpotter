@@ -2,7 +2,8 @@
 const loginRouter = require('../Routes/Login');
 const registerRouter = require('../Routes/Register');
 const spottingRouter = require('../Routes/Spots');
-const authenticatedCheckRouter = require('../Routes/isAuthenticated')
+const authenticatedCheckRouter = require('../Routes/isAuthenticated');
+
 
 
 

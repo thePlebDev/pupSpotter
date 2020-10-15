@@ -1,4 +1,4 @@
-import React,{useEffect} from 'react';
+import React,{useEffect,useState} from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import TextField from '@material-ui/core/TextField';
@@ -11,6 +11,7 @@ import {loginValidation} from '../../utils/Validation';
 // import {backendUrl} from '../../utils/Constants'
 import {Form,TextFieldContainer,Title,FormContentContainer} from '../../Assets/FormStylings';
 import NotificationSystem from '../Notification';
+import ForgotPassword from '../ForgotPassword'
 
 import Loading from '../Loading';
 
@@ -46,6 +47,7 @@ const Image = styled.img`
 const Login =(props)=>{
 
   const {state,handleChange,handleSubmit,errors,authStatus,show,setShow,status,loading} = useLogin(loginValidation)
+  const [showEmail,setShowEmail] = useState(false)
   const classes = useStyles();
 
   useEffect(()=>{
@@ -55,7 +57,11 @@ const Login =(props)=>{
 
   },[authStatus,props.history])
 
-  // I have to keep taking out the src of the image in order to make the tests for: FIX
+  const handleClick=()=>{
+    setShowEmail(!showEmail)
+  }
+
+  // I have to keep taking out the src of the image in order to make the tests work: FIX
   return(
     <div style={{height:'100%',display:'flex',alignItems:'center'}} className="page">
     <Image src={require('../../Assets/images/singleDog.png')}style={{width:'50%'}}  alt="a single dog" />
@@ -68,7 +74,7 @@ const Login =(props)=>{
           <NotificationSystem status={status} show={show} setShow={setShow} />
 
         }
-        <FormContentContainer>
+        <FormContentContainer style={{position:'relative'}}>
             <Title>Login</Title>
             <TextFieldContainer>
               <TextField data-testid="loginForm" className={classes.root} id="username-input" label="Username"
@@ -82,7 +88,8 @@ const Login =(props)=>{
             <Link to='/register'>
               <Button className={classes.buttons} type='button' disableRipple={true}>Need an account?</Button>
             </Link>
-            <Button className={classes.buttons} type='button' disableRipple={true}>Forgot password?</Button>
+            <Button className={classes.buttons} type='button' disableRipple={true} onClick={()=>handleClick()}>Forgot password?</Button>
+            <ForgotPassword show={showEmail}/>
         </FormContentContainer>
       </Form>
     </div>

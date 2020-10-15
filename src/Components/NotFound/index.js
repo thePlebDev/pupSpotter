@@ -22,7 +22,7 @@ const Text = styled.div`
 const NotFound = ()=>{
 
   return(
-    <div style={{width:'100%'}} data-testid="notFound">
+    <div style={{width:'100%'}} data-testid="notFound" className="page">
       <div style={{width:'60%',margin:'0 auto',textAlign:'center'}}>
         <H1> Page not found </H1>
         <Text data-testid="notFoundText">404</Text>

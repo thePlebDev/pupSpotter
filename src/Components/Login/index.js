@@ -57,7 +57,7 @@ const Login =(props)=>{
 
   // I have to keep taking out the src of the image in order to make the tests for: FIX
   return(
-    <div style={{height:'100%',display:'flex',alignItems:'center',paddingTop:'100px'}}>
+    <div style={{height:'100%',display:'flex',alignItems:'center'}} className="page">
     <Image src={require('../../Assets/images/singleDog.png')}style={{width:'50%'}}  alt="a single dog" />
       <Form onSubmit={(e)=>handleSubmit(e)}>
         {
@@ -80,8 +80,9 @@ const Login =(props)=>{
             </TextFieldContainer>
             <Button className={classes.buttons} type='submit' disableRipple={true} >Login</Button>
             <Link to='/register'>
-              <Button className={classes.buttons} type='button'>Need an account?</Button>
+              <Button className={classes.buttons} type='button' disableRipple={true}>Need an account?</Button>
             </Link>
+            <Button className={classes.buttons} type='button' disableRipple={true}>Forgot password?</Button>
         </FormContentContainer>
       </Form>
     </div>

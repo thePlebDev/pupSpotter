@@ -8,6 +8,12 @@ import Register from '../Register';
 import Login from '../Login';
 import NotFound from '../NotFound';
 
+import {
+  CSSTransition,
+  TransitionGroup,
+} from 'react-transition-group';
+import './App.css'
+
 
 
 
@@ -17,13 +23,20 @@ const App =()=>{
   return(
     <div>
         <NavBar loggedIn={loggedIn} setLoggedIn={setLoggedIn} setModalShow={setModalShow}/>
-                  <Switch>
-                    <Route exact path ='/' render={(props)=> <Map {...props} setLoggedIn={setLoggedIn} modalShow={modalShow} setModalShow={setModalShow} /> }/>
-                    <Route exact path ='/pupSpotting' component={PupForm} />
-                    <Route exact path ='/register' component={Register} />
-                    <Route exact path ='/login' component={Login } />
-                    <Route path="*" component={NotFound} />
-                  </Switch>
+          <Route render={({location})=>{
+            return <TransitionGroup>
+                      <CSSTransition timeout={450} classNames="fade" key={location.key}>
+                              <Switch location={location}>
+                                <Route exact path ='/' render={(props)=> <Map {...props} setLoggedIn={setLoggedIn} modalShow={modalShow} setModalShow={setModalShow} /> }/>
+                                <Route exact path ='/pupSpotting' component={PupForm} />
+                                <Route exact path ='/register' component={Register} />
+                                <Route exact path ='/login' component={Login } />
+                                <Route path="*" component={NotFound} />
+                              </Switch>
+                      </CSSTransition>
+                  </TransitionGroup>
+          }}/>
+
     </div>
   )
 }

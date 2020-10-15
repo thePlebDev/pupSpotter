@@ -60,7 +60,7 @@ const Register =(props)=>{
   const classes = useStyles()
 
   return(
-    <div style={{height:'100%',display:'flex',alignItems:'center',paddingTop:'50px'}}>
+    <div style={{height:'100%',display:'flex',alignItems:'center',paddingTop:'50px'}} className="page">
       <Image src={require("../../Assets/images/ladyDog.png")} style={{width:'50%'}}  alt="dog in nature" />
       <Form onSubmit={(e)=>{handleSubmit(e)}} >
       {

@@ -54,7 +54,7 @@ useEffect(()=>{
 
   },[])
   return(
-    <div>
+    <div className="page">
           <Filter setMapData={setMapData}/>
         <Map
           center={[state.lat,state.lng]}

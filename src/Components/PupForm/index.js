@@ -66,7 +66,7 @@ const [loadingState,setLoadState] = useState(false)
 const node = useRef();
 
   return(
-    <div style={{height:'100%',display:'flex',alignItems:'center'}}>
+    <div style={{height:'100%',display:'flex',alignItems:'center'}} className="page">
       <Image src={require("./images/womanDog.png")} style={{width:'50%'}}  alt="dog in nature" />
       <Form onSubmit={(e)=>{handleSubmit(e)}} state={loadingState} enctype="multipart/form-data">
         {

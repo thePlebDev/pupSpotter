@@ -51,7 +51,7 @@ const Notification=({status,words,show,setShow})=>{
       return(
         <div id="notification">
           <div data-testid="notification500">
-            <Notification500 staus={status} words={'Please try again'} show={show} setShow={setShow}/>
+            <Notification500 staus={status} words={'Try again later'} show={show} setShow={setShow}/>
           </div>
         </div>
       )

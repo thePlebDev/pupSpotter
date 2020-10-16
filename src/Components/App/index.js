@@ -7,6 +7,7 @@ import PupForm from '../PupForm';
 import Register from '../Register';
 import Login from '../Login';
 import NotFound from '../NotFound';
+import ForgotPassword from '../ForgotPassword';
 
 import {
   CSSTransition,
@@ -31,6 +32,7 @@ const App =()=>{
                                 <Route exact path ='/pupSpotting' component={PupForm} />
                                 <Route exact path ='/register' component={Register} />
                                 <Route exact path ='/login' component={Login } />
+                                <Route exact path ='/forgotPassword' component={ForgotPassword } />
                                 <Route path="*" component={NotFound} />
                               </Switch>
                       </CSSTransition>

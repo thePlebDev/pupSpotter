@@ -7,7 +7,7 @@ import CloseIcon from '@material-ui/icons/Close';
 const Content201 = styled(Content)`
   background-color:#ff9800;
   opacity:${props=>props.show?1:0};
-  transition:all .3s;
+  transition:all 0.3s;
 
 `
 

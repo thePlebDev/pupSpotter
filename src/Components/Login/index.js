@@ -59,34 +59,34 @@ const Login =(props)=>{
   // I have to keep taking out the src of the image in order to make the tests work: FIX
   return(
     <div style={{height:'100%',display:'flex',alignItems:'center'}} className="page">
-    <Image src={require('../../Assets/images/singleDog.png')}style={{width:'50%'}}  alt="a single dog" />
-      <Form onSubmit={(e)=>handleSubmit(e)}>
+      <Image src={require("../../Assets/images/ladyDog.png")} style={{width:'50%'}}  alt="dog in nature" />
+      <Form onSubmit={(e)=>{handleSubmit(e)}} enctype="multipart/form-data">
         {
           loading
             ?
-          <Loading />
+          <Loading/>
             :
           <NotificationSystem status={status} show={show} setShow={setShow} />
-
         }
-        <FormContentContainer style={{position:'relative'}}>
-            <Title>Login</Title>
-            <TextFieldContainer>
-              <TextField data-testid="loginForm" className={classes.root} id="username-input" label="Username"
-               name="username" error={errors.username} style={{width:'70%',marginLeft:'15%',padding:'5px'}} value={state.username}onChange={(e)=>handleChange(e)}/>
-            </TextFieldContainer>
-            <TextFieldContainer>
-                <TextField data-testid="loginForm" className={classes.root} type="password" id="password-input"
-                label="Password" error={errors.password} style={{width:'70%',marginLeft:'15%',padding:'5px'}} name="password" value={state.password}onChange={(e)=>handleChange(e)}/>
-            </TextFieldContainer>
-            <Button className={classes.buttons} type='submit' disableRipple={true} >Login</Button>
-            <Link to='/register'>
-              <Button className={classes.buttons} type='button' disableRipple={true}>Need an account?</Button>
-            </Link>
-            <Link to="/forgotPassword">
-              <Button className={classes.buttons} type='button' disableRipple={true} >Forgot password?</Button>
-            </Link>
-        </FormContentContainer>
+      <FormContentContainer >
+        <Title>Login</Title>
+        <TextFieldContainer>
+          <TextField inputProps={{ "data-testid": "content-input" }} className={classes.root} id="name-input" label="Username" style={{width:'70%',marginLeft:'15%',padding:'5px'}}
+          error={errors.username} data-testid="pupForm" value={state.username} onChange={(e)=>handleChange(e)} name='username'/>
+        </TextFieldContainer>
+        <TextFieldContainer>
+          <TextField className={classes.root} id="description-input" label="password" style={{width:'70%',marginLeft:'15%',padding:'5px'}}
+          name="password" error={errors.password} type='password' data-testid="pupForm" value={state.password}onChange={(e)=>handleChange(e)}/>
+        </TextFieldContainer>
+
+          <Button className={classes.buttons} data-testid="pupForm"  type="Submit" disableRipple={true}>Login</Button>
+          <Link to="/register">
+            <Button className={classes.buttons} data-testid="pupForm"  type="button" disableRipple={true}>need an account?</Button>
+          </Link>
+          <Link to="/forgotPassword">
+            <Button className={classes.buttons} data-testid="pupForm"  type="button" disableRipple={true}>Forgot Password?</Button>
+          </Link>
+      </FormContentContainer>
       </Form>
     </div>
   )

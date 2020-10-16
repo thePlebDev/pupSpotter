@@ -62,13 +62,12 @@ const Image = styled.img`
 const PupForm =(props)=>{
   const classes = useStyles()
 const {handleChange,handleClick,setOpen,show,status,handleSubmit,state,errors,setShow,loading} = useForm(axiosPost,signupValidation)
-const [loadingState,setLoadState] = useState(false)
 const node = useRef();
 
   return(
     <div style={{height:'100%',display:'flex',alignItems:'center'}} className="page">
       <Image src={require("./images/womanDog.png")} style={{width:'50%'}}  alt="dog in nature" />
-      <Form onSubmit={(e)=>{handleSubmit(e)}} state={loadingState} enctype="multipart/form-data">
+      <Form onSubmit={(e)=>{handleSubmit(e)}} enctype="multipart/form-data">
         {
           loading
             ?

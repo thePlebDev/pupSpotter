@@ -59,4 +59,13 @@ const workFormValidation =(state)=>{
   return errors
 }
 
-export {signupValidation,registerValidation,loginValidation,workFormValidation}
+const forgotPasswordValidation =(state)=>{
+  const errors ={}
+
+  if(!state.forgot){
+    errors.forgot ="ERROR!"
+  }
+  return errors
+}
+
+export {signupValidation,registerValidation,loginValidation,workFormValidation,forgotPasswordValidation}

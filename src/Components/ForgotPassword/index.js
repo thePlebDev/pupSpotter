@@ -1,13 +1,16 @@
-import React from 'react';
+import React,{useState} from 'react';
 import styled from 'styled-components'
 
 import {Form,TextFieldContainer,Title,FormContentContainer} from '../../Assets/FormStylings';
+
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
-import NotificationSystem from '../Notification';
 
+import NotificationSystem from '../Notification';
 import Loading from '../Loading';
+import useForgotPassword from '../../Hooks/useForgotPassword';
+import {forgotPasswordValidation} from '../../utils/Validation'
 
 const Image = styled.img`
   display:none;
@@ -38,27 +41,26 @@ const useStyles = makeStyles((theme) => ({
 
 const ForgotPassword =()=>{
   const classes = useStyles();
+  const {handleChange,handleSubmit,state,errors,loading,status,show,setShow} = useForgotPassword(forgotPasswordValidation)
   return(
     <div style={{height:'100%',display:'flex',alignItems:'center'}} className="page">
-    <Image src={require('../../Assets/images/forgotPasswordDog.png')}style={{width:'50%'}}  alt="a single dog" />
-      <Form >
+      <Image src={require("../../Assets/images/forgotPasswordDog.png")} style={{width:'50%'}}  alt="dog in nature" />
+      <Form onSubmit={(e)=>{handleSubmit(e)}} enctype="multipart/form-data">
         {
-          // loading
-          //   ?
-          // <Loading />
-          //   :
-          // <NotificationSystem status={status} show={show} setShow={setShow} />
-
+          loading
+            ?
+          <Loading/>
+            :
+          <NotificationSystem status={status} show={show} setShow={setShow} />
         }
-        <FormContentContainer style={{position:'relative'}}>
-            <Title>Forgot Password</Title>
-            <TextFieldContainer>
-              <TextField data-testid="loginForm" className={classes.root} id="username-input" label="Enter Email"
-               name="username" error={''} style={{width:'70%',marginLeft:'15%',padding:'5px'}} value={''}onChange={''}/>
-            </TextFieldContainer>
-
-            <Button className={classes.buttons} type='button' disableRipple={true} >Reset Password</Button>
-        </FormContentContainer>
+      <FormContentContainer >
+        <Title>Forgot Password</Title>
+        <TextFieldContainer>
+          <TextField inputProps={{ "data-testid": "content-input" }} className={classes.root} id="name-input" label="forgot" style={{width:'70%',marginLeft:'15%',padding:'5px'}}
+          error={errors.forgot} data-testid="pupForm" value={state.forgot} onChange={(e)=>handleChange(e)} name='forgot'/>
+        </TextFieldContainer>
+          <Button className={classes.buttons} data-testid="pupForm"  type="Submit" disableRipple={true}>Submit</Button>
+      </FormContentContainer>
       </Form>
     </div>
   )

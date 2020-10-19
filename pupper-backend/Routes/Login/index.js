@@ -33,7 +33,8 @@ loginRouter.get('/logout', function(req, res,next){
   }
 });
 
-// THIS WILL GET UPDATED LATER BUT FOR RIGHT NOW LETS JUST FAKE IT
+// THIS WILL GET UPDATED LATER 
+//NEED TO SETUP THE WEBSITE FIRST IN ORDER TO DO THE DOMAIN AUTHENTICATION FOR SENDGRID
 loginRouter.post('/forgot', function(req, res, next) {
     res.json({message:'User not found',status:201})
   // async.waterfall([
@@ -62,8 +63,8 @@ loginRouter.post('/forgot', function(req, res, next) {
   //     var smtpTransport = nodemailer.createTransport({
   //       service: 'SendGrid',
   //       auth: {
-  //         user: 'tristanElliott7@gmail.com',
-  //         pass: 'BaselineMountain1'
+  //         user: '',
+  //         pass: ''
   //       }
   //     });
   //     var mailOptions = {

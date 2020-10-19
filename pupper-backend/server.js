@@ -1,6 +1,6 @@
 const app =require('./index.js')
 
-const port = 3001
+const port = process.env.PORT || 3001
 
 // this will be the file that runs the loaders.
 async function startServer(){
@@ -9,7 +9,7 @@ async function startServer(){
       console.log(err);
       return
     }
-    
+
     console.log('your server is ready !')
   })
 }
